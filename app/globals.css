@@ -1,4 +1,33 @@
-body{
-  background-color: red;
-  color: white;
+*{
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-family: sans-serif;
+  border: none;
+  outline: none;
+}
+
+a{
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+li{
+  list-style: none;
+}
+
+.f{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.f1{
+  display: flex;
+}
+.f2{
+  align-items: center;
+}
+.f3{
+  justify-content: center;
 }

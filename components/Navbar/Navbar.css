@@ -1,0 +1,71 @@
+.navbar-container{
+    background: #fde199;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 50px;
+    box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
+}
+
+.navbar-left{
+    gap: 30px;
+}
+.logo-wrapper{
+    gap: 10px;
+}
+.logo-text{
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.search-wrapper{
+    gap: 12px;
+    background: #79580331;
+    padding: 8px 20px;
+    border-radius: 20px;
+    transition: background .2s ease;
+}
+.search-wrapper:hover{
+    background: none;
+}
+.search-icon{
+    font-size: 18px;
+}
+
+.navbar-right{
+    gap: 10px;
+}
+
+.navbar-pages{
+    /* border: 2px solid black; */
+    font-size: .9rem;
+    font-weight: bold;
+    padding: 8px 18px;
+    border-radius: 20px;
+    transition: background .2s ease;
+}
+.navbar-pages:hover{
+    background: #79580331;
+}
+.pages-btn-container{
+    overflow: hidden;
+    border-radius: 10px;
+    margin-left: 18px;
+}
+.navbar-pages-btn{
+    padding: 12px 25px;
+    color: rgb(245, 242, 242);
+    font-size: .9rem;
+    font-weight: bold;
+    transition: background .2s ease, color .2s ease;
+}
+.signin-btn{
+    background: #cb9501;
+}
+.signup-btn{
+    background: #6059c2;
+}
+
+.navbar-pages-btn:hover{
+    color: black;
+    background: none;
+}
