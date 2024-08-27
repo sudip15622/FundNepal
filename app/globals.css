@@ -6,6 +6,16 @@
   border: none;
   outline: none;
 }
+body{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  /* background-color: #010717;
+  background-image: radial-gradient(circle farthest-side, rgba(250, 249, 219, 0.94), rgba(249, 227, 219, 0.945)); */
+}
+main{
+  margin-bottom: auto;
+}
 
 a{
   text-decoration: none;
