@@ -1,16 +1,16 @@
-.login-container {
+.signin-container {
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
-    margin-top: 50px;
+    margin: 50px auto;
     /* overflow: hidden; */
 }
 
-.login-container .red-box {
+.signin-container .red-box {
     background: #6059c2;
     width: 380px;
-    height: 500px;
+    height: 600px;
     position: absolute;
     top: 0px;
     z-index: -1;
@@ -18,10 +18,10 @@
     border-radius: 40px;
 }
 
-.login-container .blue-box {
+.signin-container .blue-box {
     background: #cb9501;
     width: 380px;
-    height: 500px;
+    height: 600px;
     position: absolute;
     top: 0px;
     z-index: -1;
@@ -29,37 +29,36 @@
     border-radius: 40px;
 }
 
-.login-container .white-box {
-    /* background-color: rgb(248, 247, 247); */
+.signin-container .white-box {
     background: white;
     width: 380px;
-    height: 500px;
+    height: 600px;
     z-index: 1;
     border-radius: 40px;
 
     display: flex;
     flex-direction: column;
     justify-content: center;
-    row-gap: 20px;
+    row-gap: 15px;
     padding: 40px 10px;
     box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.4);
 }
-.login-container .signin-title{
+.signin-container .signin-title{
     text-align: center;
     font-size: 1.4em;
     color: rgb(74, 74, 74);
     font-weight: bold;
 }
-.login-container .signin-form{
+.signin-container .signin-form{
     display: flex;
     flex-direction: column;
     width: 90%;
     margin: 0px auto;
 }
-.login-container .signin-form button:disabled{
+.signin-container .signin-form button:disabled{
     cursor: not-allowed;
 }
-.login-container .signin-form-btn{
+.signin-container .signin-form-btn{
     width: 100%;
     height: 50px;
     margin: 20px auto;
@@ -75,18 +74,18 @@
     cursor: pointer;
     transition: background .4s ease-in-out;
 }
-.login-container .signin-form-btn:hover{
+.signin-container .signin-form-btn:hover{
     background: linear-gradient(to left, #cb9501, #6059c2);
 
 }
-.login-container .forgot-password-btn-contianer{
+.signin-container .forgot-password-btn-contianer{
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: flex-end;
     margin: 10px auto;
 }
-.login-container .forgot-password-btn{
+.signin-container .forgot-password-btn{
     padding: 2px 0px;
     background: none;
     font-size: 1em;
@@ -100,12 +99,12 @@
     transition: .25s;
     width: fit-content;
 }
-.login-container .forgot-password-btn:hover{
+.signin-container .forgot-password-btn:hover{
     color: #cb9501;
     transform: scale(1.01);
 }
 
-.login-container .new-to-brand{
+.signin-container .new-to-brand{
     width: 100%;
     margin: 0px auto;
     display: flex;
@@ -113,15 +112,15 @@
     justify-content: center;
     column-gap: 15px;
 }
-.login-container .no-account-text{
+.signin-container .no-account-text{
     color: rgb(74, 74, 74);
 }
-.login-container .signup-link{
+.signin-container .signup-link{
     color: #6059c2;
     transform: perspective(1px) translateZ(0);
     transition: .25s;
     font-weight: bold;
 }
-.login-container .signup-link:hover{
+.signin-container .signup-link:hover{
     transform: scale(1.06);
 }
