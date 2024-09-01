@@ -1,15 +1,17 @@
 "use client"
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import "./Register.css";
 import Link from 'next/link';
 import { handleRegister } from '@/actions/handleRegister';
 import { useRouter } from 'next/navigation';
-// import { ToastContainer, toast } from 'react-toastify';
 
 import { BiSolidHide, BiSolidShow } from "react-icons/bi";
 import { PulseLoader } from "react-spinners";
 import { FaCheckCircle } from "react-icons/fa";
-import { MdCancel, MdError } from "react-icons/md";
+import { MdCancel, MdError, MdHelp } from "react-icons/md";
+import { TiTick } from "react-icons/ti";
+import { GoDotFill } from "react-icons/go";
+import { IoTriangleSharp } from "react-icons/io5";
 
 const Login = () => {
 
@@ -24,6 +26,25 @@ const Login = () => {
 
   const [info, setInfo] = useState('')
   const [error, setError] = useState('')
+
+  const [showHint, setShowHint] = useState(false);
+
+  const hintRef = useRef(null)
+
+  useEffect(() => {
+
+    function handleClickOutside(event) {
+      if (hintRef.current && !hintRef.current.contains(event.target)) {
+        setShowHint(false);
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+
+  }, [showHint]);
 
   const resetFields = () => {
     setName('');
@@ -51,10 +72,20 @@ const Login = () => {
     return phoneRegex.test(phoneNumber);
   }
 
-  const resetError = ()=> {
+  const isValidPassword = (pw) => {
+    const isValid =
+      pw.length >= 8 &&
+      /[A-Z]/.test(pw) &&
+      /[a-z]/.test(pw) &&
+      /\d/.test(pw) &&
+      /[!@#$%^&*(),.?":{}|<>]/.test(pw);
+
+    return isValid;
+  }
+
+  const resetError = () => {
     setTimeout(() => {
       setError('');
-      // setInfo('');
     }, 4000);
   }
 
@@ -85,14 +116,20 @@ const Login = () => {
     }
 
     if (!isValidEmail(email)) {
-      setError("Invalid email");
+      setError("Invalid email!");
       setIsLoading(false);
       resetError();
       return;
     }
 
     if (!isValidPhoneNo(phone)) {
-      setError("Invalid phone number");
+      setError("Invalid phone number!");
+      setIsLoading(false);
+      resetError();
+      return;
+    }
+    if (!isValidPassword(password)) {
+      setError("Invalid password!");
       setIsLoading(false);
       resetError();
       return;
@@ -159,10 +196,23 @@ const Login = () => {
             <input type={showPassword ? "text" : "password"} name="password" id="password" value={password} onChange={(e) => { setPassword(e.target.value); }} required />
             <span>Password</span>
             <button type='button' disabled={password == ""} className="hide-show-btn" onClick={(e) => { setShowPassword(!showPassword) }}>{showPassword ? <BiSolidShow /> : <BiSolidHide />}</button>
+            <button ref={hintRef} type='button' className="hint-toggle" onClick={(e) => { setShowHint(!showHint) }}><MdHelp /></button>
+          </div>
+
+          <div className={`password-validation ${showHint && "hint-morph"}`}>
+            <div className="pointer-icon"><IoTriangleSharp /></div>
+            <div className='valid-title'>Password must have:</div>
+            <ul className="password-conditions">
+              <li className={`valid-condition`}><GoDotFill style={{ fontSize: ".7rem" }} /> Atleast 8 character. </li>
+              <li className={`valid-condition`}><GoDotFill style={{ fontSize: ".7rem" }} /> Atleast 1 upper & lowercase letter. </li>
+              <li className={`valid-condition`}><GoDotFill style={{ fontSize: ".7rem" }} /> Atleast 1 digit. </li>
+              <li className={`valid-condition`}><GoDotFill style={{ fontSize: ".7rem" }} /> Atleast 1 special character. </li>
+            </ul>
           </div>
           <button type="submit" className='signin-form-btn' disabled={isLoading}>
             {isLoading ? <PulseLoader size={10} margin={4} color='#f9f9f7' /> : "Register"}
           </button>
+
         </form>
         <div className="new-to-brand">
           <div className="no-account-text">Already have an account?</div>
@@ -173,19 +223,19 @@ const Login = () => {
           <div className="notifyme-top">
             <div className="notifyme-left">
               <button className='notifyme-btn uncheck'><MdError /></button>
-              <div className="notifyme-text" style={{color: "rgb(180, 4, 4)"}}>{error}</div>
+              <div className="notifyme-text" style={{ color: "rgb(180, 4, 4)" }}>{error}</div>
             </div>
           </div>
-          {error && <div className="notifyme-buttom" style={{backgroundColor: "rgb(180, 4, 4)"}}></div>}
+          {error && <div className="notifyme-buttom" style={{ backgroundColor: "rgb(180, 4, 4)" }}></div>}
         </div>
         <div className={`notifyme ${info && "notifyme-active"}`}>
           <div className="notifyme-top">
             <div className="notifyme-left">
               <button className='notifyme-btn check'><FaCheckCircle /></button>
-              <div className="notifyme-text" style={{color: "rgb(1, 126, 8)"}}>{info}</div>
+              <div className="notifyme-text" style={{ color: "rgb(1, 126, 8)" }}>{info}</div>
             </div>
           </div>
-          {info && <div className="notifyme-buttom" style={{backgroundColor: "rgb(1, 126, 8)"}}></div>}
+          {info && <div className="notifyme-buttom" style={{ backgroundColor: "rgb(1, 126, 8)" }}></div>}
         </div>
 
       </div>

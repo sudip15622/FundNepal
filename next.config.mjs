@@ -19,6 +19,11 @@ const nextConfig = {
             },
             {
                 protocol: 'https',
+                hostname: 'feelaphil.wordpress.com',
+                port: '',
+            },
+            {
+                protocol: 'https',
                 hostname: '*',
                 port: '',
             },

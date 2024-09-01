@@ -23,6 +23,15 @@ const handleRegisterSubmit = async (credentials) => {
             const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             return regex.test(email);
         };
+        const isValidPassword = (pw) => {
+            const isValid =
+              pw.length >= 8 &&
+              /[!@#$%^&*(),.?":{}|<>]/.test(pw) &&
+              /[A-Z]/.test(pw) &&
+              /\d/.test(pw);
+        
+            return isValid;
+          }
 
         if (!credentials.email || !credentials.password || !credentials.name || !credentials.phone) {
             return ({
@@ -32,7 +41,7 @@ const handleRegisterSubmit = async (credentials) => {
 
         if (hasSpecialCharactersOrNumbers(credentials.name)) {
             return ({
-                error: "Name can contain only alphabets!"
+                error: "Name can only contains alphabets!"
             })
         }
 
@@ -46,9 +55,19 @@ const handleRegisterSubmit = async (credentials) => {
                 error: "Invalid phone number!"
             })
         }
+        if (!isValidPassword(credentials.password)) {
+            return ({
+                error: "Invalid password!"
+            })
+        }
 
-        const user = await prisma.user.findUnique({
-            where: { email: credentials.email },
+        const user = await prisma.user.findFirst({
+            where: {
+                OR: [
+                    { email: credentials.email },
+                    { phone: credentials.phone }
+                ]
+            }
         });
 
         if (user) {
