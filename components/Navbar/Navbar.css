@@ -1,5 +1,5 @@
 .navbar-container{
-    background: #090125;  
+    background: var(--nav-dark);  
     color: var(--light-bg); 
     display: flex;
     justify-content: space-between;
@@ -24,7 +24,7 @@
 
 .search-wrapper{
     gap: 12px;
-    background: #363638;
+    background: var(--text-medium);
     padding: 8px 20px;
     border-radius: 20px;
     transition: background .2s ease;
@@ -49,7 +49,7 @@
     transition: background .2s ease;
 }
 .navbar-pages:hover{
-    background: #363638;
+    background: var(--text-medium);
 }
 .pages-btn-container{
     overflow: hidden;
@@ -58,10 +58,10 @@
 }
 .navbar-pages-btn{
     padding: 12px 25px;
-    color: rgb(242, 238, 238);
+    color: var(--text-color);
     font-size: .9rem;
     font-weight: bold;
-    transition: background .2s ease, color .2s ease;
+    transition: background .2s ease;
 }
 .signin-btn{
     background: #02b508; /* theme background one*/
@@ -70,8 +70,11 @@
     background: #cb9501;/* theme background two*/
 }
 
-.navbar-pages-btn:hover{
-    background: #363638;
+.signin-btn:hover{
+    background: #018a06;
+}
+.signup-btn:hover{
+    background: #a37800;
 }
 /* .active-page{
     background: #655b6f;

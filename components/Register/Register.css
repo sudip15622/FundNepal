@@ -7,7 +7,7 @@
 }
 
 .signin-container .red-box {
-    background: #cb9501;
+    background: var(--light-gold);
     width: 760px;
     height: 450px;
     position: absolute;
@@ -18,7 +18,7 @@
 }
 
 .signin-container .blue-box {
-    background: #02b508;
+    background: var(--light-green);
     width: 760px;
     height: 450px;
     position: absolute;
@@ -46,7 +46,7 @@
 .signin-container .signin-title {
     text-align: center;
     font-size: 1.4em;
-    color: rgb(74, 74, 74);
+    color: var(--text-medium);
     font-weight: bold;
 }
 
@@ -72,7 +72,7 @@
     outline: none;
     background: transparent;
     border-radius: 20px;
-    color: black;
+    color: var(--text-dark);
     font-size: 1em;
     transition: .3s linear;
 }
@@ -82,7 +82,7 @@
     top: 50%;
     left: 20px;
     transform: translateY(-50%);
-    color: #666;
+    color: var(--text-medium);
     font-size: 1em;
     pointer-events: none;
     transition: .3s linear;
@@ -100,7 +100,7 @@
     justify-content: center;
     font-size: 20px;
     cursor: pointer;
-    color: rgb(94, 93, 93);
+    color: var(--text-medium);
     background: none;
 }
 
@@ -110,7 +110,7 @@
     transform: translateX(-5px) translateY(-35px);
     padding: 1px 10px;
     border-radius: 10px;
-    background: rgb(248, 247, 247);
+    background: inherit;
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
 }
 
@@ -130,10 +130,10 @@
     align-items: center;
     justify-content: center;
     border-radius: 22px;
-    background: #cb9501;
+    background: var(--light-gold);
     font-size: 1.1em;
     font-weight: bold;
-    color: white;
+    color: var(--text-light);
     cursor: pointer;
     transition: background .2s ease-in-out;
 }
@@ -243,7 +243,7 @@
     border-radius: 10px;
     padding: 10px 12px;
     font-size: .8rem;
-    background: rgb(94, 93, 93);
+    background: var(--text-medium);
     display: flex;
     flex-direction: column;
     row-gap: 5px;
@@ -257,13 +257,12 @@
     top: -14px;
     right: 38px;
     font-size: 25px;
-    color: rgb(94, 93, 93);
+    color: var(--text-medium);
 }
 
 .valid-title {
     font-weight: bold;
-    color: rgb(79, 79, 79);
-    color: rgb(229, 227, 227);
+    color: var(--text-light);
 }
 
 .password-conditions {
@@ -279,13 +278,7 @@
     align-items: center;
     gap: 4px;
     list-style: none;
-    color: rgb(94, 93, 93);
-    color: rgb(229, 227, 227);
-}
-
-.invalid-condition {
-    color: rgb(1, 179, 37);
-    font-weight: 500;
+    color: var(--text-light);
 }
 
 .hint-toggle {
@@ -301,7 +294,7 @@
     justify-content: center;
     font-size: 30px;
     cursor: pointer;
-    color: rgb(94, 93, 93);
+    color: var(--text-medium);
     background: none;
 }
 .hint-morph {

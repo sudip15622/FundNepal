@@ -8,9 +8,11 @@
 }
 :root {
   --nav-dark: #090125; 
-  --light-greens: #02b508; 
+  --light-green: #02b508; 
   --light-gold: #cb9501; 
-  --text-color: #ffffff; 
+  --text-light: #ffffff; 
+  --text-medium: rgb(74, 74, 74); 
+  --text-dark: rgb(32, 32, 32); 
   --light-bg: #f5f5f5; 
   --dark-teal: #51a9b5; 
 }

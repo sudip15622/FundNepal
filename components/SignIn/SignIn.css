@@ -8,7 +8,7 @@
 }
 
 .login-container .red-box {
-    background: #cb9501;
+    background: var(--light-gold);
     width: 380px;
     height: 500px;
     position: absolute;
@@ -19,7 +19,7 @@
 }
 
 .login-container .blue-box {
-    background: #02b508;
+    background: var(--light-green);
     width: 380px;
     height: 500px;
     position: absolute;
@@ -49,7 +49,7 @@
 .login-container .signin-title {
     text-align: center;
     font-size: 1.4em;
-    color: rgb(74, 74, 74);
+    color: var(--text-medium);
     font-weight: bold;
 }
 
@@ -73,7 +73,7 @@
     outline: none;
     background: transparent;
     border-radius: 20px;
-    color: black;
+    color: var(--text-dark);
     font-size: 1em;
     transition: .3s linear;
 }
@@ -101,7 +101,7 @@
     justify-content: center;
     font-size: 20px;
     cursor: pointer;
-    color: rgb(94, 93, 93);
+    color: var(--text-medium);
     background: none;
 }
 
@@ -131,10 +131,10 @@
     align-items: center;
     justify-content: center;
     border-radius: 22px;
-    background: #02b508;
+    background: var(--light-green);
     font-size: 1.1em;
     font-weight: bold;
-    color: inherit;
+    color: var(--text-light);
     cursor: pointer;
     transition: background .2s ease-in-out;
 }
@@ -159,7 +159,7 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    color: gray;
+    color: var(--text-medium);
     text-decoration: underline;
     transform: perspective(1px) translateZ(0);
     transition: .25s;
@@ -167,7 +167,7 @@
 }
 
 .login-container .forgot-password-btn:hover {
-    color: #cb9501;
+    color: #6059c2;
     transform: scale(1.01);
 }
 
@@ -181,7 +181,7 @@
 }
 
 .login-container .no-account-text {
-    color: rgb(74, 74, 74);
+    color: var(--text-dark);
 }
 
 .login-container .signup-link {
