@@ -13,42 +13,42 @@ const Navbar = () => {
 
     return (
         <div className='navbar-container'>
-            <ul className="f navbar-left">
+            <ul className="navbar-left">
                 <li>
-                    <Link href={"/"} className="f logo-wrapper" >
+                    <Link href={"/"} className="logo-wrapper" >
                         <Image src="/logo.png" width={50} height={50} priority alt="logo" />
-                        <div className="f logo-text">FUND NEPAL</div>
+                        <div className="logo-text">FUND NEPAL</div>
                     </Link>
                 </li>
                 <li>
-                    <Link href={"/search"} className={`f search-wrapper ${(pathname == 'search') && 'active-page'}`}>
-                        <div className="f search-icon"><IoSearch /></div>
-                        <div className="f search-text">Search</div>
+                    <Link href={"/search"} className={`search-wrapper`}>
+                        <div className="search-icon"><IoSearch /></div>
+                        <div className="search-text">Search</div>
                     </Link>
                 </li>
             </ul>
-            <ul className="f navbar-right">
+            <ul className="navbar-right">
                 <li>
-                    <Link href={"donate"} className={`f navbar-pages ${(pathname == 'donate') && 'active-page'}`}>
+                    <Link href={"donate"} className={`navbar-pages`}>
                         DONATE
                     </Link>
                 </li>
                 <li>
-                    <Link href={"fundraise"} className={`f navbar-pages ${(pathname == 'fundraise') && 'active-page'}`}>
+                    <Link href={"fundraise"} className={`navbar-pages`}>
                         FUNDRAISE
                     </Link>
                 </li>
                 <li>
-                    <Link href={"about-us"} className={`f navbar-pages ${(pathname == 'about-us') && 'active-page'}`}>
+                    <Link href={"about-us"} className={`navbar-pages`}>
                         ABOUT US
                     </Link>
                 </li>
-                <li className='f pages-btn-container'>
-                    <Link href={"sign-in"} className={`f navbar-pages-btn signin-btn ${(pathname == 'sign-in') && 'active-page'}`}>
-                        Sign In
+                <li className='pages-btn-container'>
+                    <Link href={"sign-in"} className={`navbar-pages-btn signin-btn`}>
+                        <span>Sign In</span>
                     </Link>
-                    <Link href={"register"} className={`f navbar-pages-btn signup-btn ${(pathname == 'register') && 'active-page'}`}>
-                        Sign Up
+                    <Link href={"register"} className={`navbar-pages-btn signup-btn`}>
+                        <span>Sign Up</span>
                     </Link>
                 </li>
             </ul>

@@ -7,21 +7,18 @@
   outline: none;
 }
 :root {
-  --nav-dark: #090125; 
-  --light-green: #02b508; 
-  --light-gold: #cb9501; 
+  --btn-secondary: rgb(39, 77, 135); 
+  --btn-primary: #43a5a1; 
   --text-light: #ffffff; 
   --text-medium: rgb(74, 74, 74); 
   --text-dark: rgb(32, 32, 32); 
-  --light-bg: #f5f5f5; 
-  --dark-teal: #51a9b5; 
 }
 
 body{
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background: #f5f5f5; 
+  background: var(--text-light); 
 }
 main{
   margin-bottom: auto;

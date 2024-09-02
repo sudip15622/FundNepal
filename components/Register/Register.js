@@ -181,19 +181,19 @@ const Login = () => {
         <h2 className='signin-title'>Sign-Up</h2>
         <form className="signin-form" onSubmit={(e) => { handleRegisterSubmit(e); }}>
           <div className="inputBox">
-            <input type="text" name="name" id="name" value={name} onChange={(e) => { setName(e.target.value); }} required />
+            <input type="text" className={`${name !== "" && "valid"}`} name="name" value={name} onChange={(e) => { setName(e.target.value); }} required />
             <span>Full Name</span>
           </div>
           <div className="inputBox">
-            <input type="email" name="email" id="email" value={email} onChange={(e) => { setEmail(e.target.value); }} required />
+            <input type="email" className={`${email !== "" && "valid"}`} name="email" value={email} onChange={(e) => { setEmail(e.target.value); }} required />
             <span>Email</span>
           </div>
           <div className="inputBox">
-            <input type="text" name="phone" id="phone" value={phone} onChange={(e) => { setPhone(e.target.value); }} required />
+            <input type="text" className={`${phone !== "" && "valid"}`} name="phone" value={phone} onChange={(e) => { setPhone(e.target.value); }} required />
             <span>Phone No.</span>
           </div>
           <div className="inputBox">
-            <input type={showPassword ? "text" : "password"} name="password" id="password" value={password} onChange={(e) => { setPassword(e.target.value); }} required />
+            <input className={`${password !== "" && "valid"}`} onFocus={(e)=>{setShowHint(true);}} type={showPassword ? "text" : "password"} name="password" value={password} onChange={(e) => { setPassword(e.target.value); }} required />
             <span>Password</span>
             <button type='button' disabled={password == ""} className="hide-show-btn" onClick={(e) => { setShowPassword(!showPassword) }}>{showPassword ? <BiSolidShow /> : <BiSolidHide />}</button>
             <button ref={hintRef} type='button' className="hint-toggle" onClick={(e) => { setShowHint(!showHint) }}><MdHelp /></button>
@@ -210,7 +210,7 @@ const Login = () => {
             </ul>
           </div>
           <button type="submit" className='signin-form-btn' disabled={isLoading}>
-            {isLoading ? <PulseLoader size={10} margin={4} color='#f9f9f7' /> : "Register"}
+            <span>{isLoading ? <PulseLoader size={10} margin={4} color='#f9f9f7' /> : "Register"}</span>
           </button>
 
         </form>

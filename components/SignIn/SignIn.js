@@ -126,11 +126,11 @@ const Login = () => {
         <h2 className='signin-title'>Sign-In</h2>
         <form className="signin-form" onSubmit={(e) => { handleSignIn(e); }}>
           <div className="inputBox">
-            <input type="email" name="email" id="email" value={email} onChange={(e) => { setEmail(e.target.value); }} required />
+            <input type="email" className={`${email !== "" && "valid"}`} name="email" id="email" value={email} onChange={(e) => { setEmail(e.target.value); }} required />
             <span>Email</span>
           </div>
           <div className="inputBox">
-            <input type={showPassword ? "text" : "password"} name="password" id="password" value={password} onChange={(e) => { setPassword(e.target.value); }} required />
+            <input className={`${password !== "" && "valid"}`} type={showPassword ? "text" : "password"} name="password" id="password" value={password} onChange={(e) => { setPassword(e.target.value); }} required />
             <span>Password</span>
             <button type='button' disabled={password == ""} className="hide-show-btn" onClick={(e) => { setShowPassword(!showPassword) }}>{showPassword ? <BiSolidShow /> : <BiSolidHide />}</button>
           </div>
@@ -138,7 +138,7 @@ const Login = () => {
             <button type='button' className="forgot-password-btn">Forgot password?</button>
           </div>
           <button type="submit" className='signin-form-btn' disabled={isLoading}>
-            {isLoading ? <PulseLoader size={10} margin={4} color='#f9f9f7' /> : "Sign In"}
+            <span >{isLoading ? <PulseLoader size={10} margin={4} color='#f9f9f7' /> : "Sign In"}</span>
           </button>
         </form>
         <div className="new-to-brand">

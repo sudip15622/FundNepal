@@ -7,29 +7,29 @@
 }
 
 .signin-container .red-box {
-    background: var(--light-gold);
+    background: var(--btn-primary);
     width: 760px;
     height: 450px;
     position: absolute;
     top: 0px;
     z-index: -1;
-    transform: rotate(7deg);
+    transform: rotate(5deg);
     border-radius: 40px;
 }
 
 .signin-container .blue-box {
-    background: var(--light-green);
+    background: var(--btn-secondary);
     width: 760px;
     height: 450px;
     position: absolute;
     top: 0px;
     z-index: -1;
-    transform: rotate(-7deg);
+    transform: rotate(-5deg);
     border-radius: 40px;
 }
 
 .signin-container .white-box {
-    background: var(--light-bg);
+    background: var(--text-light);
     width: 760px;
     height: 450px;
     z-index: 1;
@@ -39,7 +39,6 @@
     flex-direction: column;
     justify-content: center;
     row-gap: 20px;
-    /* padding: 0px 10px; */
     box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.4);
 }
 
@@ -56,7 +55,6 @@
     width: 95%;
     margin: 0px auto;
     flex-wrap: wrap;
-    /* border: 2px solid black; */
 }
 
 .signin-container .inputBox {
@@ -105,7 +103,7 @@
 }
 
 .signin-container .inputBox input:focus~span,
-.signin-container .inputBox input:valid~span {
+.signin-container .inputBox input.valid~span {
     font-size: 0.8em;
     transform: translateX(-5px) translateY(-35px);
     padding: 1px 10px;
@@ -115,7 +113,7 @@
 }
 
 .inputBox input:focus {
-    box-shadow: 0px 8px 12px var(--dark-teal);
+    box-shadow: 0px 8px 12px var(--btn-secondary);
 }
 
 .signin-container .signin-form button:disabled {
@@ -126,20 +124,31 @@
     width: 200px;
     height: 50px;
     margin: 20px auto;
+    padding: 4px;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 22px;
-    background: var(--light-gold);
-    font-size: 1.1em;
-    font-weight: bold;
-    color: var(--text-light);
+    background: linear-gradient(to right, var(--btn-primary), var(--btn-secondary));
     cursor: pointer;
-    transition: background .2s ease-in-out;
+}
+.signin-container .signin-form-btn span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2em;
+    font-weight: bold;
+    border-radius: calc(22px - 4px);
+    width: 100%;
+    height: 100%;
+    color: var(--text-light);
+    background: transparent;
+    transition: background .3s ease-in-out, color .3s ease-in-out;
 }
 
-.signin-container .signin-form-btn:hover {
-    background: #a37800;
+.signin-container .signin-form-btn:hover span {
+    background: var(--text-light);
+    color: var(--text-dark);
 }
 
 .signin-container .new-to-brand {
@@ -152,11 +161,11 @@
 }
 
 .signin-container .no-account-text {
-    color: rgb(74, 74, 74);
+    color: var(--text-dark);
 }
 
 .signin-container .signup-link {
-    color: #6059c2;
+    color: var(--btn-primary);
     transform: perspective(1px) translateZ(0);
     transition: .25s;
     font-weight: bold;
@@ -169,7 +178,7 @@
 .signin-container .notifyme {
     width: 46%;
     position: absolute;
-    background: white;
+    background: var(--text-light);
     z-index: 5;
     top: 10px;
     left: calc(50% - 23%);

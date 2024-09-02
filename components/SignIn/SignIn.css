@@ -4,11 +4,10 @@
     justify-content: center;
     position: relative;
     margin-top: 50px;
-    /* overflow: hidden; */
 }
 
 .login-container .red-box {
-    background: var(--light-gold);
+    background: var(--btn-primary);
     width: 380px;
     height: 500px;
     position: absolute;
@@ -19,7 +18,7 @@
 }
 
 .login-container .blue-box {
-    background: var(--light-green);
+    background: var(--btn-secondary);
     width: 380px;
     height: 500px;
     position: absolute;
@@ -30,8 +29,7 @@
 }
 
 .login-container .white-box {
-    /* background-color: rgb(248, 247, 247); */
-    background: var(--light-bg);
+    background: var(--text-light);
     width: 380px;
     height: 500px;
     z-index: 1;
@@ -71,7 +69,7 @@
     padding: 15px 20px;
     width: 100%;
     outline: none;
-    background: transparent;
+    background: inherit;
     border-radius: 20px;
     color: var(--text-dark);
     font-size: 1em;
@@ -83,7 +81,7 @@
     top: 50%;
     left: 20px;
     transform: translateY(-50%);
-    color: #666;
+    color: var(--text-medium);
     font-size: 1em;
     pointer-events: none;
     transition: .3s linear;
@@ -106,7 +104,7 @@
 }
 
 .login-container .inputBox input:focus~span,
-.login-container .inputBox input:valid~span {
+.login-container .inputBox input.valid~span {
     font-size: 0.8em;
     transform: translateX(-5px) translateY(-35px);
     padding: 1px 10px;
@@ -116,7 +114,7 @@
 }
 
 .login-container .inputBox input:focus {
-    box-shadow: 0px 8px 12px var(--dark-teal);
+    box-shadow: 0px 8px 12px var(--btn-primary);
 }
 
 .login-container .signin-form button:disabled {
@@ -127,20 +125,32 @@
     width: 170px;
     height: 50px;
     margin: 20px auto;
+    padding: 4px;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 22px;
-    background: var(--light-green);
-    font-size: 1.1em;
-    font-weight: bold;
-    color: var(--text-light);
+    background: linear-gradient(to right, var(--btn-primary), var(--btn-secondary));
     cursor: pointer;
-    transition: background .2s ease-in-out;
 }
 
-.login-container .signin-form-btn:hover {
-    background: #018a06;
+.login-container .signin-form-btn span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2em;
+    font-weight: bold;
+    border-radius: calc(22px - 4px);
+    width: 100%;
+    height: 100%;
+    color: var(--text-light);
+    background: transparent;
+    transition: background .3s ease-in-out, color .3s ease-in-out;
+}
+
+.login-container .signin-form-btn:hover span {
+    background: var(--text-light);
+    color: var(--text-dark);
 }
 
 .login-container .forgot-password-btn-contianer {
@@ -167,7 +177,7 @@
 }
 
 .login-container .forgot-password-btn:hover {
-    color: #6059c2;
+    color: var(--btn-secondary);
     transform: scale(1.01);
 }
 
@@ -185,7 +195,7 @@
 }
 
 .login-container .signup-link {
-    color: #6059c2;
+    color: var(--btn-secondary);
     transform: perspective(1px) translateZ(0);
     transition: .25s;
     font-weight: bold;
@@ -198,7 +208,7 @@
 .login-container .notifyme {
     width: 84%;
     position: absolute;
-    background: white;
+    background: var(--text-light);
     z-index: 5;
     top: 10px;
     left: calc(50% - 42%);
