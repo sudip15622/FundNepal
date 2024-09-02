@@ -1,18 +1,111 @@
-.cover-image-container{
-    width: 100%;
-    height: 480px;
-    position: relative;
+.homepage-first {
+    display: flex;
+    height: 550px;
+    /* box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2); */
+    /* column-gap: 4.1rem; */
 }
-.homepage-cover-image{
+
+.first-left {
+    width: 50%;
+    height: auto;
+    background-color: var(--btn-primary);
+    clip-path: polygon(0 0, 100% 0, 80% 100%, 0% 100%);
+    color: var(--text-light);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    row-gap: 40px;
+}
+.left-top {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+}
+.title-small{
+    font-size: 1rem;
+    font-weight: bold;
+}
+.title-big{
+    font-size: 2.3rem;
+    font-weight: bold;
+    /* color: var(--btn-secondary); */
+}
+.left-bottom {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 40px;
+}
+.description-cont {
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+}
+.desc-title {
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+.desc-item-cont {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    margin-left: 15px;
+}
+.desc-item {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.desc-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    color: var(--btn-secondary);
+}
+.get-started-btn {
+    width: 200px;
+    height: 45px;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 22px;
+    background: var(--btn-secondary);
+    cursor: pointer;
+}
+.get-started-btn span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2em;
+    font-weight: bold;
+    border-radius: calc(22px - 4px);
     width: 100%;
     height: 100%;
-    z-index: -1;
+    color: var(--text-light);
+    background: transparent;
+    transition: background .3s ease-in-out, color .3s ease-in-out;
 }
-.homepage-cover-image-shadow{
+.get-started-btn:hover span {
+    background: var(--text-light);
+    color: var(--text-dark);
+}
+.first-right {
+    margin-left: -2%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+}
+
+.home-cover {
+    /* object-fit: cover; */
     width: 100%;
-    height: 40%;
-    position: absolute;
-    bottom: 0px;
-    left: 0px;
-    z-index: 1;
+    height: auto;
 }
+
