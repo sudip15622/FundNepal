@@ -1,18 +1,21 @@
 "use client"
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import "./Navbar.css";
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { signOut } from 'next-auth/react';
 
 import { IoSearch } from "react-icons/io5";
-import { FaUserCircle, FaChevronDown } from "react-icons/fa";
+import { FaUserCircle, FaChevronDown, FaChevronUp, FaSignOutAlt } from "react-icons/fa";
 
 const Navbar = ({ session }) => {
 
     const pathname = usePathname().slice(1);
 
     const [user, setUser] = useState(null);
+    const [showDropDown, setShowDropDown] = useState(false);
+    const dropDownRef = useRef(null);
 
     useEffect(() => {
         if (session?.user?.id) {
@@ -27,6 +30,24 @@ const Navbar = ({ session }) => {
         }
     }, [session]);
 
+    useEffect(() => {
+
+        function handleClickOutside(event) {
+            if (dropDownRef.current && !dropDownRef.current.contains(event.target)) {
+                setShowDropDown(false);
+            }
+        }
+        document.addEventListener('mousedown', handleClickOutside);
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+
+    }, [showDropDown]);
+
+    const handleSignOut = async()=>{
+        await signOut();
+    }
 
     return (
         <div className='navbar-container'>
@@ -60,18 +81,21 @@ const Navbar = ({ session }) => {
                         ABOUT US
                     </Link>
                 </li>
-                {user ? <li className="username-container">
-                    <div className="username-cont">
-                        <div className="username-cont-left">
-                            <div className="user-avatar"><FaUserCircle /></div>
-                            <div className="username-text">{user.userName}</div>
+                {session ? <li className="username-cont" ref={dropDownRef}>
+                    <div className="username-cont-left" onClick={(e) => { setShowDropDown(!showDropDown) }}>
+                        <div className="user-avatar"><FaUserCircle /></div>
+                        <div className="username-text">
+                            {session.user.userName.length < 10 ? <span>{session.user.userName}</span> : <span>{`${session.user.userName.slice(0, 8)}...`}</span>}
                         </div>
-                        <div className="username-cont-right"><FaChevronDown /></div>
+                        <div className={`username-cont-right ${showDropDown && "rotate-updown"}`}><FaChevronDown /></div>
                     </div>
-                    {/* <div className="user-page-lists">
-                        <Link href={"/dashboard"} className="user-page"></Link>
-                        <div className="user-page">Sign Out</div>
-                    </div> */}
+                    <div className={`user-page-lists ${showDropDown && "show-transition"}`}>
+                        <Link href={"/dashboard"} className="user-page dashboard-btn">Dashboard</Link>
+                        <div className="user-page sign-out-btn">
+                            <div className="sign-out-icon"><FaSignOutAlt /></div>
+                            <div className="sign-out-text" onClick={(e)=>{handleSignOut();}}>Sign Out</div>
+                        </div>
+                    </div>
                 </li> :
                     <li className='pages-btn-container'>
                         <Link href={"sign-in"} className={`navbar-pages-btn signin-btn`}>

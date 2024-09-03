@@ -128,46 +128,106 @@
     background: var(--text-light);
     color: var(--text-dark);
 }
-.username-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+
 .username-cont {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 12px;
     background: linear-gradient(to right, var(--btn-primary), var(--btn-secondary));
     color: var(--text-light);
+    /* padding: .5rem 1rem; */
+    width: 180px;
+    height: 42px;
+    border-radius: 10px;
     margin-left: 1.1rem;
-    padding: .5rem 1rem;
-    border-radius: 12px;
     cursor: pointer;
+    z-index: 1002;
 }
 .username-cont-left {
     display: flex;
     align-items: center;
     justify-content: center;
     column-gap: 8px;
+    transition: .2s linear;
 }
 .user-avatar {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 26px;
+    font-size: 1.6rem;
+}
+.username-cont-left:hover{
+    transform: scale(1.04);
 }
 .username-text {
-    font-size: 1rem;
+    font-size: 1.05rem;
     font-weight: 500;
 }
 .username-cont-right {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-left: 10px;
+    transition: .2s linear;
+}
+.rotate-updown {
+    transform: rotate(180deg);
+}
+.user-page-lists {
+    width: 180px;
+    position: absolute;
+    top: 50px;
+    right: 90px;
+    border-radius: 10px;
+    overflow: hidden;
+    background: var(--text-light);
+    color: var(--text-dark);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    padding: 4px;
+    opacity: 0;
+    transform: translateY(0%);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    z-index: 1001;
+    pointer-events: none;
+}
+.show-transition {
+    transform: translateY(15%);
+    opacity: 1;
+    pointer-events: auto;
+}
+.user-page{
+    background: inherit;
+    transition: background .2s linear;
+}
+.user-page:hover {
+    background: rgb(199, 199, 199);
+}
+.dashboard-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    font-size: 1.05rem;
+    font-weight: 500;
+    padding: 12px 12px 10px 12px;
+    border-radius: 6px;
 }
 
-
+.sign-out-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+    font-size: 1.05rem;
+    font-weight: 500;
+    padding: 10px 12px 12px 12px;
+    color: rgb(149, 2, 2);
+    border-radius: 6px;
+}
+.sign-out-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 @media screen and (max-width: 768px) {
     /* Targeting all elements with hover effects */
     *:hover {
