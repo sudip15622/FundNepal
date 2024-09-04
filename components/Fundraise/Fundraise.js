@@ -4,10 +4,12 @@ import "./Fundraise.css";
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { BiLike } from "react-icons/bi";
+import { BiLike, BiSolidDonateHeart } from "react-icons/bi";
 import { PiClover } from "react-icons/pi";
 import { GrShieldSecurity } from "react-icons/gr";
-import { FaChevronRight, FaChevronLeft, FaChevronDown } from "react-icons/fa";
+import { FaHandHoldingMedical, FaChevronDown } from "react-icons/fa";
+import { MdCastForEducation, MdFamilyRestroom } from "react-icons/md";
+import { TbEmergencyBed } from "react-icons/tb";
 
 const Fundraise = () => {
 
@@ -16,6 +18,29 @@ const Fundraise = () => {
     const startSlides = ["My name is Sudip Lamichhane.", "I live in madi kritanpur", "I study in birenda."]
 
     const exampleTitles = ["Medical", "Sports", "Education", "Charity", "Memorial"]
+
+    const categories = [
+        {
+            name: "Medical",
+            icon: <FaHandHoldingMedical />,
+        },
+        {
+            name: "Emergency",
+            icon: <TbEmergencyBed />,
+        },
+        {
+            name: "Charity",
+            icon: <BiSolidDonateHeart />,
+        },
+        {
+            name: "Education",
+            icon: <MdCastForEducation />,
+        },
+        {
+            name: "Family",
+            icon: <MdFamilyRestroom />,
+        },
+    ]
 
     const [faqs, setFaqs] = useState(
         [
@@ -187,7 +212,7 @@ const Fundraise = () => {
                                     className="f-faq-question"
                                     onClick={() => handleFaq(index)}
                                 >
-                                    {item.question} <FaChevronDown className={`f-faq-icon ${item.showAns && "f-faq-icon-rotate"}`}/>
+                                    {item.question} <FaChevronDown className={`f-faq-icon ${item.showAns && "f-faq-icon-rotate"}`} />
                                 </h3>
                                 <p className={`f-faq-answer ${item.showAns ? "animate-faq" : ""}`}>{item.answer}</p>
                             </li>
@@ -195,7 +220,19 @@ const Fundraise = () => {
                     })}
                 </ul>
             </section>
-            <section className="hello">
+            <section id='categories' className="f-fundraiser-categories">
+                <h2 className='f-start-title'>Fundraiser Categories</h2>
+                <p className="f-fundraiser-category-desc">FundNepal is the trusted place to fundraise for nearly anything you care about and there is no pressure to reach your fundraising goal. For more inspiration and help fundraising, explore the categories below.</p>
+                <ul className="f-category-container">
+                    {categories.map((category, index) => {
+                        return (
+                            <li className="f-category-item">
+                                <div className="f-category-icon">{category.icon}</div>
+                                <div className="f-category-name">{category.name}</div>
+                            </li>
+                        )
+                    })}
+                </ul>
             </section>
         </main>
     )

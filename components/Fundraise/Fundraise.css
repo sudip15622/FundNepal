@@ -413,6 +413,59 @@
     padding: 0px 20px 20px 20px;
 }
 
-.hello {
-    height: 500px;
+.f-fundraiser-categories {
+    margin: 0px auto 50px auto;
+    padding-top: 80px;
+    width: 90%;
+    max-width: 1100px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 40px;
+    align-items: center;
+    justify-content: center;
+    color: #363636;
+}
+.f-fundraiser-category-desc {
+    text-align: center;
+    width: 80%;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+.f-category-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    row-gap: 20px;
+    column-gap: 30px;
+}
+.f-category-item {
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    height: 150px;
+    border-radius: 12px;
+    transform: scale(1);
+    transition: transform .2s linear;
+    cursor: pointer;
+}
+.f-category-item:hover {
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+    transform: scale(1.04);
+}
+.f-category-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+}
+.f-category-name {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    font-weight: bold;
 }
