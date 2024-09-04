@@ -10,10 +10,13 @@
   --btn-secondary: rgb(39, 77, 135); 
   --btn-primary: #43a5a1; 
   --text-light: #ffffff; 
-  --text-medium: rgb(74, 74, 74); 
+  --text-medium: rgb(74, 74, 74);
+  --text-md: rgb(54, 54, 54);
   --text-dark: rgb(32, 32, 32); 
 }
-
+html {
+  scroll-behavior: smooth;
+}
 body{
   min-height: 100vh;
   display: flex;

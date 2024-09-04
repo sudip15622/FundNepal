@@ -1,36 +1,40 @@
-.navbar-container{
+.navbar-container-wrapper {
     background: var(--text-light);  
-    color: var(--text-dark); 
+    color: var(--text-dark);
     display: flex;
-    justify-content: space-between;
-    padding: 10px 90px;
+    align-items: center;
+    justify-content: center;
     box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
     z-index: 1000;
     position: sticky;
     top: 0px;
     left: 0px;
 }
+.navbar-container{ 
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0px;
+}
 
-.navbar-left{
+.navbar-container .navbar-left{
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 35px;
 }
-.logo-wrapper{
+.navbar-container .logo-wrapper{
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 5px;
 }
-.logo-image {
-    /* border: 2px solid black; */
+.navbar-container .logo-image {
     width: 50px;
     height: 50px;
-    /* transform: rotate(-15deg); */
     object-fit: cover;
 }
-.logo-text{
+.navbar-container .logo-text{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -39,7 +43,7 @@
     color: #028277;
 }
 
-.search-wrapper{
+.navbar-container .search-wrapper{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -49,30 +53,30 @@
     border-radius: 1.4rem;
     transition: background .3s linear, box-shadow .3s linear;
 }
-.search-wrapper:hover{
+.navbar-container .search-wrapper:hover{
     background: inherit;
     box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.4);
 }
-.search-icon{
+.navbar-container .search-icon{
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 1.2rem;
 }
-.search-text{
+.navbar-container .search-text{
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.navbar-right{
+.navbar-container .navbar-right{
     display: flex;
     align-items: center;
     justify-content: center;
     gap: .8rem;
 }
 
-.navbar-pages{
+.navbar-container .navbar-pages{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -82,11 +86,11 @@
     border-radius: 1.4rem;
     transition: background .3s linear;
 }
-.navbar-pages:hover{
+.navbar-container .navbar-pages:hover{
     background: rgb(231, 230, 230);
     border-bottom: 3px solid rgb(116, 115, 115);
 }
-.pages-btn-container{
+.navbar-container .pages-btn-container{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -94,13 +98,13 @@
     border-radius: .8rem;
     margin-left: 1.1rem;
 }
-.navbar-pages-btn{
+.navbar-container .navbar-pages-btn{
     display: flex;
     align-items: center;
     justify-content: center;
     padding: .2rem;
 }
-.navbar-pages-btn span{
+.navbar-container .navbar-pages-btn span{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -111,25 +115,25 @@
     background: transparent;
     transition: background .3s linear, color .3s linear;
 }
-.signin-btn{
+.navbar-container .signin-btn{
     background: var(--btn-primary);
 }
-.signup-btn{
+.navbar-container .signup-btn{
     background: var(--btn-secondary);
 }
-.signin-btn span{
+.navbar-container .signin-btn span{
     border-radius: .6rem 0rem 0rem .6rem;
 }
-.signup-btn span{
+.navbar-container .signup-btn span{
     border-radius: 0rem .6rem .6rem 0rem;
 }
 
-.signin-btn:hover span, .signup-btn:hover span{
+.navbar-container .signin-btn:hover span, .signup-btn:hover span{
     background: var(--text-light);
     color: var(--text-dark);
 }
 
-.username-cont {
+.navbar-container .username-cont {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -143,41 +147,41 @@
     cursor: pointer;
     z-index: 1002;
 }
-.username-cont-left {
+.navbar-container .username-cont-left {
     display: flex;
     align-items: center;
     justify-content: center;
     column-gap: 8px;
     transition: .2s linear;
 }
-.user-avatar {
+.navbar-container .user-avatar {
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 1.6rem;
 }
-.username-cont-left:hover{
+.navbar-container .username-cont-left:hover{
     transform: scale(1.04);
 }
-.username-text {
+.navbar-container .username-text {
     font-size: 1.05rem;
     font-weight: 500;
 }
-.username-cont-right {
+.navbar-container .username-cont-right {
     display: flex;
     align-items: center;
     justify-content: center;
     margin-left: 10px;
     transition: .2s linear;
 }
-.rotate-updown {
+.navbar-container .rotate-updown {
     transform: rotate(180deg);
 }
-.user-page-lists {
+.navbar-container .user-page-lists {
     width: 180px;
     position: absolute;
     top: 50px;
-    right: 90px;
+    right: 5%;
     border-radius: 10px;
     overflow: hidden;
     background: var(--text-light);
@@ -190,19 +194,19 @@
     z-index: 1001;
     pointer-events: none;
 }
-.show-transition {
+.navbar-container .show-transition {
     transform: translateY(15%);
     opacity: 1;
     pointer-events: auto;
 }
-.user-page{
+.navbar-container .user-page{
     background: inherit;
     transition: background .2s linear;
 }
-.user-page:hover {
+.navbar-container .user-page:hover {
     background: rgb(199, 199, 199);
 }
-.dashboard-btn {
+.navbar-container .dashboard-btn {
     width: 100%;
     display: flex;
     align-items: center;
@@ -212,7 +216,7 @@
     border-radius: 6px;
 }
 
-.sign-out-btn {
+.navbar-container .sign-out-btn {
     width: 100%;
     display: flex;
     align-items: center;
@@ -223,20 +227,17 @@
     color: rgb(149, 2, 2);
     border-radius: 6px;
 }
-.sign-out-icon {
+.navbar-container .sign-out-icon {
     display: flex;
     align-items: center;
     justify-content: center;
 }
-@media screen and (max-width: 768px) {
-    /* Targeting all elements with hover effects */
+/* @media screen and (max-width: 768px) {
     *:hover {
-        /* Reset hover effects */
         background: none !important;
         color: inherit !important;
         text-decoration: none !important;
         transform: none !important;
         box-shadow: none !important;
-        /* Add other properties as needed */
     }
-}
+} */

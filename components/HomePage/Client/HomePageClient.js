@@ -2,6 +2,7 @@
 import React from 'react'
 import "./HomePageClient.css";
 import Image from 'next/image';
+import Link from 'next/link';
 
 import { RiMoneyDollarCircleFill } from "react-icons/ri";
 import { FaCheck } from "react-icons/fa6";
@@ -33,9 +34,9 @@ const HomePageClient = () => {
                 </li>
               </ul>
             </div>
-            <button className='get-started-btn'>
+            <Link href={"getstarted"} className='get-started-btn'>
               <span>Get Started</span>
-            </button>
+            </Link>
           </div>
         </div>
         <div className="first-right">

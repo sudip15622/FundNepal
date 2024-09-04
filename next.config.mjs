@@ -24,6 +24,11 @@ const nextConfig = {
             },
             {
                 protocol: 'https',
+                hostname: 'www.gofundme.com',
+                port: '',
+            },
+            {
+                protocol: 'https',
                 hostname: '*',
                 port: '',
             },
