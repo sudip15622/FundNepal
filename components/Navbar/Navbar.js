@@ -55,7 +55,9 @@ const Navbar = ({ session }) => {
                 <ul className="navbar-left">
                     <li>
                         <Link href={"/"} className="logo-wrapper" >
-                            <Image className='logo-image' src="/logo5.png" width={150} height={100} priority alt="logo" />
+                            <picture>
+                                <Image className='logo-image' src="/logo5.png" width={150} height={100} priority alt="logo" />
+                            </picture>
                             <div className="logo-text">FundNepal</div>
                         </Link>
                     </li>

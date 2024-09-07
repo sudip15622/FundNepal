@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import "./Register.css";
 import Link from 'next/link';
 import { handleRegister } from '@/actions/handleRegister';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 import { BiSolidHide, BiSolidShow } from "react-icons/bi";
 import { PulseLoader } from "react-spinners";
@@ -17,11 +17,16 @@ const Login = () => {
 
   const router = useRouter();
 
+  const searchParams = useSearchParams();
+
+  const redirectTo = searchParams.get('redirectTo') || '/sign-in';
+
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [password, setPassword] = useState('');
-  const [showPassword, setShowPassword] = useState(false);
+  const [showPassword1, setShowPassword1] = useState(false);
+  const [showPassword2, setShowPassword2] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   const [info, setInfo] = useState('')
@@ -49,9 +54,10 @@ const Login = () => {
   const resetFields = () => {
     setName('');
     setEmail('');
-    setPhone('');
     setPassword('');
-    setShowPassword(false);
+    setConfirmPassword('');
+    setShowPassword1(false);
+    setShowPassword2(false);
     setIsLoading(false);
     setError('')
     setInfo('');
@@ -67,11 +73,6 @@ const Login = () => {
     return regex.test(email);
   };
 
-  const isValidPhoneNo = (phoneNumber) => {
-    const phoneRegex = /^(97|98)\d{8}$/;
-    return phoneRegex.test(phoneNumber);
-  }
-
   const isValidPassword = (pw) => {
     const isValid =
       pw.length >= 8 &&
@@ -81,6 +82,15 @@ const Login = () => {
       /[!@#$%^&*(),.?":{}|<>]/.test(pw);
 
     return isValid;
+  }
+
+  const isSamePassword = (p1, p2) => {
+    if (p1 === p2) {
+      return true;
+    }
+    else {
+      return false;
+    }
   }
 
   const resetError = () => {
@@ -101,7 +111,7 @@ const Login = () => {
     setInfo('');
     setError('');
 
-    if (!name || !email || !phone || !password) {
+    if (!name || !email || !password || !confirmPassword) {
       setError("Please provide all fields!");
       setIsLoading(false);
       resetError();
@@ -122,14 +132,15 @@ const Login = () => {
       return;
     }
 
-    if (!isValidPhoneNo(phone)) {
-      setError("Invalid phone number!");
+    if (!isValidPassword(password)) {
+      setError("Invalid password!");
       setIsLoading(false);
       resetError();
       return;
     }
-    if (!isValidPassword(password)) {
-      setError("Invalid password!");
+
+    if (!isSamePassword(password, confirmPassword)) {
+      setError("Password doesn't match!");
       setIsLoading(false);
       resetError();
       return;
@@ -140,9 +151,8 @@ const Login = () => {
     const registerUser = await handleRegister({
       name: trimmedName,
       email: email,
-      phone: phone,
       password: password,
-      redirect: false,
+      confirmPassword: confirmPassword,
     });
 
     setIsLoading(false);
@@ -152,7 +162,8 @@ const Login = () => {
       setInfo("User successfully registered!");
 
       setTimeout(() => {
-        router.push("/sign-in")
+        router.push(redirectTo);
+        router.refresh();
         resetFields();
       }, 1000);
 
@@ -189,14 +200,15 @@ const Login = () => {
             <span>Email</span>
           </div>
           <div className="inputBox">
-            <input type="text" className={`${phone !== "" && "valid"}`} name="phone" value={phone} onChange={(e) => { setPhone(e.target.value); }} required />
-            <span>Phone No.</span>
+            <input className={`${password !== "" && "valid"}`} onFocus={(e) => { setShowHint(true); }} type={showPassword1 ? "text" : "password"} name="password" value={password} onChange={(e) => { setPassword(e.target.value); }} required />
+            <span>Password</span>
+            <button type='button' disabled={password == ""} className="hide-show-btn" onClick={(e) => { setShowPassword1(!showPassword1) }}>{showPassword1 ? <BiSolidShow /> : <BiSolidHide />}</button>
+            <button ref={hintRef} type='button' className="hint-toggle" onClick={(e) => { setShowHint(!showHint) }}><MdHelp /></button>
           </div>
           <div className="inputBox">
-            <input className={`${password !== "" && "valid"}`} onFocus={(e)=>{setShowHint(true);}} type={showPassword ? "text" : "password"} name="password" value={password} onChange={(e) => { setPassword(e.target.value); }} required />
-            <span>Password</span>
-            <button type='button' disabled={password == ""} className="hide-show-btn" onClick={(e) => { setShowPassword(!showPassword) }}>{showPassword ? <BiSolidShow /> : <BiSolidHide />}</button>
-            <button ref={hintRef} type='button' className="hint-toggle" onClick={(e) => { setShowHint(!showHint) }}><MdHelp /></button>
+            <input type={showPassword2 ? "text" : "password"} className={`${confirmPassword !== "" && "valid"}`} name="confirmPassword" value={confirmPassword} onChange={(e) => { password !== "" && setConfirmPassword(e.target.value) }} required />
+            <span>Confirm Password</span>
+            <button type='button' disabled={confirmPassword == ""} className="hide-show-btn" onClick={(e) => { setShowPassword2(!showPassword2) }}>{showPassword2 ? <BiSolidShow /> : <BiSolidHide />}</button>
           </div>
 
           <div className={`password-validation ${showHint && "hint-morph"}`}>
@@ -216,7 +228,7 @@ const Login = () => {
         </form>
         <div className="new-to-brand">
           <div className="no-account-text">Already have an account?</div>
-          <Link href={"sign-in"} className='signup-link'>Sign-In</Link>
+          <Link href={redirectTo} className='signup-link'>Sign-In</Link>
         </div>
 
         <div className={`notifyme ${error && "notifyme-active"}`}>

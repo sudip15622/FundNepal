@@ -247,7 +247,7 @@
 .password-validation {
     position: absolute;
     bottom: 45px;
-    right: 10px;
+    left: 10px;
     width: fit-content;
     border-radius: 10px;
     padding: 10px 12px;
@@ -264,7 +264,7 @@
 .pointer-icon {
     position: absolute;
     top: -14px;
-    right: 38px;
+    left: 38px;
     font-size: 25px;
     color: var(--text-medium);
 }
@@ -296,7 +296,7 @@
     height: 35px;
     width: 35px;
     top: 115%;
-    right: 6px;
+    left: 6px;
 
     display: flex;
     align-items: center;

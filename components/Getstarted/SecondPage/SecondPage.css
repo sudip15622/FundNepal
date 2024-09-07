@@ -1,0 +1,191 @@
+.gs2-photo-goal-container {
+    padding: 20px 30px;
+    max-height: calc(100vh - 170px);
+    overflow-y: auto;
+    color: var(--text-md);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+}
+
+.gs2-photo-goal-container::-webkit-scrollbar {
+    display: none;
+}
+
+.gs2-goal-container {
+    width: 65%;
+    display: flex;
+    flex-direction: column;
+}
+.gs2-goal-title {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: var(--text-md);
+}
+.gs2-goal-info {
+    margin-left: 20px;
+    padding: 10px 20px;
+    background: rgb(234, 233, 244);
+    border-radius: 10px;
+    width: 100%;
+}
+.gs2-goal-error {
+    margin-left: 20px;
+    padding: 10px 20px;
+    background: rgb(244, 233, 233);
+    color: rgba(106, 1, 1, 0.774);
+    border-radius: 10px;
+    width: 100%;
+}
+.gs2-photo-error {
+    margin-top: 12px;
+    padding: 10px 20px;
+    background: rgb(244, 233, 233);
+    color: rgba(106, 1, 1, 0.774);
+    border-radius: 10px;
+    width: 100%;
+}
+.gs2-inputBox {
+    position: relative;
+    width: 100%;
+    margin: 20px;
+    box-shadow: 0px 8px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+}
+.gs2-currency {
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 10px;
+    border-radius: 12px;
+    background: rgb(234, 233, 244);
+    color: var(--btn-secondary);
+    font-weight: bold;
+    font-size: 1rem;
+}
+.gs2-inputBox input {
+    padding: 15px 20px;
+    width: 100%;
+    outline: none;
+    background: transparent;
+    color: var(--text-dark);
+    font-size: 1.1rem;
+    transition: .3s linear;
+}
+
+.gs2-inputBox span {
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+    color: var(--text-medium);
+    font-size: 1em;
+    pointer-events: none;
+    transition: .3s linear;
+}
+
+.gs2-inputBox input:focus~span,
+.gs2-inputBox input.gs2-valid~span {
+    font-size: 0.8em;
+    transform: translateX(-5px) translateY(-35px);
+    padding: 1px 10px;
+    border-radius: 10px;
+    background: inherit;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+.gs2-photo-container {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    width: 100%;
+}
+.gs2-photo-container-bottom {
+    width: 65%;
+    margin-left: 20px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}
+.gs2-upload-photo-section {
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+    border-radius: 20px;
+    width: 100%;
+    height: 350px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+.gs2-uploaded-picture {
+    height: 100%;
+    width: 100%;
+}
+.gs2-uploaded-cover-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.gs2-no-uploads {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.gs2-no-uploads-after {
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    transform: translate(0%, -50%);
+}
+.gs2-no-uploads-main {
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.gs2-image-icon-picture {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 6rem;
+    color: var(--text-md);
+}
+
+.gs2-custom-file-input {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    color: var(--btn-secondary);
+    border: 2px solid var(--btn-secondary);
+    border-radius: 12px;
+    column-gap: 10px;
+    width: 130px;
+    height: 40px;
+    font-size: .95rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+.gs2-upload-btn {
+    background: var(--btn-primary);
+    color: var(--text-light);
+    border: none;
+}
+.gs2-remove-photo {
+    color: rgba(106, 1, 1, 0.774);
+    border: 2px solid rgba(106, 1, 1, 0.774);
+}
+.gs2-fileInput-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}

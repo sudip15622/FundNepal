@@ -14,26 +14,31 @@ const handleRegisterSubmit = async (credentials) => {
             return regex.test(str);
         };
 
-        const isValidPhoneNo = (phoneNumber) => {
-            const phoneRegex = /^(97|98)\d{8}$/;
-            return phoneRegex.test(phoneNumber);
-        }
-
         const isValidEmail = (email) => {
             const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             return regex.test(email);
         };
+
         const isValidPassword = (pw) => {
             const isValid =
-              pw.length >= 8 &&
-              /[!@#$%^&*(),.?":{}|<>]/.test(pw) &&
-              /[A-Z]/.test(pw) &&
-              /\d/.test(pw);
-        
-            return isValid;
-          }
+                pw.length >= 8 &&
+                /[!@#$%^&*(),.?":{}|<>]/.test(pw) &&
+                /[A-Z]/.test(pw) &&
+                /\d/.test(pw);
 
-        if (!credentials.email || !credentials.password || !credentials.name || !credentials.phone) {
+            return isValid;
+        }
+
+        const isSamePassword = (p1, p2) => {
+            if (p1 === p2) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+
+        if (!credentials.email || !credentials.password || !credentials.name || !credentials.confirmPassword) {
             return ({
                 error: "Please provide all fields!"
             })
@@ -50,14 +55,14 @@ const handleRegisterSubmit = async (credentials) => {
                 error: "Invalid email!"
             })
         }
-        if (!isValidPhoneNo(credentials.phone)) {
-            return ({
-                error: "Invalid phone number!"
-            })
-        }
         if (!isValidPassword(credentials.password)) {
             return ({
                 error: "Invalid password!"
+            })
+        }
+        if (!isSamePassword(credentials.password, credentials.confirmPassword)) {
+            return ({
+                error: "Password doesn't match!"
             })
         }
 
@@ -84,7 +89,6 @@ const handleRegisterSubmit = async (credentials) => {
             data: {
                 name: credentials.name,
                 email: credentials.email,
-                phone: credentials.phone,
                 password: hashedPassword,
                 userName: userName,
                 dateJoined: new Date(),
@@ -104,10 +108,5 @@ const handleRegisterSubmit = async (credentials) => {
 
 export const handleRegister = async (credentials) => {
     const registerUser = await handleRegisterSubmit(credentials);
-    if (registerUser.success) {
-        if (credentials.redirect !== false) {
-            redirect('/sign-in');
-        }
-    }
     return registerUser;
 };

@@ -73,7 +73,6 @@ const Login = () => {
     const loginUser = await handleLogin({
       email: email,
       password: password,
-      redirect: false,
     })
 
     setIsLoading(false);
@@ -143,7 +142,7 @@ const Login = () => {
         </form>
         <div className="new-to-brand">
           <div className="no-account-text">Don&apos;t have an account?</div>
-          <Link href={"/register"} className='signup-link'>Sign-Up</Link>
+          <Link href={`/register?redirectTo=/sign-in?redirectTo=${redirectTo}`} className='signup-link'>Sign-Up</Link>
         </div>
 
         <div className={`notifyme ${error && "notifyme-active"}`}>

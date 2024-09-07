@@ -226,7 +226,7 @@ const Fundraise = () => {
                 <ul className="f-category-container">
                     {categories.map((category, index) => {
                         return (
-                            <li className="f-category-item">
+                            <li key={index} className="f-category-item">
                                 <div className="f-category-icon">{category.icon}</div>
                                 <div className="f-category-name">{category.name}</div>
                             </li>

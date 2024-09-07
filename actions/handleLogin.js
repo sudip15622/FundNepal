@@ -94,11 +94,5 @@ const handleLoginSubmit = async (credentials) => {
 
 export const handleLogin = async (credentials) => {
     const loginUser = await handleLoginSubmit(credentials);
-    // console.log(loginUser);
-    if (loginUser.success) {
-        if (credentials.redirect !== false) {
-            redirect('/');
-        }
-    }
     return loginUser;
 };

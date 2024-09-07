@@ -1,0 +1,121 @@
+.getstarted-container {
+    display: flex;
+    height: calc(100vh - 70px);
+}
+.gs-aside-content {
+    width: 32%;
+    height: 100%;
+    background: rgb(233, 244, 244);
+    display: flex;
+    flex-direction: column;
+    padding: 100px 50px;
+    color: var(--text-md);
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+}
+.gs-aside-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    font-size: 1.8rem;
+    color: var(--btn-secondary);
+    margin-bottom: 80px;
+}
+.gs-getstarted-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 25px;
+}
+.gs-aside-desc {
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+.gs-fundraiser-details {
+    width: calc(100% - 32%);
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    position: relative;
+}
+
+.gs2-button-container {
+    width: 100%;
+    height: 100px;
+    padding: 0px 50px 0px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 2px solid gray;
+    position: absolute;
+    bottom: 0px;
+}
+.gs-btn-cont-first {
+    width: 100%;
+    height: 100px;
+    padding: 0px 50px 0px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    border-top: 2px solid gray;
+    position: absolute;
+    bottom: 0px;
+}
+.gs2-below-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    color: var(--text-light);
+    cursor: pointer;
+    background: none;
+}
+
+.gs2-back-btn {
+    color: var(--btn-secondary);
+    border: 2px solid var(--btn-secondary);
+    width: 45px;
+    height: 45px;
+    font-size: 1.4rem;
+    transition: background .3s ease-in-out, color .3s ease-in-out;
+}
+.gs2-continue-btn {
+    width: 150px;
+    height: 45px;
+    padding: 4px;
+    border-radius: 12px;
+    cursor: pointer;
+    background: var(--btn-secondary);
+}
+.gs2-continue-btn:disabled {
+    cursor: not-allowed;
+    background: gray;
+}
+.gs2-continue-btn:disabled:hover span {
+    color: var(--text-light);
+    background: transparent;
+}
+
+.gs2-continue-btn span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: .95rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    border-radius: calc(12px - 4px);
+    width: 100%;
+    height: 100%;
+    color: var(--text-light);
+    background: transparent;
+    transition: background .3s ease-in-out, color .3s ease-in-out;
+}
+.gs2-continue-btn:hover span {
+    background: var(--text-light);
+    color: var(--text-md);
+}
+
+.gs2-back-btn:hover{
+    color: var(--text-light);
+    background: var(--btn-secondary);
+}

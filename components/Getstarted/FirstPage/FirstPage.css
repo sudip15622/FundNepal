@@ -1,0 +1,196 @@
+.gs-getstarted-phases-container {
+    padding: 20px 30px;
+    max-height: calc(100vh - 170px);
+    overflow-y: auto;
+    color: var(--text-md);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+}
+
+.gs-getstarted-phases-container::-webkit-scrollbar {
+    display: none;
+}
+
+.gs-select-top {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}
+
+.gs-getstarted-phases-title {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: var(--text-md);
+}
+
+.gs-select-category-lists {
+    display: flex;
+    align-items: center;
+    column-gap: 30px;
+    row-gap: 20px;
+    flex-wrap: wrap;
+    margin-left: 20px;
+}
+
+.gs-category-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    row-gap: 12px;
+    width: 120px;
+    height: 120px;
+    border-radius: 12px;
+    transform: scale(1);
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+    transition: transform .2s linear;
+    cursor: pointer;
+}
+
+.gs-category-item:hover {
+    transform: scale(1.05);
+}
+
+.gs-category-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+}
+
+.gs-category-name {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.gs-select-bottom {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}
+
+.gs-select-type-lists {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    max-width: 720px;
+    width: 90%;
+    margin-left: 20px;
+}
+
+.gs-type-item {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    border-radius: 12px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+    column-gap: 20px;
+    transform: scale(1);
+    transition: transform .2s linear;
+    cursor: pointer;
+}
+
+.gs-type-item:hover {
+    transform: scale(1.01);
+}
+
+.gs-type-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+    border-radius: 12px;
+    background: rgb(234, 233, 244);
+    color: var(--text-md);
+    font-size: 2rem;
+}
+
+.gs-type-details {
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+}
+
+.gs-type-name {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.gs-type-desc {
+    font-size: .95rem;
+    font-weight: 500;
+}
+
+.category-active {
+    background: rgb(233, 244, 244);
+}
+
+.gs-button-container {
+    width: 100%;
+    padding: 20px 50px 20px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    border-top: 2px solid gray;
+    position: absolute;
+    bottom: 0px;
+}
+
+.gs-below-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    color: var(--text-light);
+    cursor: pointer;
+    background: none;
+}
+
+.gs-back-btn {
+    color: var(--btn-secondary);
+    border: 2px solid var(--btn-secondary);
+    width: 45px;
+    height: 45px;
+    font-size: 1.4rem;
+    transition: background .3s ease-in-out, color .3s ease-in-out;
+}
+
+.gs-continue-btn {
+    width: 150px;
+    height: 45px;
+    padding: 4px;
+    border-radius: 12px;
+    cursor: pointer;
+    /* background: linear-gradient(to right, var(--btn-primary), var(--btn-secondary)); */
+    background: var(--btn-secondary);
+}
+
+.gs-continue-btn span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: .95rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    border-radius: calc(12px - 4px);
+    width: 100%;
+    height: 100%;
+    color: var(--text-light);
+    background: transparent;
+    transition: background .3s ease-in-out, color .3s ease-in-out;
+}
+
+.gs-continue-btn:hover span {
+    background: var(--text-light);
+    color: var(--text-md);
+}
+
+.gs-back-btn:hover {
+    color: var(--text-light);
+    background: var(--btn-secondary);
+}
