@@ -4,6 +4,8 @@ import "./Getstarted.css";
 import { useSearchParams } from 'next/navigation';
 import FirstPage from './FirstPage/FirstPage';
 import SecondPage from './SecondPage/SecondPage';
+import ThirdPage from './ThirdPage/ThirdPage';
+import FourthPage from './FourthPage/FourthPage';
 import Buttons from './Buttons/Buttons';
 
 import { FaHandHoldingHeart } from "react-icons/fa";
@@ -17,7 +19,7 @@ const Getstarted = () => {
   const [validPage, setValidPage] = useState(true);
   const [phase, setPhase] = useState(page);
 
-  const validPages = ['first', 'second', 'third'];
+  const validPages = ['first', 'second', 'third', 'fourth'];
 
   const [completed, setCompleted] = useState(false);
 
@@ -42,6 +44,7 @@ const Getstarted = () => {
     <main className='getstarted-container'>
       <aside className="gs-aside-content">
         <div className="gs-aside-icon"><FaHandHoldingHeart /></div>
+        <div className="gs-page-count">{validPages.indexOf(phase) + 1} / {validPages.length}</div>
         <h1 className="gs-getstarted-title">Let&apos;s get started in your fundraising journey</h1>
         <p className="gs-aside-desc">We are here to assist you in every step of the way.</p>
       </aside>
@@ -53,6 +56,14 @@ const Getstarted = () => {
 
         {phase === "second" && (
           <SecondPage completed={completed} setCompleted={setCompleted}/>
+        )}
+
+        {phase === "third" && (
+          <ThirdPage completed={completed} setCompleted={setCompleted}/>
+        )}
+
+        {phase === "fourth" && (
+          <FourthPage completed={completed} setCompleted={setCompleted}/>
         )}
 
         <Buttons params={btnParams}/>

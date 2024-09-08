@@ -8,7 +8,7 @@
     background: rgb(233, 244, 244);
     display: flex;
     flex-direction: column;
-    padding: 100px 50px;
+    padding: 80px 50px;
     color: var(--text-md);
     border-top-right-radius: 50px;
     border-bottom-right-radius: 50px;
@@ -21,6 +21,14 @@
     font-size: 1.8rem;
     color: var(--btn-secondary);
     margin-bottom: 80px;
+}
+.gs-page-count {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    font-weight: 1rem;
+    font-weight: bold;
+    color: var(--btn-secondary);
 }
 .gs-getstarted-title {
     font-size: 2rem;

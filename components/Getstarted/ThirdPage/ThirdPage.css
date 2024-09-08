@@ -1,0 +1,185 @@
+.gs3-title-desc-container {
+    padding: 40px 30px 20px 50px;
+    max-height: calc(100vh - 170px);
+    overflow-y: auto;
+    color: var(--text-md);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+}
+.gs3-title-desc-container::-webkit-scrollbar {
+    display: none;
+}
+
+.gs3-title-container {
+    width: 65%;
+    display: flex;
+    flex-direction: column;
+}
+
+.gs3-title-title {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: var(--text-md);
+}
+
+.gs3-title-info {
+    margin-left: 20px;
+    padding: 10px 20px;
+    background: rgb(234, 233, 244);
+    border-radius: 10px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    column-gap: 5px;
+}
+.gs3-title-error {
+    margin-left: 20px;
+    padding: 10px 20px;
+    background: rgb(244, 233, 233);
+    color: rgba(106, 1, 1, 0.774);
+    border-radius: 10px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    column-gap: 5px;
+}
+
+.gs3-inputBox {
+    position: relative;
+    width: 100%;
+    margin: 20px;
+    box-shadow: 0px 8px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    column-gap: 5px;
+}
+.gs3-title-length {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 10px;
+    border-radius: 12px;
+    background: rgb(234, 233, 244);
+    color: var(--btn-secondary);
+    font-weight: bold;
+    font-size: .8rem;
+}
+.gs3-inputBox input {
+    padding: 15px 20px;
+    width: 88%;
+    outline: none;
+    background: transparent;
+    color: var(--text-dark);
+    font-size: 1rem;
+}
+.gs3-inputBox span {
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+    color: var(--text-medium);
+    font-size: 1em;
+    pointer-events: none;
+    transition: .2s linear;
+}
+
+.gs3-inputBox input:focus~span,
+.gs3-inputBox input.gs3-valid~span {
+    font-size: 0.8em;
+    transform: translateX(-5px) translateY(-35px);
+    padding: 1px 10px;
+    border-radius: 10px;
+    background: transparent;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+.gs3-desc-container {
+    width: 65%;
+}
+
+.gs3-desc-box {
+    position: relative;
+    width: 100%;
+    height: 230px;
+    margin: 20px;
+    display: flex;
+    align-items: center;
+    padding: 15px 20px 30px 20px;
+    box-shadow: 0px 8px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+}
+.gs3-character-count {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    padding: 5px 10px;
+    background: rgb(234, 233, 244);
+    color: var(--btn-secondary);
+    font-size: .8rem;
+    border-radius: 12px;
+    font-weight: bold;
+}
+.gs3-desc-box textarea::-webkit-scrollbar {
+    display: none;
+}
+
+.gs3-desc-box textarea {
+    width: 100%;
+    height: 100%;
+    outline: none;
+    background: transparent;
+    color: var(--text-dark);
+    font-size: 1rem;
+    transition: .3s linear;
+    resize: none;
+}
+
+.gs3-desc-box span {
+    position: absolute;
+    top: 25px;
+    left: 20px;
+    transform: translateY(-50%);
+    color: var(--text-medium);
+    font-size: 1em;
+    pointer-events: none;
+    transition: .2s linear;
+}
+
+.gs3-desc-box textarea:focus~span,
+.gs3-desc-box textarea.gs3-valid-desc~span {
+    font-size: 0.8em;
+    transform: translateX(-5px) translateY(-35px);
+    padding: 1px 10px;
+    border-radius: 10px;
+    background: transparent;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+.gs3-desc-info {
+    margin-left: 20px;
+    padding: 10px 20px;
+    background: rgb(234, 233, 244);
+    border-radius: 10px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    column-gap: 5px;
+}
+.gs3-desc-error {
+    margin-left: 20px;
+    padding: 10px 20px;
+    background: rgb(244, 233, 233);
+    color: rgba(106, 1, 1, 0.774);
+    border-radius: 10px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    column-gap: 5px;
+}

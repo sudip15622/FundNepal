@@ -1,5 +1,5 @@
 .gs-getstarted-phases-container {
-    padding: 20px 30px;
+    padding: 40px 30px 20px 50px;
     max-height: calc(100vh - 170px);
     overflow-y: auto;
     color: var(--text-md);

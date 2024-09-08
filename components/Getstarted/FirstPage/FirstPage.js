@@ -15,7 +15,6 @@ const FirstPage = ({ completed, setCompleted }) => {
 
     useEffect(() => {
         const savedData = JSON.parse(localStorage.getItem('firstData'));
-        console.log(savedData);
         if (savedData) {
             setFirstData(savedData);
         }

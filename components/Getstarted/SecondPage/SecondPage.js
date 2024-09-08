@@ -4,6 +4,8 @@ import Image from 'next/image';
 
 import { MdChangeCircle, MdCloudUpload, MdDelete } from 'react-icons/md';
 import { CiImageOn } from "react-icons/ci";
+import { BiSolidError } from "react-icons/bi";
+import { MdTipsAndUpdates } from "react-icons/md";
 
 const SecondPage = ({ completed, setCompleted }) => {
 
@@ -45,13 +47,19 @@ const SecondPage = ({ completed, setCompleted }) => {
     }
 
     const handleGoalChange = (value) => {
-        if (!isValidAmount(value)) {
-            setGoalError("Starting goal must be in digit and min-max : ( 1 K - 10 L )!");
+        let numericValue = value.replace(/\D/g, '');
+
+        if (parseFloat(numericValue) > 1000000) {
+            numericValue = '1000000';
+            setGoalError("Starting goal cannot exceed 1,000,000!");
         } else {
             setGoalError('');
         }
+        if (!isValidAmount(numericValue)) {
+            setGoalError("Starting goal must be in digit and from 1K to 10L!");
+        }
         let newData = { ...secondData };
-        newData.goal = value;
+        newData.goal = numericValue;
         setSecondData(newData);
         localStorage.setItem('secondData', JSON.stringify(newData));
     }
@@ -107,14 +115,14 @@ const SecondPage = ({ completed, setCompleted }) => {
                 <div className="gs2-goal-container">
                     <h2 className="gs2-goal-title">Set your starting goal:</h2>
                     <div className="gs2-inputBox">
-                        <input type="text" className={`${secondData.goal !== "" && "gs2-valid"}`} name="goal" value={secondData.goal} onChange={(e) => { handleGoalChange(e.target.value); }} required />
-                        <span>Starting Goal</span>
+                        <input type="text" className={`${secondData.goal !== "" && "gs2-valid"}`} name="goal" value={secondData.goal} onChange={(e) => { handleGoalChange(e.target.value); }} pattern="\d*" required />
+                        <span>Starting goal</span>
                         <div className="gs2-currency">NRS</div>
                     </div>
                     {goalError ? <div className="gs2-goal-error">
-                        {goalError}
+                        <BiSolidError /> {goalError}
                     </div> : <div className="gs2-goal-info">
-                        You can always change this later!
+                        <MdTipsAndUpdates /> You can always change this later!
                     </div>}
                 </div>
                 <div className="gs2-photo-container">
@@ -146,7 +154,7 @@ const SecondPage = ({ completed, setCompleted }) => {
                                 </label>
 
                                 {photoError && <div className="gs2-photo-error">
-                                    {photoError}
+                                    <BiSolidError /> {photoError}
                                 </div>}
                             </div>
                         </div>
