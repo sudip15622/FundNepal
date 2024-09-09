@@ -206,7 +206,7 @@ const Login = () => {
             <button ref={hintRef} type='button' className="hint-toggle" onClick={(e) => { setShowHint(!showHint) }}><MdHelp /></button>
           </div>
           <div className="inputBox">
-            <input type={showPassword2 ? "text" : "password"} className={`${confirmPassword !== "" && "valid"}`} name="confirmPassword" value={confirmPassword} onChange={(e) => { password !== "" && setConfirmPassword(e.target.value) }} required />
+            <input type={showPassword2 ? "text" : "password"} className={`${confirmPassword !== "" && "valid"}`} name="confirmPassword" value={confirmPassword} onChange={(e) => { setConfirmPassword(e.target.value) }} required />
             <span>Confirm Password</span>
             <button type='button' disabled={confirmPassword == ""} className="hide-show-btn" onClick={(e) => { setShowPassword2(!showPassword2) }}>{showPassword2 ? <BiSolidShow /> : <BiSolidHide />}</button>
           </div>
