@@ -1,5 +1,5 @@
 "use client"
-import React, { useState, useEffect } from 'react'
+import React, { useState, useRef } from 'react'
 import "./SignIn.css";
 import Link from 'next/link';
 import { handleLogin } from '@/actions/handleLogin';
@@ -8,7 +8,8 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { BiSolidHide, BiSolidShow } from "react-icons/bi";
 import { PulseLoader } from "react-spinners";
 import { FaCheckCircle } from "react-icons/fa";
-import { MdCancel, MdError } from "react-icons/md";
+import { MdError } from "react-icons/md";
+import { IoTriangleSharp } from "react-icons/io5";
 
 const Login = () => {
 
@@ -17,32 +18,145 @@ const Login = () => {
 
   const redirectTo = searchParams.get('redirectTo') || '/';
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [formData, setFormData] = useState({ email: '', password: '' });
+  const [inputErrors, setInputErrors] = useState({ email: '', password: '' });
+
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   const [info, setInfo] = useState('')
   const [error, setError] = useState('')
 
+  const inputRefs = useRef({});
+  const [focusedField, setFocusedField] = useState(null);
+
   const resetFields = () => {
-    setEmail('');
-    setPassword('');
+    setFormData({ email: '', password: '' });
+    setInputErrors({ email: '', password: '' });
     setShowPassword(false);
     setIsLoading(false);
-  }
-
-  const resetError = () => {
-    setTimeout(() => {
-      setError('');
-      // setInfo('');
-    }, 4000);
+    setError('')
+    setInfo('');
+    setFocusedField(null);
   }
 
   const isValidEmail = (email) => {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return regex.test(email);
+    if (regex.test(email)) {
+      return { success: true };
+    }
+    return { success: false, error: "Invalid Email!" };
   };
+
+  const isValidPassword = (pw) => {
+    const isValid =
+      pw.length >= 8 &&
+      /[A-Z]/.test(pw) &&
+      /[a-z]/.test(pw) &&
+      /\d/.test(pw) &&
+      /[!@#$%^&*(),.?":{}|<>]/.test(pw);
+
+    if (isValid) {
+      return { success: true };
+    } else {
+      return { success: false, error: `Invalid password!` };
+    }
+  };
+
+  const isPrevFieldsValid = (key) => {
+    const fields = ["email", "password"];
+    const currentIndex = fields.indexOf(key);
+
+    if (currentIndex > 0) {
+      const prevKey = fields[currentIndex - 1];
+      const prevFieldValue = formData[prevKey];
+
+      const validation = errorFunctions[prevKey](prevFieldValue);
+
+      if (prevFieldValue.trim() === "" || !validation.success) {
+        setInputErrors(prevErrors => ({
+          ...prevErrors,
+          [prevKey]: prevFieldValue.trim() === "" ? "First fill out this field!" : validation.error
+        }));
+        inputRefs.current[prevKey].focus();
+        return false;
+      }
+    }
+    return true;
+  };
+
+  const handleInputChange = (key, value) => {
+    if (!isPrevFieldsValid(key)) {
+      return;
+    }
+
+    const validation = errorFunctions[key](value);
+    if (!validation.success) {
+      handleInputErrors(key, validation.error);
+    } else {
+      handleInputErrors(key, '');
+    }
+
+    setFormData(prevData => ({ ...prevData, [key]: value }));
+  };
+
+  const handleInputErrors = (field, error) => {
+    setInputErrors(prevErrors => ({ ...prevErrors, [field]: error }));
+  };
+
+  const handleInputFocus = (key) => {
+    setFocusedField(key);
+    isPrevFieldsValid(key);
+  };
+
+  const handleInputBlur = () => {
+    setFocusedField(null);
+  };
+
+  const errorFunctions = {
+    email: isValidEmail,
+    password: isValidPassword,
+  };
+
+  const inputField = (type, name, span) => {
+    const isPasswordField = name === "password";
+    const inputType = isPasswordField
+      ? (showPassword ? "text" : "password")
+      : type;
+
+    return (
+      <div className="inputBox">
+        <input
+          ref={(el) => (inputRefs.current[name] = el)}
+          type={inputType}
+          className={`${formData[name] !== "" && "valid"} ${inputErrors[name] !== "" && "error"}`}
+          name={name}
+          value={formData[name]}
+          onChange={(e) => { handleInputChange(name, e.target.value); }}
+          onFocus={() => handleInputFocus(name)}
+          onBlur={handleInputBlur}
+          required
+        />
+        <span>{span}</span>
+        {(focusedField === name && inputErrors[name]) && (
+          <div className="input-error-div">
+            <div className="pointer-icon"><IoTriangleSharp /></div>{inputErrors[name]}
+          </div>
+        )}
+
+        {isPasswordField && (
+          <button type='button' className="hide-show-btn" onClick={(e) => { setShowPassword(!showPassword) }}>{showPassword ? <BiSolidShow /> : <BiSolidHide />}</button>
+        )}
+
+      </div>
+    );
+  };
+
+  const resetError = () => {
+    setTimeout(() => {
+      setError('');
+    }, 4000);
+  }
 
   const handleSignIn = async (e) => {
     e.preventDefault();
@@ -56,23 +170,30 @@ const Login = () => {
     setInfo('');
     setError('');
 
-    if (!email || !password) {
-      setError("Please provide all fields");
+    if (!isFormValid()) {
+      setError("Please provide all fields!");
       setIsLoading(false);
       resetError();
       return;
     }
 
-    if (!isValidEmail(email)) {
-      setError("Invalid email");
+    if (!isValidEmail(formData.email).success) {
+      setError("Invalid email!");
+      setIsLoading(false);
+      resetError();
+      return;
+    }
+
+    if (!isValidPassword(formData.password).success) {
+      setError("Invalid password!");
       setIsLoading(false);
       resetError();
       return;
     }
 
     const loginUser = await handleLogin({
-      email: email,
-      password: password,
+      email: formData.email,
+      password: formData.password,
     })
 
     setIsLoading(false);
@@ -113,9 +234,14 @@ const Login = () => {
       resetError('');
       return;
     }
-
-
   }
+
+  const isFormValid = () => {
+    return (
+      Object.values(inputErrors).every(error => error === '') &&
+      Object.values(formData).every(value => value.trim() !== '')
+    );
+  };
 
   return (
     <main className='login-container'>
@@ -124,20 +250,13 @@ const Login = () => {
       <div className="white-box">
         <h2 className='signin-title'>Sign-In</h2>
         <form className="signin-form" onSubmit={(e) => { handleSignIn(e); }}>
-          <div className="inputBox">
-            <input type="email" className={`${email !== "" && "valid"}`} name="email" id="email" value={email} onChange={(e) => { setEmail(e.target.value); }} required />
-            <span>Email</span>
-          </div>
-          <div className="inputBox">
-            <input className={`${password !== "" && "valid"}`} type={showPassword ? "text" : "password"} name="password" id="password" value={password} onChange={(e) => { setPassword(e.target.value); }} required />
-            <span>Password</span>
-            <button type='button' disabled={password == ""} className="hide-show-btn" onClick={(e) => { setShowPassword(!showPassword) }}>{showPassword ? <BiSolidShow /> : <BiSolidHide />}</button>
-          </div>
+          {inputField('email', 'email', 'Email')}
+          {inputField('password', 'password', 'Password')}
           <div className="forgot-password-btn-contianer">
             <button type='button' className="forgot-password-btn">Forgot password?</button>
           </div>
           <button type="submit" className='signin-form-btn' disabled={isLoading}>
-            <span >{isLoading ? <PulseLoader size={10} margin={4} color='#f9f9f7' /> : "Sign In"}</span>
+            <span >{isLoading ? <PulseLoader size={10} margin={4} /> : "Sign In"}</span>
           </button>
         </form>
         <div className="new-to-brand">

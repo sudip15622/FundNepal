@@ -9,7 +9,7 @@
 .login-container .red-box {
     background: var(--btn-primary);
     width: 380px;
-    height: 500px;
+    height: 525px;
     position: absolute;
     top: 0px;
     z-index: -1;
@@ -20,7 +20,7 @@
 .login-container .blue-box {
     background: var(--btn-secondary);
     width: 380px;
-    height: 500px;
+    height: 525px;
     position: absolute;
     top: 0px;
     z-index: -1;
@@ -31,7 +31,7 @@
 .login-container .white-box {
     background: var(--text-light);
     width: 380px;
-    height: 500px;
+    height: 525px;
     z-index: 1;
     border-radius: 40px;
     position: relative;
@@ -61,7 +61,7 @@
 .login-container .inputBox {
     position: relative;
     width: 100%;
-    margin: 20px auto;
+    margin: 30px auto;
 }
 
 .login-container .inputBox input {
@@ -73,7 +73,7 @@
     border-radius: 20px;
     color: var(--text-dark);
     font-size: 1em;
-    transition: .3s linear;
+    transition: .2s linear;
 }
 
 .login-container .inputBox span {
@@ -84,7 +84,7 @@
     color: var(--text-medium);
     font-size: 1em;
     pointer-events: none;
-    transition: .3s linear;
+    transition: .2s linear;
 }
 
 .login-container .hide-show-btn {
@@ -109,15 +109,37 @@
     transform: translateX(-5px) translateY(-35px);
     padding: 1px 10px;
     border-radius: 10px;
-    background: inherit;
+    background: var(--text-light);
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
 }
 
 .login-container .inputBox input:focus {
     box-shadow: 0px 8px 12px var(--btn-primary);
 }
+.login-container .inputBox input:focus.error {
+    box-shadow: 0px 8px 12px rgb(142, 1, 1);
+}
+.login-container .input-error-div {
+    position: absolute;
+    top: 55px;
+    left: 15px;
+    background: var(--text-medium);
+    color: var(--text-light);
+    padding: 8px 10px;
+    border-radius: 5px;
+    font-size: .9rem;
+    width: fit-content;
+    max-width: 240px;
+}
+.login-container .pointer-icon {
+    position: absolute;
+    top: -8px;
+    left: 15px;
+    font-size: 12px;
+    color: var(--text-medium);
+}
 
-.login-container .signin-form button:disabled {
+.login-container .signin-form-btn:disabled {
     cursor: not-allowed;
 }
 

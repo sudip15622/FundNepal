@@ -68,16 +68,13 @@ const handleRegisterSubmit = async (credentials) => {
 
         const user = await prisma.user.findFirst({
             where: {
-                OR: [
-                    { email: credentials.email },
-                    { phone: credentials.phone }
-                ]
+                email: credentials.email
             }
         });
 
         if (user) {
             return ({
-                error: "User already exists!"
+                error: "User already exists, proceed to login!"
             })
         }
 
