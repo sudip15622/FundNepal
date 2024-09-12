@@ -1,0 +1,89 @@
+.gs4-preview-container {
+    padding: 40px 30px 20px 50px;
+    max-height: calc(100vh - 170px);
+    overflow-y: auto;
+    color: var(--text-md);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}
+
+.gs4-preview-container::-webkit-scrollbar {
+    display: none;
+}
+
+.gs4-preview-lists {
+    width: 65%;
+    margin-left: 20px;
+    /* border-radius: 20px; */
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+
+}
+
+.gs4-preview-item picture {
+    width: 100%;
+    height: 350px;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 2px solid rgb(174, 172, 172);
+}
+
+.gs4-preview-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.gs4-preview-line {
+    width: 100%;
+    height: 2px;
+    background: rgb(174, 172, 172);
+    border: none;
+}
+
+.gs4-preview-item {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    justify-content: center;
+    padding: 5px 10px;
+    width: 100%;
+}
+
+.gs4-title-field {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.gs4-item-title {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.gs4-edit-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 15px;
+    border-radius: 12px;
+    background: rgb(234, 233, 244);
+    border: 2px solid var(--btn-secondary);
+    color: var(--btn-secondary);
+    font-size: .8rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.gs4-item-desc {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-md);
+}
+.gs4-desc-box {
+    max-height: 55px;
+    overflow: hidden;
+}

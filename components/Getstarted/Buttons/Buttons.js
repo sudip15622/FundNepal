@@ -1,6 +1,5 @@
 "use client"
 import React from 'react'
-import { useRouter } from 'next/navigation';
 
 import { IoArrowBackOutline } from "react-icons/io5";
 
@@ -8,20 +7,18 @@ const Buttons = ({params}) => {
 
     const { phase, setPhase, validPages, completed, setCompleted } = params;
 
-    const router = useRouter();
-
     const index = validPages.indexOf(phase);
 
     const handleContinueClick = () => {
         if (index < (validPages.length - 1)) {
             setPhase(validPages[index + 1]);
-            router.push(`/getstarted?page=${validPages[index + 1]}`);
+            localStorage.setItem('currentPage', validPages[index + 1]);
         }
     };
     const handleBackClick = () => {
         if (index > 0) {
             setPhase(validPages[index - 1]);
-            router.push(`/getstarted?page=${validPages[index - 1]}`);
+            localStorage.setItem('currentPage', validPages[index - 1]);
         }
     };
 

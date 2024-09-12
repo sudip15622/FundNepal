@@ -53,7 +53,7 @@ const ThirdPage = ({ completed, setCompleted }) => {
             setDescError('');
         }
         if (!isValidDesc(myValue)) {
-            setDescError("Description must have total 100-2000 characters!")
+            setDescError("Description must have total 200-2000 characters!")
         }
 
         let newData = { ...thirdData };
@@ -76,7 +76,7 @@ const ThirdPage = ({ completed, setCompleted }) => {
     }
 
     const isValidDesc = (desc) => {
-        if (desc.length < 100 || desc.length > 2000) {
+        if (desc.length < 200 || desc.length > 2000) {
             return false;
         }
         return true;

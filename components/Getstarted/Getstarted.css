@@ -46,6 +46,15 @@
     row-gap: 10px;
     position: relative;
 }
+.gs-loading {
+    width: 65%;
+    margin: auto 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    transform: translateY(-50%);
+}
 
 .gs2-button-container {
     width: 100%;

@@ -1,23 +1,21 @@
 "use client"
 import React, { useState, useEffect } from 'react'
 import "./Getstarted.css";
-import { useSearchParams } from 'next/navigation';
 import FirstPage from './FirstPage/FirstPage';
 import SecondPage from './SecondPage/SecondPage';
 import ThirdPage from './ThirdPage/ThirdPage';
 import FourthPage from './FourthPage/FourthPage';
 import Buttons from './Buttons/Buttons';
 
+import { MoonLoader } from 'react-spinners';
+
 import { FaHandHoldingHeart } from "react-icons/fa";
 
 const Getstarted = () => {
 
-  const searchParams = useSearchParams();
+  const [loading, setLoading] = useState(true);
 
-  const page = searchParams.get('page') || 'first';
-
-  const [validPage, setValidPage] = useState(true);
-  const [phase, setPhase] = useState(page);
+  const [phase, setPhase] = useState('first');
 
   const validPages = ['first', 'second', 'third', 'fourth'];
 
@@ -32,13 +30,15 @@ const Getstarted = () => {
   }
 
   useEffect(() => {
-    if (validPages.includes(page)) {
-      setPhase(page);
-      setValidPage(true);
-    } else {
-      setValidPage(false);
+    const currentPage = localStorage.getItem('currentPage');
+    if (currentPage) {
+      setPhase(currentPage)
     }
-  }, [page]);
+
+    setTimeout(() => {
+      setLoading(false);
+    }, 500);
+  }, [])
 
   return (
     <main className='getstarted-container'>
@@ -49,29 +49,30 @@ const Getstarted = () => {
         <p className="gs-aside-desc">We are here to assist you in every step of the way.</p>
       </aside>
 
-      {validPage ? <section className='gs-fundraiser-details'>
-        {phase === "first" && (
-          <FirstPage completed={completed} setCompleted={setCompleted}/>
-        )}
+      <section className='gs-fundraiser-details'>
+        {loading ? <div className="gs-loading">
+          <MoonLoader size={80} color='var(--text-medium)' />
+        </div> : <>
+          {phase === "first" && (
+            <FirstPage completed={completed} setCompleted={setCompleted} />
+          )}
 
-        {phase === "second" && (
-          <SecondPage completed={completed} setCompleted={setCompleted}/>
-        )}
+          {phase === "second" && (
+            <SecondPage completed={completed} setCompleted={setCompleted} />
+          )}
 
-        {phase === "third" && (
-          <ThirdPage completed={completed} setCompleted={setCompleted}/>
-        )}
+          {phase === "third" && (
+            <ThirdPage completed={completed} setCompleted={setCompleted} />
+          )}
 
-        {phase === "fourth" && (
-          <FourthPage completed={completed} setCompleted={setCompleted}/>
-        )}
+          {phase === "fourth" && (
+            <FourthPage completed={completed} setCompleted={setCompleted} phase={phase} setPhase={setPhase}/>
+          )}
+        </>}
 
-        <Buttons params={btnParams}/>
+        <Buttons params={btnParams} />
 
-      </section> : <div className="invalid-page">
-        <h1>Invalid Page</h1>
-        <p>The page you are looking for does not exist.</p>
-      </div>}
+      </section>
     </main>
   )
 }
