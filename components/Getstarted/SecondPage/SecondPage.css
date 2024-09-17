@@ -14,7 +14,8 @@
 }
 
 .gs2-goal-container {
-    width: 65%;
+    width: 100%;
+    max-width: 600px;
     display: flex;
     flex-direction: column;
 }
@@ -114,7 +115,8 @@
     width: 100%;
 }
 .gs2-photo-container-bottom {
-    width: 65%;
+    width: 100%;
+    max-width: 600px;
     margin-left: 20px;
     position: relative;
     display: flex;

@@ -213,25 +213,25 @@ const Login = () => {
 
     if (loginUser?.error) {
       setError(loginUser.error);
-      resetError('');
+      resetError();
       return;
     }
 
     if (loginUser?.nextError) {
       setError("Something went wrong. Please try again");
-      resetError('');
+      resetError();
       return;
     }
 
     if (loginUser?.nextApiError) {
       setError("Something went wrong. Please try again");
-      resetError('');
+      resetError();
       return;
     }
 
     if (loginUser?.apiError) {
       setError(loginUser.apiError);
-      resetError('');
+      resetError();
       return;
     }
   }
@@ -255,7 +255,7 @@ const Login = () => {
           <div className="forgot-password-btn-contianer">
             <button type='button' className="forgot-password-btn">Forgot password?</button>
           </div>
-          <button type="submit" className='signin-form-btn' disabled={isLoading}>
+          <button type="submit" className='signin-form-btn' disabled={isLoading || !isFormValid() || error !== ''}>
             <span >{isLoading ? <PulseLoader size={10} margin={4} /> : "Sign In"}</span>
           </button>
         </form>

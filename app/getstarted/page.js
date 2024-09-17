@@ -14,7 +14,7 @@ const page = async() => {
   }
 
   const user = await prisma.user.findUnique({
-    where: {id: session?.user?.id}
+    where: {id: session?.user?.id},
   })
 
   if(!user) {
@@ -24,7 +24,7 @@ const page = async() => {
 
   return (
     <>
-      <Getstarted />
+      <Getstarted user={user}/>
     </>
   )
 }

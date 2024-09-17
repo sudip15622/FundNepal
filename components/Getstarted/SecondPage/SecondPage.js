@@ -70,6 +70,7 @@ const SecondPage = ({ completed, setCompleted }) => {
                 fileName: value.name,
                 fileContentType: value.type,
                 fileData: await bytesToString(value),
+                fileSize: value.size,
             }
 
             const sizeInKB = value.size / (1024);

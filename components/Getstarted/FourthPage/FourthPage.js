@@ -44,7 +44,7 @@ const FourthPage = ({ completed, setCompleted, phase, setPhase }) => {
 
   return (
     <div className='gs4-preview-container'>
-      <h2 className="gs4-preview-title">Preview:</h2>
+      <h2 className="gs4-preview-title">Review details:</h2>
       {previewData ? <ul className="gs4-preview-lists">
         <li className="gs4-preview-item">
           <div className="gs4-title-field">

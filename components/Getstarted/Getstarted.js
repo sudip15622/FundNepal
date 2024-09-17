@@ -5,19 +5,20 @@ import FirstPage from './FirstPage/FirstPage';
 import SecondPage from './SecondPage/SecondPage';
 import ThirdPage from './ThirdPage/ThirdPage';
 import FourthPage from './FourthPage/FourthPage';
+import FifthPage from './FifthPage/FifthPage';
 import Buttons from './Buttons/Buttons';
 
 import { MoonLoader } from 'react-spinners';
 
 import { FaHandHoldingHeart } from "react-icons/fa";
 
-const Getstarted = () => {
+const Getstarted = ({user}) => {
 
   const [loading, setLoading] = useState(true);
 
   const [phase, setPhase] = useState('first');
 
-  const validPages = ['first', 'second', 'third', 'fourth'];
+  const validPages = ['first', 'second', 'third', 'fourth', 'fifth'];
 
   const [completed, setCompleted] = useState(false);
 
@@ -41,38 +42,43 @@ const Getstarted = () => {
   }, [])
 
   return (
-    <main className='getstarted-container'>
-      <aside className="gs-aside-content">
+    loading ? <div className="gs-loading">
+      <MoonLoader size={100} color='var(--btn-secondary)' />
+    </div> : <main className='getstarted-container'>
+      {phase === 'fifth' ? <aside className="gs-aside-content">
+        <div className="gs-aside-icon"><FaHandHoldingHeart /></div>
+        <div className="gs-page-count">{validPages.indexOf(phase) + 1} / {validPages.length}</div>
+        <h1 className="gs-getstarted-title">Provide personal details and publish</h1>
+        <p className="gs-aside-desc">You must provide your personal details in order to publish your fundraiser.</p>
+      </aside> : <aside className="gs-aside-content">
         <div className="gs-aside-icon"><FaHandHoldingHeart /></div>
         <div className="gs-page-count">{validPages.indexOf(phase) + 1} / {validPages.length}</div>
         <h1 className="gs-getstarted-title">Let&apos;s get started in your fundraising journey</h1>
         <p className="gs-aside-desc">We are here to assist you in every step of the way.</p>
-      </aside>
+      </aside>}
 
-      <section className='gs-fundraiser-details'>
-        {loading ? <div className="gs-loading">
-          <MoonLoader size={80} color='var(--text-medium)' />
-        </div> : <>
-          {phase === "first" && (
-            <FirstPage completed={completed} setCompleted={setCompleted} />
-          )}
+      {phase === 'fifth' ? <section className='gs-fundraiser-details'>
+        <FifthPage phase={phase} setPhase={setPhase} user={user}/>
+      </section> : <section className='gs-fundraiser-details'>
+        {phase === "first" && (
+          <FirstPage completed={completed} setCompleted={setCompleted} />
+        )}
 
-          {phase === "second" && (
-            <SecondPage completed={completed} setCompleted={setCompleted} />
-          )}
+        {phase === "second" && (
+          <SecondPage completed={completed} setCompleted={setCompleted} />
+        )}
 
-          {phase === "third" && (
-            <ThirdPage completed={completed} setCompleted={setCompleted} />
-          )}
+        {phase === "third" && (
+          <ThirdPage completed={completed} setCompleted={setCompleted} />
+        )}
 
-          {phase === "fourth" && (
-            <FourthPage completed={completed} setCompleted={setCompleted} phase={phase} setPhase={setPhase}/>
-          )}
-        </>}
+        {phase === "fourth" && (
+          <FourthPage completed={completed} setCompleted={setCompleted} phase={phase} setPhase={setPhase} />
+        )}
 
         <Buttons params={btnParams} />
 
-      </section>
+      </section>}
     </main>
   )
 }

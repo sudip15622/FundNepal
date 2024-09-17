@@ -253,13 +253,13 @@ const Login = () => {
 
     if (registerUser?.error) {
       setError(registerUser.error);
-      resetError('');
+      resetError();
       return;
     }
 
     if (registerUser?.nextError) {
       setError("Something went wrong!");
-      resetError('');
+      resetError();
       return;
     }
 
@@ -284,7 +284,7 @@ const Login = () => {
           {inputField('password', 'password', 'Password')}
           {inputField('password', 'confirmPassword', 'Confirm Password')}
 
-          <button type="submit" className='signin-form-btn' disabled={isLoading || !isFormValid()}>
+          <button type="submit" className='signin-form-btn' disabled={isLoading || !isFormValid() || error !== ''}>
             <span>{isLoading ? <PulseLoader size={10} margin={4} /> : "Register"}</span>
           </button>
 

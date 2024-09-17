@@ -12,11 +12,15 @@
 .gs4-preview-container::-webkit-scrollbar {
     display: none;
 }
-
+.gs4-preview-title {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: var(--text-md);
+}
 .gs4-preview-lists {
-    width: 65%;
+    width: 100%;
+    max-width: 600px;
     margin-left: 20px;
-    /* border-radius: 20px; */
     display: flex;
     flex-direction: column;
     row-gap: 10px;

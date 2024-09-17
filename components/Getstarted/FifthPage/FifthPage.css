@@ -1,0 +1,341 @@
+.gs5-complete-form-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.gs5-primary-details-container {
+    padding: 40px 30px 20px 50px;
+    height: calc(100vh - 170px);
+    overflow-y: auto;
+    color: var(--text-md);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}
+
+.gs5-primary-details-container::-webkit-scrollbar {
+    display: none;
+}
+
+.gs5-primary-details-title {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: var(--text-md);
+}
+.gs5-address-fields {
+    display: flex;
+    flex-direction: column;
+}
+.gs5-address-inputs {
+    display: flex;
+    column-gap: 50px;
+    flex-wrap: wrap;
+    margin-left: 20px;
+    align-items: baseline;
+}
+.gs5-input-container {
+    width: 35%;
+    margin: 30px 0px;
+}
+.gs5-input-city {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    position: relative;
+    padding-top: 30px;
+}
+.gs5-cities-container {
+    display: flex;
+    column-gap: 5px;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 10px;
+    position: absolute;
+    top: 0;
+}
+.gs5-cities-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 5px;
+    font-size: .9rem;
+    cursor: pointer;
+}
+.gs5-city-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: .8rem;
+}
+.gs5-city-line {
+    width: 2px;
+    height: 15px;
+    background: var(--text-md);
+}
+.gs5-input-district {
+    position: relative;
+}
+.gs5-districts-container {
+    position: absolute;
+    top: 60px;
+    width: 100%;
+    border-radius: 12px;
+    background: var(--text-light);
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+    padding: 5px;
+    max-height: 180px;
+    overflow-y: auto;
+}
+.gs5-districts-item {
+    padding: 8px 15px;
+    border-radius: 8px;
+    font-size: 1rem;
+    background: inherit;
+    transition: background .2s linear;
+    cursor: pointer;
+}
+.gs5-districts-item:hover {
+    background: rgb(199, 199, 199);
+}
+.gs5-inputBox {
+    position: relative;
+    width: 100%;
+}
+
+.gs5-inputBox input {
+    box-shadow: 0px 8px 10px rgba(0, 0, 0, 0.4);
+    padding: 15px 20px;
+    width: 100%;
+    outline: none;
+    background: transparent;
+    border-radius: 20px;
+    color: var(--text-dark);
+    font-size: 1rem;
+    transition: .2s linear;
+}
+.gs5-inputBox input[type="number"]::-webkit-outer-spin-button,
+.gs5-inputBox input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+.gs5-inputBox span {
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+    color: var(--text-medium);
+    font-size: 1rem;
+    pointer-events: none;
+    transition: .2s linear;
+}
+
+.gs5-inputBox input:focus~span,
+.gs5-inputBox input.valid~span {
+    font-size: 0.8em;
+    transform: translateX(-5px) translateY(-35px);
+    padding: 1px 10px;
+    border-radius: 10px;
+    background: var(--text-light);
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+.gs5-inputBox input:focus {
+    box-shadow: 0px 8px 12px var(--btn-secondary);
+}
+
+.gs5-inputBox input:focus.error {
+    box-shadow: 0px 8px 12px rgb(142, 1, 1);
+}
+
+.gs5-input-error-div {
+    position: absolute;
+    top: 55px;
+    left: 15px;
+    background: var(--text-medium);
+    color: var(--text-light);
+    padding: 8px 10px;
+    border-radius: 5px;
+    font-size: .9rem;
+    width: fit-content;
+    max-width: 240px;
+}
+
+.gs5-pointer-icon {
+    position: absolute;
+    top: -8px;
+    left: 15px;
+    font-size: 12px;
+    color: var(--text-medium);
+}
+
+.gs5-verify-email-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 10px;
+    width: 150px;
+    height: 40px;
+    font-size: .9rem;
+    font-weight: bold;
+    background: var(--btn-primary);
+    color: var(--text-light);
+    border-radius: 12px;
+    cursor: pointer;
+    margin: auto 0px;
+}
+.gs5-verify-email-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+}
+.gs5-button-container {
+    width: 100%;
+    height: 100px;
+    padding: 0px 50px 0px 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 2px solid gray;
+    position: absolute;
+    bottom: 0px;
+    z-index: 1;
+    background: var(--text-light);
+}
+
+.gs5-below-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    color: var(--text-light);
+    cursor: pointer;
+    background: none;
+}
+
+.gs5-back-btn {
+    color: var(--btn-secondary);
+    border: 2px solid var(--btn-secondary);
+    width: 45px;
+    height: 45px;
+    font-size: 1.4rem;
+    transition: background .3s ease-in-out, color .3s ease-in-out;
+}
+
+.gs5-continue-btn {
+    width: 150px;
+    height: 45px;
+    padding: 4px;
+    border-radius: 12px;
+    cursor: pointer;
+    background: var(--btn-secondary);
+}
+
+.gs5-continue-btn:disabled {
+    cursor: not-allowed;
+    background: gray;
+}
+
+.gs5-continue-btn:disabled:hover span {
+    color: var(--text-light);
+    background: transparent;
+}
+
+.gs5-continue-btn span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: .95rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    border-radius: calc(12px - 4px);
+    width: 100%;
+    height: 100%;
+    color: var(--text-light);
+    background: transparent;
+    transition: background .3s ease-in-out, color .3s ease-in-out;
+}
+
+.gs5-continue-btn:hover span {
+    background: var(--text-light);
+    color: var(--text-md);
+}
+
+.gs5-back-btn:hover {
+    color: var(--text-light);
+    background: var(--btn-secondary);
+}
+
+.gs5-notifyme {
+    width: 100%;
+    position: absolute;
+    background: var(--text-light);
+    z-index: 5;
+    bottom: 100px;
+    transform: translateY(30%);
+    opacity: 0;
+    transition: .3s linear, opacity .3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0px auto;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.gs5-notifyme-active {
+    transform: translateY(0%);
+    opacity: 1;
+}
+
+.gs5-notifyme-top {
+    display: flex;
+    align-items: center;
+    padding: 4px 12px 8px 12px;
+    display: flex;
+    gap: 5px;
+}
+
+.gs5-notifyme-text {
+    color: rgb(180, 4, 4);
+}
+
+.gs5-notifyme-buttom {
+    height: 4px;
+    width: 100%;
+    animation: reduceWidth 4s linear forwards;
+}
+.uncheck {
+    border: none;
+    border-radius: 50%;
+    color: rgb(180, 4, 4);
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+}
+
+.check {
+    border: none;
+    border-radius: 50%;
+    color: rgb(1, 126, 8);
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+}
+@keyframes reduceWidth {
+    0% {
+        width: 100%;
+    }
+
+    100% {
+        width: 0;
+    }
+}
