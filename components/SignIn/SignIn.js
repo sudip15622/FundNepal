@@ -261,7 +261,7 @@ const Login = () => {
         </form>
         <div className="new-to-brand">
           <div className="no-account-text">Don&apos;t have an account?</div>
-          <Link href={`/register?redirectTo=/sign-in?redirectTo=${redirectTo}`} className='signup-link'>Sign-Up</Link>
+          <Link href={`/register?redirectTo=/signin?redirectTo=${redirectTo}`} className='signup-link'>Sign-Up</Link>
         </div>
 
         <div className={`notifyme ${error && "notifyme-active"}`}>

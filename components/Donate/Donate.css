@@ -1,0 +1,204 @@
+.donate-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 1200px;
+    margin: 60px auto 50px auto;
+    width: 100%;
+}
+.d-separator-line {
+    width: 100%;
+    height: 1px;
+    background: gray;
+    margin: 50px 0px;
+}
+.d-donate-first {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    margin-bottom: 30px;
+}
+.d-donate-first-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+.d-donate-first-text {
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-bottom: 30px;
+}
+.d-get-started-btn {
+    width: 200px;
+    height: 50px;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    background: var(--btn-primary);
+    cursor: pointer;
+}
+
+.d-get-started-btn span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2em;
+    font-weight: bold;
+    border-radius: calc(12px - 4px);
+    width: 100%;
+    height: 100%;
+    color: var(--text-light);
+    background: transparent;
+    transition: background .3s ease-in-out, color .3s ease-in-out;
+}
+
+.d-get-started-btn:hover span {
+    background: var(--text-light);
+    color: var(--text-md);
+}
+
+
+.d-fundraiser-categories {
+    width: 100%;
+    display: flex;
+    color: var(--text-md);
+}
+
+.d-category-container {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    row-gap: 30px;
+    column-gap: 50px;
+}
+.d-category-item {
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    height: 150px;
+    border-radius: 12px;
+    transform: scale(1);
+    transition: transform .2s linear;
+    cursor: pointer;
+    background: rgb(233, 244, 244);
+}
+.d-category-item:hover {
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+    transform: scale(1.04);
+}
+.d-category-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+}
+.d-category-name {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.d-donate-fundraiser {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}
+
+.d-fundraiser-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    justify-content: space-between;
+}
+.d-fundraiser-item {
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+    padding: 8px;
+    border-radius: 12px;
+    width: 30%;
+    cursor: pointer;
+    transition: background .3s ease-in-out;
+}
+.d-fundraiser-item:hover {
+    background: rgb(233, 244, 244);
+}
+.d-fundraiser-item:hover .d-fundraiser-cover-image {
+    transform: scale(1.05);
+}
+.d-fundraiser-image-cont {
+    width: 100%;
+    height: 200px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+.d-fundraiser-cover-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1);
+    transition: transform .3s linear;
+}
+.d-fundraiser-details {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    padding: 0px 10px;
+    flex-grow: 1;
+    justify-content: space-between;
+}
+.d-fundraiser-title {
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+.d-details-progress {
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+    width: 100%;
+}
+
+.d-details-progress-top {
+    width: 100%;
+    height: 6px;
+    border-radius: 10px;
+    background: rgb(219, 218, 218);
+    overflow: hidden;
+}
+
+.d-progress-bar {
+    width: 60%;
+    height: 100%;
+    border-radius: 10px;
+    background: var(--btn-primary);
+}
+
+.d-progress-amount {
+    font-weight: bold;
+    font-size: .9rem;
+}
+.d-fundraiser-seemore {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+}
+.d-fundraiser-seemore-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    column-gap: 5px;
+    padding: 5px 15px;
+    border-radius: 12px;
+    transition: background .2s linear;
+}
+.d-fundraiser-seemore-btn:hover {
+    background: rgb(233, 244, 244);
+}

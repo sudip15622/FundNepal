@@ -101,7 +101,7 @@ const Navbar = ({ session }) => {
                         </div>
                     </li> :
                         <li className='pages-btn-container'>
-                            <Link href={"sign-in"} className={`navbar-pages-btn signin-btn`}>
+                            <Link href={"signin"} className={`navbar-pages-btn signin-btn`}>
                                 <span>Sign In</span>
                             </Link>
                             <Link href={"register"} className={`navbar-pages-btn signup-btn`}>

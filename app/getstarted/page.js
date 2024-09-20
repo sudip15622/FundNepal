@@ -9,7 +9,7 @@ const page = async() => {
   const session = await auth();
 
   if(!session) {
-    redirect("/sign-in?redirectTo=/getstarted");
+    redirect("/signin?redirectTo=/getstarted");
     return null;
   }
 
@@ -18,7 +18,7 @@ const page = async() => {
   })
 
   if(!user) {
-    redirect("/sign-in?redirectTo=/getstarted");
+    redirect("/signin?redirectTo=/getstarted");
     return null;
   }
 

@@ -131,7 +131,7 @@ const SecondPage = ({ completed, setCompleted }) => {
                     <div className="gs2-photo-container-bottom">
                         <div className="gs2-upload-photo-section">
                             {secondData.photo && <picture className='gs2-uploaded-picture'>
-                                <Image className='gs2-uploaded-cover-image' src={getImageUrl(secondData.photo)} width={300} height={200} priority alt="" />
+                                <Image className='gs2-uploaded-cover-image' src={getImageUrl(secondData.photo)} width={300} height={200} priority alt="uploaded-cover" />
                             </picture>}
                         </div>
                         <div className={`gs2-no-uploads ${!secondData.photo && "gs2-no-uploads-after"}`}>

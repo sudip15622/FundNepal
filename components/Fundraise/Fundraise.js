@@ -65,6 +65,11 @@ const Fundraise = ({ examples }) => {
                 answer: "For now, FundNepal only works for nepal and nepali peoples especially. Soon we will go international also.",
                 showAns: false,
             },
+            {
+                question: "How do I withdraw funds?",
+                answer: "You can withdraw funds in funds section of your dashboard. You can add your bank details and withdraw funds anytime.",
+                showAns: false,
+            },
         ]
     )
 

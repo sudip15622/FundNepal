@@ -17,7 +17,7 @@ const Login = () => {
 
   const searchParams = useSearchParams();
 
-  const redirectTo = searchParams.get('redirectTo') || '/sign-in';
+  const redirectTo = searchParams.get('redirectTo') || '/signin';
 
   const [formData, setFormData] = useState({ name: '', email: '', password: '', confirmPassword: '' });
   const [inputErrors, setInputErrors] = useState({ name: '', email: '', password: '', confirmPassword: '' });
