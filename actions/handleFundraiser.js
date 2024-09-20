@@ -33,10 +33,10 @@ const handleFundraiserSubmit = async (details, personalInfo) => {
         }
 
         const fundraiser = await prisma.fundraiser.findFirst({
-            where: {title: details.title}
+            where: { title: details.title }
         })
 
-        if(fundraiser) {
+        if (fundraiser) {
             return ({
                 error: "Title matched with other! Please change it."
             })
@@ -50,14 +50,18 @@ const handleFundraiserSubmit = async (details, personalInfo) => {
                 category: details.category,
                 type: details.type,
                 photo: details.photo,
-                address: {
-                    street: personalInfo.street,
-                    wardNo: personalInfo.wardNo,
-                    city: personalInfo.city,
-                    district: personalInfo.district,
+                contactInfo: {
+                    create: {
+                        address: {
+                            street: personalInfo.street,
+                            wardNo: personalInfo.wardNo,
+                            city: personalInfo.city,
+                            district: personalInfo.district,
+                        },
+                        phone: personalInfo.phone,
+                        email: personalInfo.email,
+                    },
                 },
-                phone: personalInfo.phone,
-                email: personalInfo.email,
                 dateRequested: new Date(),
                 user: {
                     connect: { id: user.id },

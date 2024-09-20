@@ -3,7 +3,15 @@
     display: flex;
     flex-direction: column;
 }
-
+.black-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0); /* Initially transparent */
+    transition: background-color 0.3s ease;
+}
 .homepage-container picture{
     display: flex;
     /* height: calc(100vh - 70px); */
@@ -18,12 +26,13 @@
     z-index: -1;
     background: var(--btn-primary);
 }
-.homepage-cover {
+
+.hp-homepage-cover {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
-.homepage-first-content {
+.hp-homepage-first-content {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -39,17 +48,28 @@
     color: var(--text-dark);
     z-index: 1;
 }
-.homepage-title-small {
+.hp-homepage-title-small {
     font-size: 1rem;
     font-weight: bold;
     margin-bottom: 10px;
+    color: var(--btn-secondary);
 }
-.homepage-title-big {
+.hp-homepage-title-big {
     font-size: 2.5rem;
     font-weight: bold;
     margin-bottom: 30px;
+    white-space: wrap;
+    color: var(--text-dark);
 }
-.homepage-container .get-started-btn {
+
+.cursor-block {
+    display: inline-block;
+    font-size: 2.5rem;
+    font-weight: bolder;
+    color: var(--btn-secondary);
+    animation: blink-block 0.75s step-end infinite;
+}
+.hp-get-started-btn {
     width: 200px;
     height: 45px;
     padding: 4px;
@@ -61,7 +81,7 @@
     background: var(--btn-secondary);
     cursor: pointer;
 }
-.homepage-container .get-started-btn span {
+.hp-get-started-btn span {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -74,19 +94,22 @@
     background: transparent;
     transition: background .3s linear, color .3s linear;
 }
-.homepage-container .get-started-btn:hover span {
+.hp-get-started-btn:hover span {
     background: var(--text-light);
     color: var(--text-md);
 }
 
-.homepage-second {
+.hp-homepage-second {
     height: 700px;
     background: var(--text-light);
     border-top-left-radius: 50px;
     border-top-right-radius: 50px;
     padding-top: 50px;
     text-align: center;    
-    /* position: relative; */
     margin-top: 75vh;
     z-index: 2;
+}
+
+@keyframes blink-block {
+    50% { opacity: 0; }
 }

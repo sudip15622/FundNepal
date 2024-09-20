@@ -20,20 +20,30 @@ model User {
 }
 
 model Fundraiser {
-  id            String   @id @default(auto()) @map("_id") @db.ObjectId
-  title         String   @unique
+  id            String        @id @default(auto()) @map("_id") @db.ObjectId
+  title         String        @unique
   description   String
   goal          String
   category      String
   type          String
   photo         Json
-  address       Json
-  phone         String
-  email         String
-  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId        String   @db.ObjectId
-  dateRequested DateTime @default(now())
-  datePublished DateTime @default(now())
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  contactInfo   ContactInfo[]
+  user          User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId        String        @db.ObjectId
+  dateRequested DateTime      @default(now())
+  datePublished DateTime      @default(now())
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+}
+
+model ContactInfo {
+  id           String     @id @default(auto()) @map("_id") @db.ObjectId
+  type         String     @default("yourself")
+  address      Json
+  phone        String
+  email        String
+  fundraiser   Fundraiser @relation(fields: [fundraiserId], references: [id], onDelete: Cascade)
+  fundraiserId String     @db.ObjectId
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
 }

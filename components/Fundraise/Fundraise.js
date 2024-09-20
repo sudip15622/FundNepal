@@ -11,13 +11,9 @@ import { FaHandHoldingMedical, FaChevronDown } from "react-icons/fa";
 import { MdCastForEducation, MdFamilyRestroom } from "react-icons/md";
 import { TbEmergencyBed } from "react-icons/tb";
 
-const Fundraise = () => {
+const Fundraise = ({ examples }) => {
 
     const [currentIndex, setCurrentIndex] = useState(0);
-
-    const startSlides = ["My name is Sudip Lamichhane.", "I live in madi kritanpur", "I study in birenda."]
-
-    const exampleTitles = ["Medical", "Sports", "Education", "Charity", "Memorial"]
 
     const categories = [
         {
@@ -29,7 +25,7 @@ const Fundraise = () => {
             icon: <TbEmergencyBed />,
         },
         {
-            name: "Charity",
+            name: "Non Profit",
             icon: <BiSolidDonateHeart />,
         },
         {
@@ -46,7 +42,7 @@ const Fundraise = () => {
         [
             {
                 question: "Is it okay to raise money for myself?",
-                answer: "Yes, millions of people have started a fundraiser on FundNepal for themself or their family amidst a financial crisis.",
+                answer: "Yes, thousands of people have started a fundraiser on FundNepal for themself or their family amidst a financial crisis.",
                 showAns: false,
             },
             {
@@ -127,7 +123,7 @@ const Fundraise = () => {
                     <li className="f-start-card">
                         <div className="f-step-number">Step 1</div>
                         <picture>
-                            <Image className='f-step-image' src="/step_one.png" width={300} height={250} priority alt="step-image" />
+                            <Image className='f-step-image' src="/step_one.png" width={300} height={250} priority alt="step1-image" />
                         </picture>
                         <div className="f-start-card-details">
                             <h3 className="f-start-card-title">Our tools help create your fundraiser</h3>
@@ -137,7 +133,7 @@ const Fundraise = () => {
                     <li className="f-start-card">
                         <div className="f-step-number">Step 2</div>
                         <picture>
-                            <Image className='f-step-image' src="https://www.gofundme.com/c/wp-content/uploads/2024/05/step-02.png" width={300} height={250} priority alt="step-image" />
+                            <Image className='f-step-image' src="https://www.gofundme.com/c/wp-content/uploads/2024/05/step-02.png" width={300} height={250} priority alt="step2-image" />
                         </picture>
                         <div className="f-start-card-details">
                             <h3 className="f-start-card-title">Share your fundraiser link to reach donors</h3>
@@ -147,7 +143,7 @@ const Fundraise = () => {
                     <li className="f-start-card">
                         <div className="f-step-number">Step 3</div>
                         <picture>
-                            <Image className='f-step-image' src="https://www.gofundme.com/c/wp-content/uploads/2024/05/step-03.png" width={300} height={250} priority alt="step-image" />
+                            <Image className='f-step-image' src="https://www.gofundme.com/c/wp-content/uploads/2024/05/step-03.png" width={300} height={250} priority alt="step3-image" />
                         </picture>
                         <div className="f-start-card-details">
                             <h3 className="f-start-card-title">Securely receive the funds you raise</h3>
@@ -162,33 +158,33 @@ const Fundraise = () => {
             <section id='fundraiserexamples' className="f-fundraiser-examples">
                 <h2 className='f-start-title'>Examples of Fundraisers</h2>
                 <ul className="f-example-title-container">
-                    {exampleTitles.map((title, index) => (
+                    {examples && examples.map((fundraiser, index) => (
                         <li
                             key={index}
                             className={`f-example-title ${currentIndex === index ? 'f-active-title' : ''}`}
                             onClick={() => setCurrentIndex(index)}
                         >
-                            {title}
+                            {fundraiser.category}
                         </li>
                     ))}
                 </ul>
                 <div className="f-example-slider">
                     <div className="f-example-container" style={{ transform: `translateX(${(currentIndex) * - 100}%)` }}>
-                        {exampleTitles.map((title, index) => (
-                            <div key={index} className={`f-example-card-wrapper`}>
+                        {examples && examples.map((fundraiser, index) => (
+                            <div key={fundraiser.id} className={`f-example-card-wrapper`}>
                                 <div className="f-example-card">
                                     <picture>
-                                        <Image className='f-example-coverpic' src="https://img.freepik.com/free-photo/family-moving-using-boxes_1157-35481.jpg?uid=R158132741&ga=GA1.1.682701707.1718079406&semt=ais_hybrid" width={400} height={300} priority />
+                                        <Image className='f-example-coverpic' src={fundraiser.imageUrl} width={400} height={300} priority alt={`example${index+1}-image`} />
                                     </picture>
                                     <div className="f-example-details">
-                                        <Link className='f-details-title' href={"/"}>Help our family from loan</Link>
-                                        <p className='f-details-desc'>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perspiciatis necessitatibus numquam tenetur ut voluptate quaerat nam reprehenderit inventore corporis suscipit? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iusto nesciunt suscipit commodi molestias quam ducimus rerum harum quaerat saepe laudantium?</p>
+                                        <Link className='f-details-title' href={"/"}>{fundraiser.title}</Link>
+                                        <p className='f-details-desc'>{fundraiser.description.slice(0, 200)}...</p>
                                         <div className="f-details-progress">
                                             <div className="f-details-progress-top">
                                                 <div className="f-progress-bar"></div>
                                             </div>
                                             <div className="f-progress-and-goal">
-                                                $23,499 raised of $30,500 goal
+                                                Rs. ---- raised of Rs. {fundraiser.goal} goal
                                             </div>
                                         </div>
                                     </div>
