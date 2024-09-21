@@ -179,7 +179,7 @@ const Fundraise = ({ examples }) => {
                             <div key={fundraiser.id} className={`f-example-card-wrapper`}>
                                 <div className="f-example-card">
                                     <picture>
-                                        <Image className='f-example-coverpic' src={fundraiser.imageUrl} width={400} height={300} priority alt={`example${index+1}-image`} />
+                                        <Image className='f-example-coverpic' src={fundraiser.imageUrl} width={400} height={300} priority alt={`example${index + 1}-image`} />
                                     </picture>
                                     <div className="f-example-details">
                                         <Link className='f-details-title' href={"/"}>{fundraiser.title}</Link>
@@ -228,8 +228,10 @@ const Fundraise = ({ examples }) => {
                     {categories.map((category, index) => {
                         return (
                             <li key={index} className="f-category-item">
-                                <div className="f-category-icon">{category.icon}</div>
-                                <div className="f-category-name">{category.name}</div>
+                                <Link href={`categories/${category.name.replace(/\s+/g, '').toLowerCase()}`}>
+                                    <div className="f-category-icon">{category.icon}</div>
+                                    <div className="f-category-name">{category.name}</div>
+                                </Link>
                             </li>
                         )
                     })}

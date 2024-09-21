@@ -4,13 +4,21 @@ import prisma from "@/config/prisma"
 const page = async () => {
 
   const getFundraiserExamples = async () => {
-    const categories = ['Education', 'Memorial', 'Non Profit', 'Sports', 'Medical'];
+    const categories = ['Education', 'Family', 'Non Profit', 'Emergency', 'Medical'];
     const fundraisersByCategory = [];
 
     for (const category of categories) {
       const fundraiser = await prisma.fundraiser.findFirst({
         where: { category },
         orderBy: { dateRequested: 'desc' },
+        select: {
+          id: true,
+          title: true,
+          description: true,
+          goal: true,
+          photo: true,
+          category: true,
+        }
       });
 
       if (fundraiser) {

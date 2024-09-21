@@ -3,15 +3,12 @@ import React, { useState, useEffect, useRef } from 'react'
 import "./Navbar.css";
 import Image from 'next/image';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 import { signOut } from 'next-auth/react';
 
 import { IoSearch } from "react-icons/io5";
 import { FaUserCircle, FaChevronDown, FaChevronUp, FaSignOutAlt } from "react-icons/fa";
 
 const Navbar = ({ session }) => {
-
-    const pathname = usePathname().slice(1);
 
     const [user, setUser] = useState(null);
     const [showDropDown, setShowDropDown] = useState(false);
@@ -70,17 +67,17 @@ const Navbar = ({ session }) => {
                 </ul>
                 <ul className="navbar-right">
                     <li>
-                        <Link href={"donate"} className={`navbar-pages`}>
+                        <Link href={"/donate"} className={`navbar-pages`}>
                             DONATE
                         </Link>
                     </li>
                     <li>
-                        <Link href={"fundraise"} className={`navbar-pages`}>
+                        <Link href={"/fundraise"} className={`navbar-pages`}>
                             FUNDRAISE
                         </Link>
                     </li>
                     <li>
-                        <Link href={"about-us"} className={`navbar-pages`}>
+                        <Link href={"/about-us"} className={`navbar-pages`}>
                             ABOUT US
                         </Link>
                     </li>
@@ -101,10 +98,10 @@ const Navbar = ({ session }) => {
                         </div>
                     </li> :
                         <li className='pages-btn-container'>
-                            <Link href={"signin"} className={`navbar-pages-btn signin-btn`}>
+                            <Link href={"/signin"} className={`navbar-pages-btn signin-btn`}>
                                 <span>Sign In</span>
                             </Link>
-                            <Link href={"register"} className={`navbar-pages-btn signup-btn`}>
+                            <Link href={"/register"} className={`navbar-pages-btn signup-btn`}>
                                 <span>Sign Up</span>
                             </Link>
                         </li>}

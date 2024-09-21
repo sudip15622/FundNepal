@@ -20,15 +20,31 @@ export async function getFundraiserById(id) {
     return fundraiser;
 }
 
-export async function getAllFundraisers(page = 1, pageSize = 5, sortOrder = 'desc') {
-    const skip = (page - 1) * pageSize;
+export async function getCategoryWiseFundraiser( category='Medical', count = 6 ) {
 
-    const totalFundraisers = await prisma.fundraiser.count();
+    const where = {
+        category: category,
+    };
+    const select = {
+        id: true,
+        title: true,
+        goal: true,
+        photo: true,
+        category: true,
+        contactInfo: {
+            select: {
+                address: true,
+            }
+        }
+    };
+
+    const totalFundraisers = await prisma.fundraiser.count({where: where});
 
     const fundraisers = await prisma.fundraiser.findMany({
-        skip,
-        take: pageSize,
-        orderBy: { dateRequested: sortOrder },
+        where: where,
+        select: select,
+        take: count,
+        orderBy: { dateRequested: 'desc' },
     });
 
     return {

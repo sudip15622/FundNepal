@@ -39,11 +39,6 @@ const Donate = ({ fundraisers }) => {
         console.log(fundraisers);
     }, [fundraisers])
 
-    const getImageUrl = (myfile) => {
-        const imageUrl = `data:${myfile.fileContentType};base64,${myfile.fileData}`;
-        return imageUrl;
-    }
-
     return (
         <main className='donate-container'>
             <section className="d-donate-first">
@@ -63,8 +58,10 @@ const Donate = ({ fundraisers }) => {
                     {categories.map((category, index) => {
                         return (
                             <li key={index} className="d-category-item">
-                                <div className="d-category-icon">{category.icon}</div>
-                                <div className="d-category-name">{category.name}</div>
+                                <Link href={`categories/${category.name.replace(/\s+/g, '').toLowerCase()}`}>
+                                    <div className="d-category-icon">{category.icon}</div>
+                                    <div className="d-category-name">{category.name}</div>
+                                </Link>
                             </li>
                         )
                     })}
@@ -101,15 +98,13 @@ const Donate = ({ fundraisers }) => {
                                 })}
                             </ul>
                             <div className="d-fundraiser-seemore">
-                                <Link className='d-fundraiser-seemore-btn' href={"/"}>See more <MdChevronRight style={{ fontSize: "1.5rem" }} /></Link>
+                                <Link className='d-fundraiser-seemore-btn' href={`categories/${categoryKey.replace(/\s+/g, '').toLowerCase()}`}>See more <MdChevronRight style={{ fontSize: "1.5rem" }} /></Link>
                             </div>
                         </section>
                         {index < array.length - 1 && <div className="d-separator-line"></div>}
                     </React.Fragment>
                 );
             })}
-
-
         </main>
     )
 }

@@ -1,4 +1,4 @@
-.donate-container {
+.category-container {
     display: flex;
     flex-direction: column;
     max-width: 1250px;
@@ -7,34 +7,38 @@
     padding: 0px 50px;
 }
 
-.d-separator-line {
+.c-separator-line {
     width: 100%;
     height: 1px;
     background: gray;
-    margin: 50px 0px;
+    margin: 70px 0px;
 }
-
-.d-donate-first {
+.c-category-first {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    max-height: 600px;
+    height: 60vh;
+}
+.c-category-first-left {
+    max-width: 750px;
+    width: 70%;
     display: flex;
     flex-direction: column;
-    max-width: 800px;
-    width: 100%;
-    margin-bottom: 30px;
 }
-
-.d-donate-first-title {
+.c-category-first-title {
     font-size: 2.5rem;
     font-weight: bold;
     margin-bottom: 20px;
 }
 
-.d-donate-first-text {
+.c-category-first-text {
     font-size: 1.2rem;
     font-weight: 500;
     margin-bottom: 30px;
 }
-
-.d-get-started-btn {
+.c-get-started-btn {
     width: 200px;
     height: 50px;
     padding: 4px;
@@ -46,7 +50,7 @@
     cursor: pointer;
 }
 
-.d-get-started-btn span {
+.c-get-started-btn span {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -60,81 +64,46 @@
     transition: background .3s ease-in-out, color .3s ease-in-out;
 }
 
-.d-get-started-btn:hover span {
+.c-get-started-btn:hover span {
     background: var(--text-light);
     color: var(--text-md);
 }
 
-
-.d-fundraiser-categories {
-    width: 100%;
+.c-category-first-right {
+    width: 30%;
     display: flex;
-    color: var(--text-md);
-}
-
-.d-category-container {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    row-gap: 30px;
-    column-gap: 50px;
-    width: 100%;
-    align-items: stretch;
-}
-
-.d-category-item {
-    display: flex;
-    align-items: center;
     justify-content: center;
-    flex: 1;
-    max-width: 150px;
-    min-width: 110px;
+    align-items: center;
+    max-width: 400px;
+    max-height: 100%;
     border-radius: 12px;
-    transform: scale(1);
-    transition: transform .2s linear;
-    cursor: pointer;
-    background: rgb(233, 244, 244);
-}
-
-.d-category-item:hover {
+    overflow: hidden;
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
-    transform: scale(1.04);
 }
-
-.d-category-item a {
+.c-category-cover {
     width: 100%;
     height: 100%;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    row-gap: 30px;
-    align-items: center;
-    justify-content: center;
-    padding: 30px 20px;
+    object-fit: cover;
 }
-
-.d-category-icon {
+.c-all-fundraisers {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2rem;
-}
-
-.d-category-name {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.1rem;
-    font-weight: bold;
-}
-
-.d-donate-fundraiser {
-    display: flex;
+    width: 100%;
     flex-direction: column;
     row-gap: 20px;
 }
-
-.d-fundraiser-container {
+.c-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 400px;
+}
+.c-all-fundraisers-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+.c-fundraiser-container {
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
     align-items: stretch;
@@ -142,37 +111,36 @@
     column-gap: 30px;
     row-gap: 20px;
 }
-
-.d-fundraiser-item {
+.c-fundraiser-item {
     flex: 1;
     display: flex;
     flex-direction: column;
     row-gap: 15px;
     padding: 8px;
     border-radius: 12px;
-    /* width: 30%; */
+    width: 30%;
     max-width: 350px;
-    min-width: 250px;
+    min-width: 300px;
     cursor: pointer;
     transition: background .3s ease-in-out;
 }
 
-.d-fundraiser-item:hover {
+.c-fundraiser-item:hover {
     background: rgb(233, 244, 244);
 }
 
-.d-fundraiser-item:hover .d-fundraiser-cover-image {
+.c-fundraiser-item:hover .d-fundraiser-cover-image {
     transform: scale(1.05);
 }
 
-.d-fundraiser-image-cont {
+.c-fundraiser-image-cont {
     width: 100%;
     height: 200px;
     border-radius: 8px;
     overflow: hidden;
 }
 
-.d-fundraiser-cover-image {
+.c-fundraiser-cover-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -180,7 +148,7 @@
     transition: transform .3s linear;
 }
 
-.d-fundraiser-details {
+.c-fundraiser-details {
     display: flex;
     flex-direction: column;
     row-gap: 10px;
@@ -189,19 +157,19 @@
     justify-content: space-between;
 }
 
-.d-fundraiser-title {
-    font-size: 1.2rem;
+.c-fundraiser-title {
+    font-size: 1.3rem;
     font-weight: bold;
 }
 
-.d-details-progress {
+.c-details-progress {
     display: flex;
     flex-direction: column;
     row-gap: 5px;
     width: 100%;
 }
 
-.d-details-progress-top {
+.c-details-progress-top {
     width: 100%;
     height: 6px;
     border-radius: 10px;
@@ -209,36 +177,42 @@
     overflow: hidden;
 }
 
-.d-progress-bar {
+.c-progress-bar {
     width: 60%;
     height: 100%;
     border-radius: 10px;
     background: var(--btn-primary);
 }
 
-.d-progress-amount {
+.c-progress-amount {
     font-weight: bold;
     font-size: .9rem;
 }
 
-.d-fundraiser-seemore {
+.c-fundraiser-seemore {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: center;
     width: 100%;
+    margin-top: 20px;
 }
-
-.d-fundraiser-seemore-btn {
+.c-fundraiser-seemore-btn {
     display: flex;
     align-items: center;
     justify-content: center;
     width: fit-content;
     column-gap: 5px;
-    padding: 5px 15px;
+    padding: 10px 20px;
+    font-weight: bold;
+    font-size: .9rem;
     border-radius: 12px;
-    transition: background .2s linear;
+    color: var(--text-md);
+    transition: background .2s linear, color .2s linear;
+    background: rgb(233, 244, 244);
+    cursor: pointer;
 }
 
-.d-fundraiser-seemore-btn:hover {
-    background: rgb(233, 244, 244);
+.c-fundraiser-seemore-btn:hover {
+    background: var(--btn-primary);
+    color: var(--text-light);
 }
