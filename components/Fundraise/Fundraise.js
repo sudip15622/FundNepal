@@ -73,6 +73,22 @@ const Fundraise = ({ examples }) => {
         ]
     )
 
+    const getImageUrl = (myfile) => {
+        if (myfile) {
+            const imageUrl = `data:${myfile.fileContentType};base64,${myfile.fileData}`;
+            return imageUrl;
+        }
+    }
+
+    const getAddress = (contactInfo) => {
+        if (contactInfo) {
+            const wardNo = contactInfo[0].address.wardNo;
+            const city = contactInfo[0].address.city;
+            const district = contactInfo[0].address.district;
+            return `${city}-${wardNo}, ${district}`;
+        }
+    }
+
     const handleFaq = (index) => {
         setFaqs((prevFaqs) =>
             prevFaqs.map((faq, i) =>
@@ -178,12 +194,13 @@ const Fundraise = ({ examples }) => {
                         {examples && examples.map((fundraiser, index) => (
                             <div key={fundraiser.id} className={`f-example-card-wrapper`}>
                                 <div className="f-example-card">
-                                    <picture>
-                                        <Image className='f-example-coverpic' src={fundraiser.imageUrl} width={400} height={300} priority alt={`example${index + 1}-image`} />
-                                    </picture>
+                                    <div className='f-example-coverpic-cont'>
+                                        <Image className='f-example-coverpic' src={getImageUrl(fundraiser.photo)} width={400} height={300} priority alt={`example${index + 1}-image`} />
+                                        <span className='f-example-address'>{getAddress(fundraiser.contactInfo)}</span>
+                                    </div>
                                     <div className="f-example-details">
-                                        <Link className='f-details-title' href={"/"}>{fundraiser.title}</Link>
-                                        <p className='f-details-desc'>{fundraiser.description.slice(0, 200)}...</p>
+                                        <Link className='f-details-title' href={`/fundraisers/${fundraiser.slug}`}>{fundraiser.title}</Link>
+                                        <p className='f-details-desc'>{fundraiser.description.slice(0, 400)}...</p>
                                         <div className="f-details-progress">
                                             <div className="f-details-progress-top">
                                                 <div className="f-progress-bar"></div>

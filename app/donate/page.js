@@ -3,11 +3,6 @@ import prisma from "@/config/prisma"
 
 const page = async () => {
 
-  const getImageUrl = (myfile) => {
-    const imageUrl = `data:${myfile.fileContentType};base64,${myfile.fileData}`;
-    return imageUrl;
-  }
-
   const getFundraiserExamples = async () => {
     const categories = ['Education', 'Family', 'Non Profit', 'Emergency', 'Medical'];
     const fundraisersByCategory = {};
@@ -23,6 +18,7 @@ const page = async () => {
           goal: true,
           photo: true,
           category: true,
+          slug: true,
           contactInfo: {
             select: {
               address: true,
@@ -32,23 +28,7 @@ const page = async () => {
       });
 
       if (fundraiser) {
-        for (let i = 0; i < fundraiser.length; i++) {
-          const element = fundraiser[i];
-          const newFundraiser = {
-            id: element.id,
-            title: element.title,
-            goal: element.goal,
-            imageUrl: getImageUrl(element.photo),
-            category: element.category,
-            address: element.contactInfo.address
-          }
-
-          if (fundraisersByCategory[category]) {
-            fundraisersByCategory[category].push(newFundraiser);
-          } else {
-            fundraisersByCategory[category] = [newFundraiser];
-          }
-        }
+        fundraisersByCategory[category] = fundraiser;
       }
     }
 

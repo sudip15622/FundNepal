@@ -35,9 +35,21 @@ const Donate = ({ fundraisers }) => {
         },
     ]
 
-    useEffect(() => {
-        console.log(fundraisers);
-    }, [fundraisers])
+    const getImageUrl = (myfile) => {
+        if (myfile) {
+            const imageUrl = `data:${myfile.fileContentType};base64,${myfile.fileData}`;
+            return imageUrl;
+        }
+    }
+
+    const getAddress = (contactInfo) => {
+        if (contactInfo) {
+            const wardNo = contactInfo[0].address.wardNo;
+            const city = contactInfo[0].address.city;
+            const district = contactInfo[0].address.district;
+            return `${city}-${wardNo}, ${district}`;
+        }
+    }
 
     return (
         <main className='donate-container'>
@@ -79,20 +91,23 @@ const Donate = ({ fundraisers }) => {
                                 {(category.length > 0) && category.map((fundraiser) => {
                                     return (
                                         <li key={fundraiser.id} className="d-fundraiser-item">
-                                            <picture className='d-fundraiser-image-cont'>
-                                                <Image className='d-fundraiser-cover-image' src={fundraiser.imageUrl} width={200} height={150} priority alt={`medical-${fundraiser.id}-image`} />
-                                            </picture>
-                                            <div className="d-fundraiser-details">
-                                                <h3 className="d-fundraiser-title">{fundraiser.title}</h3>
-                                                <div className="d-details-progress">
-                                                    <div className="d-details-progress-top">
-                                                        <div className="d-progress-bar"></div>
-                                                    </div>
-                                                    <div className="d-progress-amount">
-                                                        Rs.{fundraiser.goal} raised
+                                            <Link href={`/fundraisers/${fundraiser.slug}`}>
+                                                <div className='d-fundraiser-image-cont'>
+                                                    <Image className='d-fundraiser-cover-image' src={getImageUrl(fundraiser.photo)} width={200} height={150} priority alt={`medical-${fundraiser.id}-image`} />
+                                                    <span className='d-fundraiser-address'>{getAddress(fundraiser.contactInfo)}</span>
+                                                </div>
+                                                <div className="d-fundraiser-details">
+                                                    <h3 className="d-fundraiser-title">{fundraiser.title}</h3>
+                                                    <div className="d-details-progress">
+                                                        <div className="d-details-progress-top">
+                                                            <div className="d-progress-bar"></div>
+                                                        </div>
+                                                        <div className="d-progress-amount">
+                                                            Rs.{fundraiser.goal} raised
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </Link>
                                         </li>
                                     );
                                 })}

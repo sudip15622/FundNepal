@@ -22,6 +22,7 @@ model User {
 model Fundraiser {
   id            String        @id @default(auto()) @map("_id") @db.ObjectId
   title         String        @unique
+  slug          String?       @unique
   description   String
   goal          String
   category      String

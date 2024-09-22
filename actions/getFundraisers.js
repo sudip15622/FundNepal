@@ -31,6 +31,7 @@ export async function getCategoryWiseFundraiser( category='Medical', count = 6 )
         goal: true,
         photo: true,
         category: true,
+        slug: true,
         contactInfo: {
             select: {
                 address: true,

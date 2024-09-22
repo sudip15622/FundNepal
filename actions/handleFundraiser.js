@@ -2,6 +2,7 @@
 
 import prisma from '@/config/prisma';
 import { isValidDetails, isValidPersonalInfo } from '@/utils/validateFundraiser';
+import { generateUniqueSlug } from '@/utils/slugGenerator';
 
 const handleFundraiserSubmit = async (details, personalInfo) => {
 
@@ -42,7 +43,7 @@ const handleFundraiserSubmit = async (details, personalInfo) => {
             })
         }
 
-        await prisma.fundraiser.create({
+        const newFundraiser = await prisma.fundraiser.create({
             data: {
                 title: details.title,
                 description: details.description,
@@ -67,6 +68,14 @@ const handleFundraiserSubmit = async (details, personalInfo) => {
                     connect: { id: user.id },
                 }
             },
+        });
+
+        const slug = generateUniqueSlug(newFundraiser.title, newFundraiser.id);
+
+        // Step 3: Update fundraiser with the generated slug
+        await prisma.fundraiser.update({
+            where: { id: newFundraiser.id },
+            data: { slug: slug },
         });
 
         return {

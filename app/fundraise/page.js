@@ -15,9 +15,15 @@ const page = async () => {
           id: true,
           title: true,
           description: true,
+          slug: true,
           goal: true,
           photo: true,
           category: true,
+          contactInfo: {
+            select: {
+              address: true,
+            }
+          }
         }
       });
 
@@ -31,32 +37,9 @@ const page = async () => {
 
   const fundraiserExamples = await getFundraiserExamples();
 
-  const getImageUrl = (myfile) => {
-    const imageUrl = `data:${myfile.fileContentType};base64,${myfile.fileData}`;
-    return imageUrl;
-  }
-  let newExamples = [];
-
-  if (fundraiserExamples) {
-    for (let i = 0; i < fundraiserExamples.length; i++) {
-      const element = fundraiserExamples[i];
-      const newFundraiser = {
-        id: element.id,
-        title: element.title,
-        description: element.description,
-        goal: element.goal,
-        imageUrl: getImageUrl(element.photo),
-        category: element.category,
-      }
-
-      newExamples.push(newFundraiser);
-    }
-  }
-
-
   return (
     <>
-      <Fundraise examples={newExamples} />
+      <Fundraise examples={fundraiserExamples} />
     </>
   )
 }

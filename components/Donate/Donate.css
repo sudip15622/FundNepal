@@ -146,17 +146,22 @@
 .d-fundraiser-item {
     flex: 1;
     display: flex;
-    flex-direction: column;
-    row-gap: 15px;
-    padding: 8px;
+    align-items: center;
+    justify-content: center;
     border-radius: 12px;
-    /* width: 30%; */
     max-width: 350px;
     min-width: 250px;
     cursor: pointer;
     transition: background .3s ease-in-out;
 }
-
+.d-fundraiser-item a {
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+    padding: 8px;
+    width: 100%;
+    height: 100%;
+}
 .d-fundraiser-item:hover {
     background: rgb(233, 244, 244);
 }
@@ -170,6 +175,7 @@
     height: 200px;
     border-radius: 8px;
     overflow: hidden;
+    position: relative;
 }
 
 .d-fundraiser-cover-image {
@@ -179,7 +185,17 @@
     transform: scale(1);
     transition: transform .3s linear;
 }
-
+.d-fundraiser-address {
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+    background: var(--text-md);
+    color: var(--text-light);
+    padding: 5px 10px;
+    border-radius: 12px;
+    font-size: .8rem;
+    font-weight: 500;
+}
 .d-fundraiser-details {
     display: flex;
     flex-direction: column;
@@ -190,7 +206,7 @@
 }
 
 .d-fundraiser-title {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: bold;
 }
 

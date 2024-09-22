@@ -32,8 +32,19 @@ const Category = ({ details }) => {
     }, [details, count])
 
     const getImageUrl = (myfile) => {
-        const imageUrl = `data:${myfile.fileContentType};base64,${myfile.fileData}`;
-        return imageUrl;
+        if (myfile) {
+            const imageUrl = `data:${myfile.fileContentType};base64,${myfile.fileData}`;
+            return imageUrl;
+        }
+    }
+
+    const getAddress = (contactInfo) => {
+        if (contactInfo) {
+            const wardNo = contactInfo[0].address.wardNo;
+            const city = contactInfo[0].address.city;
+            const district = contactInfo[0].address.district;
+            return `${city}-${wardNo}, ${district}`;
+        }
     }
 
     const handleSeeMore = () => {
@@ -71,20 +82,23 @@ const Category = ({ details }) => {
                     {(fundraisers.length > 0) && fundraisers.map((fundraiser) => {
                         return (
                             <li key={fundraiser.id} className="c-fundraiser-item">
-                                <picture className='c-fundraiser-image-cont'>
-                                    <Image className='c-fundraiser-cover-image' src={getImageUrl(fundraiser.photo)} width={200} height={150} priority alt={`medical-${fundraiser.id}-image`} />
-                                </picture>
-                                <div className="c-fundraiser-details">
-                                    <h3 className="c-fundraiser-title">{fundraiser.title}</h3>
-                                    <div className="c-details-progress">
-                                        <div className="c-details-progress-top">
-                                            <div className="c-progress-bar"></div>
-                                        </div>
-                                        <div className="c-progress-amount">
-                                            Rs.{fundraiser.goal} raised
+                                <Link href={`/fundraisers/${fundraiser.slug}`}>
+                                    <div className='c-fundraiser-image-cont'>
+                                        <Image className='c-fundraiser-cover-image' src={getImageUrl(fundraiser.photo)} width={200} height={150} priority alt={`medical-${fundraiser.id}-image`} />
+                                        <span className='c-fundraiser-address'>{getAddress(fundraiser.contactInfo)}</span>
+                                    </div>
+                                    <div className="c-fundraiser-details">
+                                        <h3 className="c-fundraiser-title">{fundraiser.title}</h3>
+                                        <div className="c-details-progress">
+                                            <div className="c-details-progress-top">
+                                                <div className="c-progress-bar"></div>
+                                            </div>
+                                            <div className="c-progress-amount">
+                                                Rs.{fundraiser.goal} raised
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                </Link>
                             </li>
                         );
                     })}

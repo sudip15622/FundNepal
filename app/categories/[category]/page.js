@@ -28,7 +28,6 @@ const page = ({ params }) => {
         nonprofit: "https://img.freepik.com/free-photo/hand-with-coins-economy-jar_23-2148568040.jpg?uid=R158132741&ga=GA1.1.688227825.1726578426&semt=ais_hybrid",
     }
 
-
     const details = {
         title: getTitle(title),
         coverImage: coverImages[title],
