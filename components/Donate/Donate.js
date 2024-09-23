@@ -70,7 +70,7 @@ const Donate = ({ fundraisers }) => {
                     {categories.map((category, index) => {
                         return (
                             <li key={index} className="d-category-item">
-                                <Link href={`categories/${category.name.replace(/\s+/g, '').toLowerCase()}`}>
+                                <Link href={`/categories/${category.name.replace(/\s+/g, '').toLowerCase()}`}>
                                     <div className="d-category-icon">{category.icon}</div>
                                     <div className="d-category-name">{category.name}</div>
                                 </Link>
