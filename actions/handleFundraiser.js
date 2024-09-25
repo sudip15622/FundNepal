@@ -72,7 +72,7 @@ const handleFundraiserSubmit = async (details, personalInfo) => {
 
         const slug = generateUniqueSlug(newFundraiser.title, newFundraiser.id);
 
-        // Step 3: Update fundraiser with the generated slug
+        //update recently created fundraiser with slug
         await prisma.fundraiser.update({
             where: { id: newFundraiser.id },
             data: { slug: slug },

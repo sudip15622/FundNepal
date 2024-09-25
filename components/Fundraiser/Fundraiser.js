@@ -11,10 +11,15 @@ import { MdOutlineShare, MdOutlineEmail } from "react-icons/md";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { BiDonateHeart } from "react-icons/bi";
 import { FiFlag } from "react-icons/fi";
+import { HiMiniBarsArrowUp } from "react-icons/hi2";
+import { IoIosStarOutline } from "react-icons/io";
+import { GoCopy } from "react-icons/go";
 
 const Fundraiser = ({ details }) => {
 
     const [showMore, setShowMore] = useState(false);
+    const [shareInfo, setShareInfo] = useState('');
+    const [shareBoxInfo, setShareBoxInfo] = useState('');
 
     useEffect(() => {
         console.log(details);
@@ -35,6 +40,27 @@ const Fundraiser = ({ details }) => {
             return `${city}-${wardNo}, ${district}`;
         }
     }
+    const handleShare = async (key) => {
+        try {
+            const currentUrl = window.location.href;
+
+            await navigator.clipboard.writeText(currentUrl);
+
+            key === 'box' ? setShareBoxInfo('URL copied to clipboard') : setShareInfo('URL copied to clipboard');
+
+            setTimeout(() => {
+                setShareInfo('');
+                setShareBoxInfo('');
+            }, 2000);
+        } catch (err) {
+            key === 'box' ? setShareBoxInfo('Failed to copy URL!') : setShareInfo('Failed to copy URL!');
+            setTimeout(() => {
+                setShareInfo('');
+                setShareInfo('');
+                setShareBoxInfo('');
+            }, 2000);
+        }
+    };
 
     return (
         <div className='ff-fundraiser-container'>
@@ -43,7 +69,7 @@ const Fundraiser = ({ details }) => {
                     {details.title}
                 </h1>
                 <picture className='ff-fundraiser-cover-cont'>
-                    <Image className='ff-fundraiser-cover-image' src={getImageUrl(details.photo)} width={600} height={500} priority alt={`image-${details.id}`} />
+                    <Image className='ff-fundraiser-cover-image' src={getImageUrl(details.photo)} width={600} height={500} alt={`image-${details.id}`} />
                 </picture>
 
                 <div className="ff-below-contents">
@@ -76,8 +102,9 @@ const Fundraiser = ({ details }) => {
                         <button className="ff-details-sd-btn">
                             <div className="ff-details-sd-icon"><LiaDonateSolid /></div> Donate
                         </button>
-                        <button className="ff-details-sd-btn">
-                            <div className="ff-details-sd-icon"><MdOutlineShare /></div> Share
+                        <button className="ff-details-sd-btn" onClick={(e) => { handleShare(''); }}>
+                            {shareInfo != '' && <span className="ff-sd-btn-info">{shareInfo}</span>}
+                            <div className="ff-details-sd-icon"><GoCopy /></div> Copy link
                         </button>
                     </div>
 
@@ -158,7 +185,71 @@ const Fundraiser = ({ details }) => {
                 </div>
             </main>
             <aside className="ff-fundraiser-donate-box">
-                Hello this is donate box
+                <div className="ff-donate-box-first">
+                    <div className="ff-box-goal-and-amount">
+                        <span className='ff-box-raised-amount'>Rs.5000</span>
+                        <span className='ff-box-goal-amount'>raised of Rs.{details.goal} goal</span>
+                    </div>
+                    <div className="ff-box-progress">
+                        <div className="ff-box-progress-bar"></div>
+                    </div>
+                    <span className="ff-box-total-donation">
+                        20K donations
+                    </span>
+                </div>
+
+                <div className="ff-donate-box-buttons">
+                    {shareBoxInfo != '' && <span className="ff-sd-btn-info">{shareBoxInfo}</span>}
+                    <button className="ff-box-button ff-box-share-btn" onClick={(e) => { handleShare('box'); }}>
+                        <span>Copy link</span>
+                    </button>
+                    <button className="ff-box-button ff-box-donate-btn">
+                        <span>Donate Now</span>
+                    </button>
+                </div>
+
+                <div className="ff-donate-box-latest-donation">
+                    <div className="ff-box-latest-icon"><HiMiniBarsArrowUp /></div>
+                    <div className="ff-box-latest-text">7.1K people just donated</div>
+                </div>
+
+                <ul className="ff-donate-box-donator-types">
+                    <li className="ff-box-types-item">
+                        <div className="ff-comments-item-icon"><BiDonateHeart /></div>
+                        <div className="ff-types-item-details">
+                            <div className="ff-types-item-name">Sagar Rijal</div>
+                            <div className="ff-types-item-amount-type">
+                                <span className="ff-types-item-amount">Rs.500</span>
+                                <span className="ff-type-item-type">--- Recent donation</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li className="ff-box-types-item">
+                        <div className="ff-comments-item-icon"><BiDonateHeart /></div>
+                        <div className="ff-types-item-details">
+                            <div className="ff-types-item-name">Maddath Subedi</div>
+                            <div className="ff-types-item-amount-type">
+                                <span className="ff-types-item-amount">Rs.2000</span>
+                                <span className="ff-type-item-type">--- Top donation</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li className="ff-box-types-item">
+                        <div className="ff-comments-item-icon"><BiDonateHeart /></div>
+                        <div className="ff-types-item-details">
+                            <div className="ff-types-item-name">Oasis Regmi</div>
+                            <div className="ff-types-item-amount-type">
+                                <span className="ff-types-item-amount">Rs.200</span>
+                                <span className="ff-type-item-type">--- First donation</span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+
+                <div className="ff-donate-box-last-buttons">
+                    <button className="ff-box-last-btns">See all</button>
+                    <button className="ff-box-last-btns"><span><IoIosStarOutline /></span>See top</button>
+                </div>
             </aside>
         </div>
     )
