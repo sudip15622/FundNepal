@@ -37,7 +37,6 @@ const HomePageClient = () => {
       const result = await getAllFundraisers(page, pageSize, filter);
       setAllFundraisers(result.fundraisers);
       setTotalFundraisers(result.totalFundraisers);
-      console.log(result);
     } catch (error) {
       console.error('Error fetching fundraisers:', error);
     } finally {
