@@ -17,34 +17,70 @@ model User {
   dateJoined  DateTime     @default(now())
   createdAt   DateTime     @default(now())
   updatedAt   DateTime     @updatedAt
+  donations   Donation[]
 }
 
 model Fundraiser {
-  id            String        @id @default(auto()) @map("_id") @db.ObjectId
-  title         String        @unique
-  slug          String?       @unique
-  description   String
-  goal          String
-  category      String
-  type          String
-  photo         Json
-  contactInfo   ContactInfo[]
-  user          User          @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId        String        @db.ObjectId
-  dateRequested DateTime      @default(now())
-  datePublished DateTime      @default(now())
-  createdAt     DateTime      @default(now())
-  updatedAt     DateTime      @updatedAt
+  id                  String        @id @default(auto()) @map("_id") @db.ObjectId
+  title               String        @unique
+  slug                String?       @unique
+  description         String
+  goal                String
+  category            String
+  type                String
+  photo               Json
+  totalDonationAmount Int?          @default(0)
+  progress            Int?          @default(0)
+  beneficiary         Beneficiary[]
+  donations           Donation[]
+  user                User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId              String        @db.ObjectId
+  dateRequested       DateTime      @default(now())
+  datePublished       DateTime      @default(now())
+  createdAt           DateTime      @default(now())
+  updatedAt           DateTime      @updatedAt
 }
 
-model ContactInfo {
+model Beneficiary {
   id           String     @id @default(auto()) @map("_id") @db.ObjectId
-  type         String     @default("yourself")
+  name         String
   address      Json
   phone        String
-  email        String
   fundraiser   Fundraiser @relation(fields: [fundraiserId], references: [id], onDelete: Cascade)
   fundraiserId String     @db.ObjectId
   createdAt    DateTime   @default(now())
   updatedAt    DateTime   @updatedAt
+}
+
+model Donation {
+  id                  String     @id @default(auto()) @map("_id") @db.ObjectId
+  pidx                String     @unique
+  status              String
+  purchase_order_id   String     @unique
+  purchase_order_name String
+  transaction_id      String     @unique
+  donationAmount      Int
+  serviceCharge       Int
+  totalAmount         Int
+  paymentMethod       String
+  fundraiser          Fundraiser @relation(fields: [fundraiserId], references: [id], onDelete: Cascade)
+  fundraiserId        String     @db.ObjectId
+  user                User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId              String     @db.ObjectId
+  dateDonated         DateTime   @default(now())
+  createdAt           DateTime   @default(now())
+  updatedAt           DateTime   @updatedAt
+}
+
+model Khaltipayment {
+  id             String   @id @default(auto()) @map("_id") @db.ObjectId
+  pidx           String   @unique
+  donorId        String
+  fundraiserId   String
+  fundraiserSlug String
+  donationAmount Int
+  serviceCharge  Int
+  totalAmount    Int
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
 }

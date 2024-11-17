@@ -85,16 +85,16 @@ const Category = ({ details }) => {
                                 <Link href={`/fundraisers/${fundraiser.slug}`}>
                                     <div className='c-fundraiser-image-cont'>
                                         <Image className='c-fundraiser-cover-image' src={getImageUrl(fundraiser.photo)} width={200} height={150} priority alt={`medical-${fundraiser.id}-image`} />
-                                        <span className='c-fundraiser-address'>{getAddress(fundraiser.contactInfo)}</span>
+                                        <span className='c-fundraiser-address'>{getAddress(fundraiser.beneficiary)}</span>
                                     </div>
                                     <div className="c-fundraiser-details">
                                         <h3 className="c-fundraiser-title">{fundraiser.title}</h3>
                                         <div className="c-details-progress">
                                             <div className="c-details-progress-top">
-                                                <div className="c-progress-bar"></div>
+                                                <div className="c-progress-bar" style={{width: `${fundraiser.progress}%`}}></div>
                                             </div>
                                             <div className="c-progress-amount">
-                                                Rs.{fundraiser.goal} raised
+                                                Rs.{fundraiser.totalDonationAmount} raised
                                             </div>
                                         </div>
                                     </div>

@@ -14,6 +14,7 @@
   --text-md: rgb(51, 51, 51);
   --text-dark: rgb(32, 32, 32); 
   --text-dark-light: rgb(210, 209, 209); 
+  --item-bg: rgb(183, 221, 221);
 }
 html {
   scroll-behavior: smooth;

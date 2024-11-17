@@ -196,17 +196,17 @@ const Fundraise = ({ examples }) => {
                                 <div className="f-example-card">
                                     <div className='f-example-coverpic-cont'>
                                         <Image className='f-example-coverpic' src={getImageUrl(fundraiser.photo)} width={400} height={300} priority alt={`example${index + 1}-image`} />
-                                        <span className='f-example-address'>{getAddress(fundraiser.contactInfo)}</span>
+                                        <span className='f-example-address'>{getAddress(fundraiser.beneficiary)}</span>
                                     </div>
                                     <div className="f-example-details">
                                         <Link className='f-details-title' href={`/fundraisers/${fundraiser.slug}`}>{fundraiser.title}</Link>
                                         <p className='f-details-desc'>{fundraiser.description.slice(0, 400)}...</p>
                                         <div className="f-details-progress">
                                             <div className="f-details-progress-top">
-                                                <div className="f-progress-bar"></div>
+                                                <div className="f-progress-bar" style={{width: `${fundraiser.progress}%`}}></div>
                                             </div>
                                             <div className="f-progress-and-goal">
-                                                Rs. ---- raised of Rs. {fundraiser.goal} goal
+                                                Rs. {fundraiser.totalDonationAmount} raised of Rs. {fundraiser.goal} goal
                                             </div>
                                         </div>
                                     </div>

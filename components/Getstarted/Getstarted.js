@@ -48,8 +48,8 @@ const Getstarted = ({user}) => {
       {phase === 'fifth' ? <aside className="gs-aside-content">
         <div className="gs-aside-icon"><FaHandHoldingHeart /></div>
         <div className="gs-page-count">{validPages.indexOf(phase) + 1} / {validPages.length}</div>
-        <h1 className="gs-getstarted-title">Provide personal details and publish</h1>
-        <p className="gs-aside-desc">You must provide your personal details in order to publish your fundraiser.</p>
+        <h1 className="gs-getstarted-title">Provide details of beneficiary and publish</h1>
+        <p className="gs-aside-desc">You must provide the personal details of beneficiary (who is going to benefit by this fundraiser) in order to publish this fundraiser.</p>
       </aside> : <aside className="gs-aside-content">
         <div className="gs-aside-icon"><FaHandHoldingHeart /></div>
         <div className="gs-page-count">{validPages.indexOf(phase) + 1} / {validPages.length}</div>

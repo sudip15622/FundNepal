@@ -1,22 +1,27 @@
+.fundraise-container {
+    color: var(--text-md);
+}
 .f-fundraise-first {
     display: flex;
     flex-direction: column;
     background: rgb(233, 244, 244);
-    color: var(--text-md);
+    /* color: var(--text-md); */
 }
 
 .f-fundraise-first-top {
     display: flex;
     align-items: center;
     margin: 30px auto;
+    padding: 0px 30px;
     width: 100%;
+    max-width: 1380px;
 }
 
 .f-first-left {
     width: 50%;
     height: auto;
     position: relative;
-    left: 5%;
+    left: 40px;
     background: var(--text-light);
     z-index: 2;
     border-radius: 20px;
@@ -80,7 +85,7 @@
     width: 50%;
     height: auto;
     position: relative;
-    right: 5%;
+    right: 40px;
     z-index: 1;
     border-radius: 20px;
     overflow: hidden;
@@ -94,8 +99,9 @@
 
 .f-fund-raise-bottom {
     margin: 30px auto;
-    width: 90%;
-    max-width: 1100px;
+    width: 100%;
+    max-width: 1200px;
+    padding: 0px 30px;
     display: flex;
     align-items: stretch;
     justify-content: center;
@@ -157,22 +163,23 @@
 
 .f-how-to-start {
     margin: 0px auto;
-    padding-top: 80px;
-    width: 90%;
-    max-width: 1100px;
+    /* padding-top: 80px; */
+    width: 100%;
+    max-width: 1200px;
+    padding: 80px 30px 0px 30px;
     display: flex;
     flex-direction: column;
     row-gap: 40px;
     align-items: center;
     justify-content: center;
-    color: var(--text-md);
+    /* color: var(--text-md); */
 }
 
 .f-start-container {
     display: flex;
     justify-content: space-between;
     align-items: stretch;
-    gap: 1rem;
+    gap: 30px;
 }
 
 .f-start-card {
@@ -224,15 +231,15 @@
 
 .f-fundraiser-examples {
     margin: 0px auto;
-    padding-top: 80px;
-    width: 90%;
+    padding: 80px 30px 0px 30px;
+    width: 100%;
     max-width: 1100px;
     display: flex;
     flex-direction: column;
     row-gap: 30px;
     align-items: center;
     justify-content: center;
-    color: var(--text-md);
+    /* color: var(--text-md); */
 }
 
 .f-example-title-container {
@@ -248,7 +255,7 @@
     justify-content: center;
     padding: 8px 16px;
     border-radius: 20px;
-    color: var(--text-md);
+    /* color: var(--text-md); */
     font-size: 1rem;
     cursor: pointer;
     font-weight: bold;
@@ -362,7 +369,6 @@
 }
 
 .f-progress-bar {
-    width: 60%;
     height: 100%;
     border-radius: 10px;
     background: var(--btn-primary);
@@ -370,24 +376,26 @@
 
 .f-faqs-container {
     margin: 0px auto;
-    padding-top: 80px;
-    width: 90%;
-    max-width: 1100px;
+    padding: 80px 30px 0px 30px;
+    width: 100%;
+    max-width: 1200px;
     display: flex;
     flex-direction: column;
     row-gap: 40px;
     align-items: center;
     justify-content: center;
-    color: var(--text-md);
+    /* color: var(--text-md); */
 }
 
 .f-faqs-all {
     display: flex;
     flex-direction: column;
     row-gap: 20px;
+    width: 100%;
 }
 
 .f-faq-item {
+    width: 100%;
     display: flex;
     flex-direction: column;
     padding: 0px;
@@ -426,15 +434,15 @@
 
 .f-fundraiser-categories {
     margin: 0px auto 50px auto;
-    padding-top: 80px;
-    width: 90%;
-    max-width: 1100px;
+    padding: 80px 30px 0px 30px;
+    width: 100%;
+    max-width: 1200px;
     display: flex;
     flex-direction: column;
     row-gap: 40px;
     align-items: center;
     justify-content: center;
-    color: var(--text-md);
+    /* color: var(--text-md); */
 }
 .f-fundraiser-category-desc {
     text-align: center;

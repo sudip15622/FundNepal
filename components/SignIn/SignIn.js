@@ -59,7 +59,7 @@ const Login = () => {
     if (isValid) {
       return { success: true };
     } else {
-      return { success: false, error: `Invalid password!` };
+      return { success: false, error: `` };
     }
   };
 
@@ -138,7 +138,7 @@ const Login = () => {
           required
         />
         <span>{span}</span>
-        {(focusedField === name && inputErrors[name]) && (
+        {(focusedField === 'email' && inputErrors['email']) && (
           <div className="input-error-div">
             <div className="pointer-icon"><IoTriangleSharp /></div>{inputErrors[name]}
           </div>
@@ -178,14 +178,14 @@ const Login = () => {
     }
 
     if (!isValidEmail(formData.email).success) {
-      setError("Invalid email!");
+      setError("Invalid email or password!");
       setIsLoading(false);
       resetError();
       return;
     }
 
     if (!isValidPassword(formData.password).success) {
-      setError("Invalid password!");
+      setError("Invalid email or password!");
       setIsLoading(false);
       resetError();
       return;

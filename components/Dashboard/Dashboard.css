@@ -1,0 +1,93 @@
+.user-dashboard-container {
+    width: 100%;
+    max-width: 1300px;
+    margin: 0px auto;
+    padding: 0px 30px;
+
+    display: flex;
+    justify-content: space-between;
+    min-height: calc(100vh - 70px);
+    position: relative;
+    color: var(--text-md);
+
+}
+.user-dashboard-sidebar {
+    height: calc(100vh - 70px);
+    position: sticky;
+    top: 70px;
+    left: 0px;
+    width: 25%;
+    max-width: 280px;
+    /* border: 2px solid var(--btn-primary); */
+    /* box-shadow: 5px 0 5px -5px rgba(0, 0, 0, 0.5); */
+    padding: 30px 0px;
+}
+.user-dashboard-sidebar ul {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}
+.sidebar-element {
+    width: 100%;
+    max-width: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 24px;
+    cursor: pointer;
+    transform: translateX(-20px);
+    /* border-radius: 12px; */
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    transition: all .2s linear;
+}
+.sidebar-active {
+    background: var(--item-bg);
+    transform: translateX(0px);
+    border-left: 4px solid var(--btn-primary);
+}
+.sidebar-element:hover {
+    background: var(--item-bg);
+    transform: translateX(0px);
+    border-left: 4px solid var(--btn-primary);
+}
+
+.sidebar-element-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.sidebar-element-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+}
+.sidebar-element-text {
+    font-size: 1rem;
+    font-weight: bold;
+}
+.sidebar-element-right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    transform: translateX(-10px);
+    transition: all .2s linear;
+    opacity: 0;
+}
+.sidebar-element:hover .sidebar-element-right {
+    opacity: 1;
+    transform: translateX(0px);
+}
+.sidebar-pointer-show {
+    opacity: 1;
+    transform: translateX(0px);
+}
+.user-dashboard {
+    padding: 30px 0px;
+    width: 75%;
+    max-width: 950px;
+}

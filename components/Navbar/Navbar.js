@@ -76,11 +76,11 @@ const Navbar = ({ session }) => {
                             FUNDRAISE
                         </Link>
                     </li>
-                    <li>
+                    {/* <li>
                         <Link href={"/about-us"} className={`navbar-pages`}>
                             ABOUT US
                         </Link>
-                    </li>
+                    </li> */}
                     {session ? <li className="username-cont" ref={dropDownRef}>
                         <div className="username-cont-left" onClick={(e) => { setShowDropDown(!showDropDown) }}>
                             <div className="user-avatar"><FaUserCircle /></div>

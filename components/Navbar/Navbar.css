@@ -12,10 +12,12 @@
     height: 70px;
 }
 .navbar-container{ 
-    width: 90%;
+    width: 100%;
+    max-width: 1300px;
+    margin: 0px auto;
     display: flex;
     justify-content: space-between;
-    padding: 10px 0px;
+    padding: 10px 30px;
 }
 
 .navbar-container .navbar-left{
@@ -189,7 +191,6 @@
     width: 180px;
     position: absolute;
     top: 50px;
-    right: 5%;
     border-radius: 10px;
     overflow: hidden;
     background: var(--text-light);

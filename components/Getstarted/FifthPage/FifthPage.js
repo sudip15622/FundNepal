@@ -17,8 +17,8 @@ const FifthPage = ({ phase, setPhase, user }) => {
 
     const router = useRouter();
 
-    const [formData, setFormData] = useState({ phone: '', street: '', city: '', wardNo: '', district: '' })
-    const [inputErrors, setInputErrors] = useState({ phone: '', street: '', city: '', wardNo: '', district: '' })
+    const [formData, setFormData] = useState({ name: '', phone: '', street: '', city: '', wardNo: '', district: '' })
+    const [inputErrors, setInputErrors] = useState({ name: '', phone: '', street: '', city: '', wardNo: '', district: '' })
     const [cityType, setCityType] = useState('Municipality');
     const [previewData, setPreviewData] = useState(null);
 
@@ -156,8 +156,8 @@ const FifthPage = ({ phase, setPhase, user }) => {
     }, [showDistrict]);
 
     const resetFields = () => {
-        setFormData({ phone: '', street: '', city: '', wardNo: '', district: '' })
-        setInputErrors({ phone: '', street: '', city: '', wardNo: '', district: '' })
+        setFormData({ name: '', phone: '', street: '', city: '', wardNo: '', district: '' })
+        setInputErrors({ name: '', phone: '', street: '', city: '', wardNo: '', district: '' })
         setCityType('Municipality');
         setPreviewData(null);
         setError('');
@@ -217,8 +217,17 @@ const FifthPage = ({ phase, setPhase, user }) => {
         }
     }
 
+    const isValidName = (name) => {
+        const isValid = /^[A-Za-z\s]+$/.test(name);
+        if (isValid) {
+            return { success: true };
+        } else {
+            return { success: false, error: 'Name can only contain alphabets!' };
+        }
+    }
+
     const isPrevFieldsValid = (key) => {
-        const fields = ["street", "wardNo", "city", "district", "phone"];
+        const fields = ["name", "phone", "street", "wardNo", "city", "district"];
         const currentIndex = fields.indexOf(key);
 
         for (let i = 0; i < currentIndex; i++) {
@@ -278,6 +287,7 @@ const FifthPage = ({ phase, setPhase, user }) => {
     };
 
     const errorFunctions = {
+        name: isValidName,
         phone: isValidPhone,
         street: (str) => isValidAddress('Street', str),
         city: (str) => isValidAddress('City', str),
@@ -349,6 +359,22 @@ const FifthPage = ({ phase, setPhase, user }) => {
             return;
         }
 
+        const validName = isValidName(formData.name);
+        if (!validName?.success) {
+            setError(validName.error);
+            setIsLoading(false);
+            resetError();
+            return;
+        }
+
+        const ValidPhone = isValidPhone(formData.phone);
+        if (!ValidPhone?.success) {
+            setError(ValidPhone.error);
+            setIsLoading(false);
+            resetError();
+            return;
+        }
+
         const validStreet = isValidAddress('Street', formData.street);
         if (!validStreet?.success) {
             setError(validStreet.error);
@@ -377,13 +403,6 @@ const FifthPage = ({ phase, setPhase, user }) => {
             resetError();
             return;
         }
-        const ValidPhone = isValidPhone(formData.phone);
-        if (!ValidPhone?.success) {
-            setError(ValidPhone.error);
-            setIsLoading(false);
-            resetError();
-            return;
-        }
 
         const detailsValidation = isValidDetails(previewData);
         if (!detailsValidation.success) {
@@ -395,7 +414,7 @@ const FifthPage = ({ phase, setPhase, user }) => {
 
         const personalInfo = {
             ...formData,
-            email: user?.email,
+            organizerId: user?.id,
         }
 
         const details = {
@@ -436,7 +455,16 @@ const FifthPage = ({ phase, setPhase, user }) => {
     return (
         <>
             <form onSubmit={(e) => { handleFundraiserSubmit(e); }} className="gs5-complete-form-container">
+
                 <div className='gs5-primary-details-container'>
+                    <p className="gs5-note-section"><i><b>Note:</b>Please provide details of the beneficiary.</i></p>
+                    <div className="gs5-address-fields">
+                        <h2 className="gs5-address-title">Name & Contact:</h2>
+                        <div className="gs5-address-inputs">
+                            <div className="gs5-input-container">{inputField('text', 'name', 'Full Name')}</div>
+                            <div className="gs5-input-container">{inputField('number', 'phone', 'Phone No.')}</div>
+                        </div>
+                    </div>
                     <div className="gs5-address-fields">
                         <h2 className="gs5-address-title">Address:</h2>
                         <div className="gs5-address-inputs">
@@ -471,16 +499,14 @@ const FifthPage = ({ phase, setPhase, user }) => {
                             </div>
                         </div>
                     </div>
-                    <div className="gs5-address-fields">
-                        <h2 className="gs5-address-title">Contact:</h2>
-                        <div className="gs5-address-inputs">
-                            <div className="gs5-input-container">{inputField('number', 'phone', 'Phone No.')}</div>
-                            <button className="gs5-verify-email-btn">
-                                <div className="gs5-verify-email-icon"><MdMarkEmailRead /></div>
-                                <div className="gs5-verify-email-text">Verify Email</div>
-                            </button>
-                        </div>
-                    </div>
+                    {/* <div className="gs5-verify-email-container">
+                        <button type='button' className="gs5-verify-email-btn">
+                            <div className="gs5-verify-email-icon"><MdMarkEmailRead /></div>
+                            <div className="gs5-verify-email-text">Verify Email</div>
+                        </button>
+                        <p className="gs5-verify-email-info">You email is not verified, Please verify to continue</p>
+                    </div> */}
+
                 </div>
 
                 <div className={`gs5-notifyme ${error && "gs5-notifyme-active"}`}>
@@ -502,7 +528,7 @@ const FifthPage = ({ phase, setPhase, user }) => {
                     <button type='button' className='gs5-below-btn gs5-back-btn' onClick={(e) => { handleBackClick(); }}><IoArrowBackOutline /></button>
 
                     <button type='submit' className='gs5-below-btn gs5-continue-btn' disabled={isLoading || !isFormValid() || error !== ''}>
-                        <span>{isLoading ? <PulseLoader size={10} margin={4} /> : "Public"}</span>
+                        <span>{isLoading ? <PulseLoader size={10} margin={4} /> : "Publish"}</span>
                     </button>
                 </div>
             </form>

@@ -5,6 +5,7 @@
     margin: 60px auto 50px auto;
     width: 100%;
     padding: 0px 50px;
+    color: var(--text-md);
 }
 
 .c-separator-line {

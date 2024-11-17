@@ -1,5 +1,6 @@
 import Fundraise from "@/components/Fundraise/Fundraise"
 import prisma from "@/config/prisma"
+import { getTotalDonationsByFundraiserId } from "@/actions/getDonations"
 
 const page = async () => {
 
@@ -19,7 +20,9 @@ const page = async () => {
           goal: true,
           photo: true,
           category: true,
-          contactInfo: {
+          totalDonationAmount: true,
+          progress: true,
+          beneficiary: {
             select: {
               address: true,
             }
@@ -28,7 +31,11 @@ const page = async () => {
       });
 
       if (fundraiser) {
-        fundraisersByCategory.push(fundraiser);
+        const progressPercent = (Math.round((parseInt(fundraiser.totalDonationAmount, 10) / parseInt(fundraiser.goal, 10)) * 100));
+        fundraisersByCategory.push({
+          ...fundraiser,
+          donationProgress: progressPercent,
+        });
       }
     }
 
@@ -37,9 +44,11 @@ const page = async () => {
 
   const fundraiserExamples = await getFundraiserExamples();
 
+  
+
   return (
     <>
-      <Fundraise examples={fundraiserExamples} />
+      <Fundraise examples={fundraiserExamples}/>
     </>
   )
 }

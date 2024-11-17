@@ -1,0 +1,79 @@
+.ds-donation-status-container {
+    width: 100%;
+    min-height: calc(100vh - 70px);
+    display: flex;
+    justify-content: center;
+    background: rgb(233, 244, 244);
+    color: var(--text-md);
+}
+.ds-donation-status {
+    width: fit-content;
+    height: fit-content;
+    border-radius: 20px;
+    margin: 100px 20px;
+    background: var(--text-light);
+    padding: 40px;
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    row-gap: 20px;
+}
+.ds-status-icon-cont {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+}
+.ds-status-icon {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.ds-status-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+.ds-payment-status-info {
+    font-size: 1rem;
+}
+.ds-final-donation-info {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    width: 100%;
+}
+.ds-final-donation-text {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.ds-final-donation-line {
+    width: 100%;
+    height: 2px;
+    background: var(--btn-primary);
+    border-radius: 10px;
+}
+.ds-status-ok-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    padding: 15px 40px;
+    font-size: 1rem;
+    font-weight: bold;
+    background: var(--btn-primary);
+    color: var(--text-light);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background .2s linear;
+}
+.ds-status-ok-btn:hover {
+    background: var(--btn-secondary);
+}

@@ -23,7 +23,7 @@ const handleFundraiserSubmit = async (details, personalInfo) => {
 
         const user = await prisma.user.findUnique({
             where: {
-                email: personalInfo.email
+                id: personalInfo.organizerId,
             }
         });
 
@@ -51,7 +51,7 @@ const handleFundraiserSubmit = async (details, personalInfo) => {
                 category: details.category,
                 type: details.type,
                 photo: details.photo,
-                contactInfo: {
+                beneficiary: {
                     create: {
                         address: {
                             street: personalInfo.street,
@@ -60,7 +60,7 @@ const handleFundraiserSubmit = async (details, personalInfo) => {
                             district: personalInfo.district,
                         },
                         phone: personalInfo.phone,
-                        email: personalInfo.email,
+                        name: personalInfo.name,
                     },
                 },
                 dateRequested: new Date(),
@@ -93,3 +93,50 @@ export const handleFundraiser = async (details, personalInfo) => {
     const fundraiser = await handleFundraiserSubmit(details, personalInfo);
     return fundraiser;
 };
+
+export const updateFundraiser = async (id, data) => {
+    try {
+        if(!data) {
+            return ({
+                error: "Data not found!"
+            })
+        }
+        
+        const fundraiser = await prisma.fundraiser.update({
+            where: { id: id },
+            data: data,
+        });
+
+        return {
+            success: true,
+        };
+    } catch (error) {
+        console.log(error.message);
+        return ({
+            nextError: error.message
+        });
+    }
+}
+export const updateBeneficiary = async (id, data) => {
+    try {
+        if(!data) {
+            return ({
+                error: "Data not found!"
+            })
+        }
+        
+        const beneficiary = await prisma.beneficiary.update({
+            where: { id: id },
+            data: data,
+        });
+
+        return {
+            success: true,
+        };
+    } catch (error) {
+        console.log(error.message);
+        return ({
+            nextError: error.message
+        });
+    }
+}

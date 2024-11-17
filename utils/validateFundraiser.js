@@ -1,63 +1,69 @@
-const isValidTitle = (title) => {
+export const isValidTitle = (title) => {
     if (title == '') {
-        return { success: false, error: 'Invalid title on page - 3/5.!' };
+        return { success: false, error: 'Title is required!' };
     }
 
     const allowedCharactersRegex = /^[a-zA-Z\s.,!?'"()-]+$/;
 
     if (title.length < 10 || title.length > 80) {
-        return { success: false, error: 'Invalid title on page - 3/5.!' };
+        return { success: false, error: 'Title must be of 10 - 80 character!' };
     }
     if (!allowedCharactersRegex.test(title)) {
-        return { success: false, error: 'Invalid title on page - 3/5.!' };
+        return { success: false, error: 'Title cannot container unnecessary characters or digits!' };
     }
 
     return { success: true };
 }
 
-const isValidDesc = (desc) => {
+export const isValidDesc = (desc) => {
     if (desc == '') {
-        return { success: false, error: 'Invalid description on page - 3/5.!' };
+        return { success: false, error: 'Description is required!' };
     }
 
     if (desc.length < 200 || desc.length > 2000) {
-        return { success: false, error: 'Invalid description on page - 3/5.!' };
+        return { success: false, error: 'Description must be of 200 - 2000 characters!' };
     }
     return { success: true };
 }
 
-const isValidCategory = (category) => {
+export const isValidCategory = (category) => {
     if (category != '') {
         return { success: true };
     }
-    return { success: false, error: 'Fundraiser category was not selected on page - 1/5.!' };
+    return { success: false, error: 'Fundraiser category was not selected!' };
 }
 
-const isValidType = (type) => {
+export const isValidType = (type) => {
     if (type != '') {
         return { success: true };
     }
-    return { success: false, error: 'Fundraiser type was not selected on page - 1/5.!' };
+    return { success: false, error: 'Fundraiser type was not selected!' };
 }
 
-const isValidGoal = (goal) => {
+export const isValidGoal = (goal) => {
     if (goal == '') {
-        return { success: false, error: 'Invalid starting goal on page - 2/5.!' };
+        return { success: false, error: 'Goal is required!' };
     }
     const regex = /^\d+$/;
-    if (regex.test(goal) && (parseInt(goal, 10) >= 1000) && (parseInt(goal, 10) <= 1000000)) {
-        return { success: true };
+    if (!regex.test(goal)) {
+        return { success: false, error: 'Goal can only contain digits!' };
     }
-    return { success: false, error: 'Invalid starting goal on page - 2/5.!' };
+    if((parseInt(goal, 10) < 1000)) {
+        return { success: false, error: 'Goal must be greater than 1000!' };
+    }
+    if((parseInt(goal, 10) > 1000000)) {
+        return { success: false, error: 'Goal must be less than 1000000!' };
+    }
+    return { success: true };
 }
 
-const isValidPhoto = (photo) => {
+export const isValidPhoto = (photo) => {
     const sizeInKB = photo.fileSize / (1024);
     const validType = ["image/png", "image/jpeg", "image/jpg"];
     if (sizeInKB <= 600 && validType.includes(photo.fileContentType)) {
         return { success: true };
     }
-    return { success: false, error: 'Invalid photo on page - 2/5.! ' };
+    return { success: false, error: 'Invalid photo!' };
 }
 
 const validateFunctions = {
@@ -170,7 +176,7 @@ const districts = [
     "Western Rukum"
 ];
 
-const isValidAddress = (name, str) => {
+export const isValidAddress = (name, str) => {
     const nameRegex = /^[A-Za-z\s]+$/;
     if (nameRegex.test(str)) {
         if (name == 'district') {
@@ -182,11 +188,11 @@ const isValidAddress = (name, str) => {
         }
         return { success: true };
     } else {
-        return { success: false, error: `Invalid ${name}!` };
+        return { success: false, error: `${name} can only contains alphabets!` };
     }
 };
 
-const isValidPhone = (phoneNumber) => {
+export const isValidPhone = (phoneNumber) => {
     const isValid = /^(97|98)\d{8}$/.test(phoneNumber);
     if (isValid) {
         return { success: true };
@@ -194,16 +200,25 @@ const isValidPhone = (phoneNumber) => {
         return { success: false, error: 'Invalid phone no.!' };
     }
 }
-const isValidWardNo = (wardNo) => {
+export const isValidWardNo = (wardNo) => {
     const isValid = /^\d{1,2}$/.test(wardNo);
     if (isValid) {
         return { success: true };
     } else {
-        return { success: false, error: 'Invalid ward no.!' };
+        return { success: false, error: 'Ward no can contain only 2 digits!' };
+    }
+}
+export const isValidName = (name) => {
+    const isValid = /^[A-Za-z\s]+$/.test(name);
+    if (isValid) {
+        return { success: true };
+    } else {
+        return { success: false, error: 'Name can only contain alphabets!' };
     }
 }
 
 const infoFunctions = {
+    name: isValidName,
     phone: isValidPhone,
     street: (str) => isValidAddress('street', str),
     city: (str) => isValidAddress('city', str),
@@ -219,7 +234,7 @@ export function isValidPersonalInfo(personalInfo) {
             const key = newDetails[i];
             const fieldValue = newDetails[key];
 
-            if (key !== 'email') {
+            if (key !== 'organizerId') {
                 const validation = infoFunctions[key](fieldValue);
 
                 if (!validation?.success) {

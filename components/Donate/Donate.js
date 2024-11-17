@@ -94,16 +94,16 @@ const Donate = ({ fundraisers }) => {
                                             <Link href={`/fundraisers/${fundraiser.slug}`}>
                                                 <div className='d-fundraiser-image-cont'>
                                                     <Image className='d-fundraiser-cover-image' src={getImageUrl(fundraiser.photo)} width={200} height={150} priority alt={`medical-${fundraiser.id}-image`} />
-                                                    <span className='d-fundraiser-address'>{getAddress(fundraiser.contactInfo)}</span>
+                                                    <span className='d-fundraiser-address'>{getAddress(fundraiser.beneficiary)}</span>
                                                 </div>
                                                 <div className="d-fundraiser-details">
                                                     <h3 className="d-fundraiser-title">{fundraiser.title}</h3>
                                                     <div className="d-details-progress">
                                                         <div className="d-details-progress-top">
-                                                            <div className="d-progress-bar"></div>
+                                                            <div className="d-progress-bar" style={{width: `${fundraiser.progress}%`}}></div>
                                                         </div>
                                                         <div className="d-progress-amount">
-                                                            Rs.{fundraiser.goal} raised
+                                                            Rs.{fundraiser.totalDonationAmount} raised
                                                         </div>
                                                     </div>
                                                 </div>

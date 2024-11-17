@@ -19,7 +19,9 @@ const page = async () => {
           photo: true,
           category: true,
           slug: true,
-          contactInfo: {
+          totalDonationAmount: true,
+          progress: true,
+          beneficiary: {
             select: {
               address: true,
             }
