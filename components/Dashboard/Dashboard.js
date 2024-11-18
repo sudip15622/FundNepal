@@ -4,13 +4,15 @@ import { useEffect, useState } from 'react';
 import "./Dashboard.css";
 import Overview from './Overview/Overview';
 import Fundraisers from './Fundraisers/Fundraisers';
+import Donations from './Donations/Donations';
 
-import { MdDashboard, MdCampaign } from "react-icons/md";
+import { MdDashboard, MdCampaign, MdOutlineManageSearch } from "react-icons/md";
+import { SiGooglecampaignmanager360 } from "react-icons/si";
 import { BiSolidDonateHeart } from "react-icons/bi";
 import { FaUserCircle } from "react-icons/fa";
 import { FaAngleRight } from "react-icons/fa6";
 
-const Dashboard = ({ user, overview, allFundraisers }) => {
+const Dashboard = ({ user, overview, allFundraisers, allDonations }) => {
 
     const searchParams = useSearchParams();
     const router = useRouter();
@@ -120,8 +122,7 @@ const Dashboard = ({ user, overview, allFundraisers }) => {
                             )}
                             {selected === 'donations' && (
                                 <>
-                                    <h1>Donations</h1>
-                                    <p>Below are the fundraiser where you have donated.</p>
+                                    <Donations user={user} allDonations={allDonations}/>
                                 </>
                             )}
                             {selected === 'profile' && (

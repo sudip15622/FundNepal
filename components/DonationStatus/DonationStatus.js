@@ -6,6 +6,11 @@ import Link from 'next/link';
 
 const DonationStatus = ({ status, fundraiser }) => {
 
+    useEffect(() => {
+      console.log(status);
+    }, [])
+    
+
     return (
         status ? <>
             <div className="ds-donation-status-container">

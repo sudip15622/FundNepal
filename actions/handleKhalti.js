@@ -46,16 +46,6 @@ const handleKhaltiPayment = async (details) => {
                 "name": details.donorName,
                 "email": details.donorEmail,
             },
-            // "amount_breakdown": [
-            //     {
-            //         "label": "Donation Amount",
-            //         "amount": parseFloat(details.donationAmount) * 100
-            //     },
-            //     {
-            //         "label": "Service Charge",
-            //         "amount": parseFloat(details.serviceCharge) * 100
-            //     }
-            // ],
         };
 
         const options = {

@@ -474,7 +474,7 @@ const EditBox = ({ nowEditing, id, setStates }) => {
 
                 <div className="fs-save-and-cancel">
                     <button type="button" className='fs-sc-edit-btns fs-cancel-edit-btn' onClick={(e) => { handleCancelClick(); }}>Cancel</button>
-                    <button disabled={editData.phone === null || saveError !== '' || editError !== ''} type="button" className='fs-sc-edit-btns fs-save-edit-btn' onClick={(e) => { handleSaveClick('photo', { photo: editData.photo }); }}>{saveLoading ? <PulseLoader size={10} margin={4} color='var(--text-light)' /> : "Save"}</button>
+                    <button disabled={editData.phone === null || saveError !== '' || editError !== '' || saveLoading} type="button" className='fs-sc-edit-btns fs-save-edit-btn' onClick={(e) => { handleSaveClick('photo', { photo: editData.photo }); }}>{saveLoading ? <PulseLoader size={10} margin={4} color='var(--text-light)' /> : "Save"}</button>
                 </div>
 
             </div>}
@@ -495,7 +495,7 @@ const EditBox = ({ nowEditing, id, setStates }) => {
 
                 <div className="fs-save-and-cancel">
                     <button type="button" className='fs-sc-edit-btns fs-cancel-edit-btn' onClick={(e) => { handleCancelClick(); }}>Cancel</button>
-                    <button disabled={editData.title.trim() === '' || saveError !== '' || editError !== ''} type="button" className='fs-sc-edit-btns fs-save-edit-btn' onClick={(e) => { handleSaveClick('title', { title: editData.title }); }}>{saveLoading ? <PulseLoader size={10} margin={4} color='var(--text-light)' /> : "Save"}
+                    <button disabled={editData.title.trim() === '' || saveError !== '' || editError !== '' || saveLoading} type="button" className='fs-sc-edit-btns fs-save-edit-btn' onClick={(e) => { handleSaveClick('title', { title: editData.title }); }}>{saveLoading ? <PulseLoader size={10} margin={4} color='var(--text-light)' /> : "Save"}
                     </button>
                 </div>
             </div>}
@@ -515,7 +515,7 @@ const EditBox = ({ nowEditing, id, setStates }) => {
 
                 <div className="fs-save-and-cancel">
                     <button type="button" className='fs-sc-edit-btns fs-cancel-edit-btn' onClick={(e) => { handleCancelClick(); }}>Cancel</button>
-                    <button disabled={editData.goal.trim() === '' || saveError !== '' || editError !== ''} type="button" className='fs-sc-edit-btns fs-save-edit-btn' onClick={(e) => { handleSaveClick('goal', { goal: editData.goal }); }}>{saveLoading ? <PulseLoader size={10} margin={4} color='var(--text-light)' /> : "Save"}</button>
+                    <button disabled={editData.goal.trim() === '' || saveError !== '' || editError !== '' || saveLoading} type="button" className='fs-sc-edit-btns fs-save-edit-btn' onClick={(e) => { handleSaveClick('goal', { goal: editData.goal }); }}>{saveLoading ? <PulseLoader size={10} margin={4} color='var(--text-light)' /> : "Save"}</button>
                 </div>
             </div>}
 
@@ -534,7 +534,7 @@ const EditBox = ({ nowEditing, id, setStates }) => {
                 </ul>
                 <div className="fs-save-and-cancel">
                     <button type="button" className='fs-sc-edit-btns fs-cancel-edit-btn' onClick={(e) => { handleCancelClick(); }}>Cancel</button>
-                    <button disabled={editData.category.trim() === '' || saveError !== '' || editError !== ''} type="button" className='fs-sc-edit-btns fs-save-edit-btn' onClick={(e) => { handleSaveClick('category', { category: editData.category }); }}>{saveLoading ? <PulseLoader size={10} margin={4} color='var(--text-light)' /> : "Save"}</button>
+                    <button disabled={editData.category.trim() === '' || saveError !== '' || editError !== '' || saveLoading} type="button" className='fs-sc-edit-btns fs-save-edit-btn' onClick={(e) => { handleSaveClick('category', { category: editData.category }); }}>{saveLoading ? <PulseLoader size={10} margin={4} color='var(--text-light)' /> : "Save"}</button>
                 </div>
             </div>}
 
@@ -556,7 +556,7 @@ const EditBox = ({ nowEditing, id, setStates }) => {
                 </ul>
                 <div className="fs-save-and-cancel">
                     <button type="button" className='fs-sc-edit-btns fs-cancel-edit-btn' onClick={(e) => { handleCancelClick(); }}>Cancel</button>
-                    <button disabled={editData.type.trim() === '' || saveError !== '' || editError !== ''} type="button" className='fs-sc-edit-btns fs-save-edit-btn' onClick={(e) => { handleSaveClick('type', { type: editData.type }); }}>{saveLoading ? <PulseLoader size={10} margin={4} color='var(--text-light)' /> : "Save"}</button>
+                    <button disabled={editData.type.trim() === '' || saveError !== '' || editError !== '' || saveLoading} type="button" className='fs-sc-edit-btns fs-save-edit-btn' onClick={(e) => { handleSaveClick('type', { type: editData.type }); }}>{saveLoading ? <PulseLoader size={10} margin={4} color='var(--text-light)' /> : "Save"}</button>
                 </div>
             </div>}
 
@@ -576,7 +576,7 @@ const EditBox = ({ nowEditing, id, setStates }) => {
 
                 <div className="fs-save-and-cancel">
                     <button type="button" className='fs-sc-edit-btns fs-cancel-edit-btn' onClick={(e) => { handleCancelClick(); }}>Cancel</button>
-                    <button disabled={editData.description.trim() === '' || saveError !== '' || editError !== ''} type="button" className='fs-sc-edit-btns fs-save-edit-btn' onClick={(e) => { handleSaveClick('description', { description: editData.description }); }}>{saveLoading ? <PulseLoader size={10} margin={4} color='var(--text-light)' /> : "Save"}</button>
+                    <button disabled={editData.description.trim() === '' || saveError !== '' || editError !== '' || saveLoading} type="button" className='fs-sc-edit-btns fs-save-edit-btn' onClick={(e) => { handleSaveClick('description', { description: editData.description }); }}>{saveLoading ? <PulseLoader size={10} margin={4} color='var(--text-light)' /> : "Save"}</button>
                 </div>
             </div>}
 
@@ -596,7 +596,7 @@ const EditBox = ({ nowEditing, id, setStates }) => {
 
                 <div className="fs-save-and-cancel">
                     <button type="button" className='fs-sc-edit-btns fs-cancel-edit-btn' onClick={(e) => { handleCancelClick(); }}>Cancel</button>
-                    <button disabled={editData.name.trim() === '' || saveError !== '' || editError !== ''} type="button" className='fs-sc-edit-btns fs-save-edit-btn' onClick={(e) => { handleSaveBeneficiaryClick('name', { name: editData.name }); }}>{saveLoading ? <PulseLoader size={10} margin={4} color='var(--text-light)' /> : "Save"}
+                    <button disabled={editData.name.trim() === '' || saveError !== '' || editError !== '' || saveLoading} type="button" className='fs-sc-edit-btns fs-save-edit-btn' onClick={(e) => { handleSaveBeneficiaryClick('name', { name: editData.name }); }}>{saveLoading ? <PulseLoader size={10} margin={4} color='var(--text-light)' /> : "Save"}
                     </button>
                 </div>
             </div>}
@@ -617,7 +617,7 @@ const EditBox = ({ nowEditing, id, setStates }) => {
 
                 <div className="fs-save-and-cancel">
                     <button type="button" className='fs-sc-edit-btns fs-cancel-edit-btn' onClick={(e) => { handleCancelClick(); }}>Cancel</button>
-                    <button disabled={editData.phone.trim() === '' || saveError !== '' || editError !== ''} type="button" className='fs-sc-edit-btns fs-save-edit-btn' onClick={(e) => { handleSaveBeneficiaryClick('phone', { phone: editData.phone }); }}>{saveLoading ? <PulseLoader size={10} margin={4} color='var(--text-light)' /> : "Save"}
+                    <button disabled={editData.phone.trim() === '' || saveError !== '' || editError !== '' || saveLoading} type="button" className='fs-sc-edit-btns fs-save-edit-btn' onClick={(e) => { handleSaveBeneficiaryClick('phone', { phone: editData.phone }); }}>{saveLoading ? <PulseLoader size={10} margin={4} color='var(--text-light)' /> : "Save"}
                     </button>
                 </div>
             </div>}
@@ -649,7 +649,7 @@ const EditBox = ({ nowEditing, id, setStates }) => {
 
                 <div className="fs-save-and-cancel">
                     <button type="button" className='fs-sc-edit-btns fs-cancel-edit-btn' onClick={(e) => { handleCancelClick(); }}>Cancel</button>
-                    <button type="button" className='fs-sc-edit-btns fs-save-edit-btn' disabled={!isAddressValid() || saveError !== '' || editError !== ''} onClick={(e) => { handleSaveAddressClick(editData.address); }}>{saveLoading ? <PulseLoader size={10} margin={4} color='var(--text-light)' /> : "Save"}
+                    <button type="button" className='fs-sc-edit-btns fs-save-edit-btn' disabled={!isAddressValid() || saveError !== '' || editError !== '' || saveLoading} onClick={(e) => { handleSaveAddressClick(editData.address); }}>{saveLoading ? <PulseLoader size={10} margin={4} color='var(--text-light)' /> : "Save"}
                     </button>
                 </div>
             </div>}

@@ -121,7 +121,7 @@ const Fundraisers = ({ user }) => {
             setAnimatePopup(false);
             setShowEdit(false);
             setNowEditing(null);
-        }, 300);
+        }, 200);
     }
 
     const handleEditClick = (key, value) => {
@@ -157,6 +157,10 @@ const Fundraisers = ({ user }) => {
                     <h1 className="fs-fundraisers-title">Your Fundraisers</h1>
                     <p className="fs-fundraisers-text">Here you can view and manage all your fundraisers.</p>
                 </div>
+
+                {/* <div className="fs-fundraisers-filters">
+
+                </div> */}
 
                 {listLoading ? <div className="fs-loading">
                     <MoonLoader size={100} color='var(--btn-secondary)' />
@@ -211,7 +215,7 @@ const Fundraisers = ({ user }) => {
                     {currentDetails && <>
                         <div ref={popupRef} className={`fs-manage-popup ${animatePopup && "fs-popup-hide"}`}>
                             <button className="fs-hide-popup-btn" onClick={(e) => { handleHideClick(); }}><IoClose /></button>
-                            {(showEdit && nowEditing) ? <><EditBox nowEditing={nowEditing} id={{fundraiserId: currentDetails.id, beneficiaryId: currentDetails.beneficiary[0].id}} setStates={sendObject} /></> : <ul className="fs-manage-popup-content">
+                            {(showEdit && nowEditing) ? <><EditBox nowEditing={nowEditing} id={{ fundraiserId: currentDetails.id, beneficiaryId: currentDetails.beneficiary[0].id }} setStates={sendObject} /></> : <ul className="fs-manage-popup-content">
                                 <h2 className="fs-popup-title">Fundraiser Details:</h2>
                                 <li className="fs-preview-item">
                                     <div className="fs-title-field">

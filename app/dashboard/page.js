@@ -54,9 +54,27 @@ const page = async () => {
         }
     })
 
+    const allDonations = await prisma.donation.findMany({
+        where: {
+            userId: user.id,
+        },
+        include: {
+            fundraiser: {
+                select: {
+                    title: true,
+                    slug: true,
+                    photo: true,
+                }
+            }
+        },
+        orderBy: {
+            dateDonated: 'desc',
+        }
+    })
+
     return (
         <>
-            <Dashboard user={user} overview={overview} allFundraisers={allFundraisers}/>
+            <Dashboard user={user} overview={overview} allFundraisers={allFundraisers} allDonations={allDonations}/>
         </>
     )
 }

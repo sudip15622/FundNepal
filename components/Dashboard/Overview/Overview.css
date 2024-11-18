@@ -485,6 +485,7 @@
 .oc-all-donor-list {
     flex-direction: row;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 .oc-all-donor-listitems {
     width: 45%;

@@ -118,3 +118,17 @@ export async function getAllFundraisers(page = 1, pageSize = 5, filter='Now Tren
         totalFundraisers,
     };
 }
+
+export async function deleteFundraiser(id) {
+    try {
+        const fundraiser = await prisma.fundraiser.delete({
+            where: { id: id },
+        });
+    
+        return {success: true};
+        
+    } catch (error) {
+        console.log(error.message);
+        return {success: false, nextError: error.message};
+    }
+}
