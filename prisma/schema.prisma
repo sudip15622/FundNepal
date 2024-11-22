@@ -12,7 +12,10 @@ model User {
   userName    String       @unique
   name        String
   email       String       @unique
+  phone       String?
   password    String
+  role        String       @default("User")
+  avatar      String?
   fundraisers Fundraiser[]
   dateJoined  DateTime     @default(now())
   createdAt   DateTime     @default(now())
@@ -31,6 +34,7 @@ model Fundraiser {
   photo               Json
   totalDonationAmount Int?          @default(0)
   progress            Int?          @default(0)
+  status              String        @default("Draft")
   beneficiary         Beneficiary[]
   donations           Donation[]
   user                User          @relation(fields: [userId], references: [id], onDelete: Cascade)

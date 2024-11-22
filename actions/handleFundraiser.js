@@ -64,6 +64,7 @@ const handleFundraiserSubmit = async (details, personalInfo) => {
                     },
                 },
                 dateRequested: new Date(),
+                status: 'Draft',
                 user: {
                     connect: { id: user.id },
                 }

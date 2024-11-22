@@ -88,6 +88,7 @@ const handleRegisterSubmit = async (credentials) => {
                 email: credentials.email,
                 password: hashedPassword,
                 userName: userName,
+                avatar: '',
                 dateJoined: new Date(),
             },
         });

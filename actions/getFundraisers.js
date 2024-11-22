@@ -14,6 +14,7 @@ export async function getFundraiserByUserId(userId, filter = 'All') {
             category: true,
             slug: true,
             totalDonationAmount: true,
+            status: true,
             progress: true,
             datePublished: true,
         },
@@ -39,6 +40,7 @@ export async function getCategoryWiseFundraiser(category = 'Medical', count = 6)
 
     const where = {
         category: category,
+        status: 'Draft',
     };
     const select = {
         id: true,
@@ -84,9 +86,9 @@ export async function getAllFundraisers(page = 1, pageSize = 5, filter='Now Tren
 
     const skip = (page - 1) * pageSize;
 
-    // const where = {
-    //     category: category,
-    // };
+    const where = {
+        status: 'Draft',
+    };
     const select = {
         id: true,
         title: true,
@@ -106,7 +108,7 @@ export async function getAllFundraisers(page = 1, pageSize = 5, filter='Now Tren
     const totalFundraisers = await prisma.fundraiser.count({});
 
     const fundraisers = await prisma.fundraiser.findMany({
-        // where: where,
+        where: where,
         select: select,
         take: pageSize,
         skip: skip,

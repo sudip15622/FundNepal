@@ -9,7 +9,7 @@ const page = async () => {
 
     for (const category of categories) {
       const fundraiser = await prisma.fundraiser.findMany({
-        where: { category },
+        where: { category: category, status: 'Draft' },
         orderBy: { dateRequested: 'desc' },
         take: 3,
         select: {
@@ -19,6 +19,7 @@ const page = async () => {
           photo: true,
           category: true,
           slug: true,
+          status: true,
           totalDonationAmount: true,
           progress: true,
           beneficiary: {

@@ -29,6 +29,7 @@
     flex-direction: column;
     row-gap: 10px;
     margin: 50px auto;
+    color: gray;
 }
 .fs-no-fundraisers-title {
     font-size: 1.5rem;

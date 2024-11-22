@@ -20,6 +20,9 @@ const page = async () => {
             userName: true,
             email: true,
             name: true,
+            role: true,
+            avatar: true,
+            phone: true,
             dateJoined: true,
         },
     })

@@ -10,7 +10,7 @@ const page = async () => {
 
     for (const category of categories) {
       const fundraiser = await prisma.fundraiser.findFirst({
-        where: { category },
+        where: { category: category, status: 'Draft' },
         orderBy: { dateRequested: 'desc' },
         select: {
           id: true,
@@ -20,6 +20,7 @@ const page = async () => {
           goal: true,
           photo: true,
           category: true,
+          status: true,
           totalDonationAmount: true,
           progress: true,
           beneficiary: {

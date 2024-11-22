@@ -1,0 +1,29 @@
+.up-profile-container {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    row-gap: 30px;
+    color: var(--text-md);
+}
+.up-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 400px;
+}
+.up-profile-header {
+    display: flex;
+    flex-direction: column;
+    row-gap: 8px;
+}
+
+.up-profile-title {
+    font-size: 1.6rem;
+    font-weight: bold;
+}
+
+.up-profile-text {
+    font-size: .95rem;
+    font-weight: 500;
+}

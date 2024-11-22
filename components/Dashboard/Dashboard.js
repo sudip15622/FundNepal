@@ -5,6 +5,7 @@ import "./Dashboard.css";
 import Overview from './Overview/Overview';
 import Fundraisers from './Fundraisers/Fundraisers';
 import Donations from './Donations/Donations';
+import Profile from './Profile/Profile';
 
 import { MdDashboard, MdCampaign, MdOutlineManageSearch } from "react-icons/md";
 import { SiGooglecampaignmanager360 } from "react-icons/si";
@@ -127,8 +128,7 @@ const Dashboard = ({ user, overview, allFundraisers, allDonations }) => {
                             )}
                             {selected === 'profile' && (
                                 <>
-                                    <h1>Profile</h1>
-                                    <p>This is your FundNepal profile.</p>
+                                    <Profile user={user} />
                                 </>
                             )}
                         </>
