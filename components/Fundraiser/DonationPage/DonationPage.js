@@ -266,7 +266,7 @@ const DonationPage = ({ details, user }) => {
                         <button type="button" className="dp-payment-method" onClick={(e) => { handlePaymentMethodClick('Khalti') }}>
                             <div className="dp-method-left">
                                 <picture className="dp-payment-method-logo">
-                                    <Image src="/khalti_logo.jpg" width={100} height={90} alt="khalti-logo" />
+                                    <Image src="/khalti_logo.png" width={100} height={90} alt="khalti-logo" />
                                 </picture>
                                 <span className="dp-payment-method-text">Khalti</span>
                             </div>
@@ -293,9 +293,9 @@ const DonationPage = ({ details, user }) => {
                         </div>
                     </div>
 
-                    <div className="dp-error-field">
+                    {/* <div className="dp-error-field">
                         Something went wrong!
-                    </div>
+                    </div> */}
 
                     <button onClick={(e) => { handlePayment(paymentMethod); }} type="button" className={`dp-payment-form-btn ${paymentMethod == 'eSewa' ? "dp-esewa-btn" : "dp-khalti-btn"}`} disabled={isLoading || !isFormValid() || error !== ''}>
                         <span >{isLoading ? <PulseLoader size={10} margin={4} /> : `Pay via ${paymentMethod}`}</span>

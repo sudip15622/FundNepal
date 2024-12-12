@@ -77,15 +77,19 @@ const Navbar = ({ session }) => {
                         </Link>
                     </li>
                     {/* <li>
-                        <Link href={"/about-us"} className={`navbar-pages`}>
-                            ABOUT US
+                        <Link href={"/getstarted"} className={`navbar-pages`}>
+                            GET STARTED
                         </Link>
                     </li> */}
                     {session ? <li className="username-cont" ref={dropDownRef}>
                         <div className="username-cont-left" onClick={(e) => { setShowDropDown(!showDropDown) }}>
-                            <div className="user-avatar"><FaUserCircle /></div>
-                            <div className="username-text">
-                                {session.user.userName.length < 10 ? <span>{session.user.userName}</span> : <span>{`${session.user.userName.slice(0, 8)}...`}</span>}
+                            <div className="username-cont-left-details">
+                                {session.user.avatar ? <picture className="user-avatar-image-cont">
+                                    <Image className='user-avatar-image' src={session.user.avatar} width={50} height={45} alt="user-avatar" />
+                                </picture> : <div className="user-avatar"><FaUserCircle /></div>}                                
+                                <div className="username-text">
+                                    {session.user.userName.slice(0, 8)}
+                                </div>
                             </div>
                             <div className={`username-cont-right ${showDropDown && "rotate-updown"}`}><FaChevronDown /></div>
                         </div>

@@ -1,0 +1,497 @@
+.ad-overview-container {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    row-gap: 30px;
+    color: var(--text-md);
+}
+
+.ad-overview-header {
+    display: flex;
+    flex-direction: column;
+    row-gap: 8px;
+}
+
+.ad-overview-title {
+    font-size: 1.6rem;
+    font-weight: bold;
+}
+
+.ad-overview-text {
+    font-size: .95rem;
+    font-weight: 500;
+}
+
+.ad-overview-cards-container {
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    column-gap: 50px;
+    row-gap: 20px;
+    flex-wrap: wrap;
+}
+
+.ad-overview-card {
+    /* flex: 1; */
+    width: 50%;
+    max-width: 420px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    column-gap: 5px;
+    border-radius: 12px;
+    overflow: hidden;
+    /* padding: 0px 15px; */
+}
+
+.ad-overview-card-details {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    row-gap: 8px;
+    padding: 20px 15px;
+    border-right: 3px solid var(--btn-primary);
+}
+
+.ad-overview-card-title {
+    font-size: 1.3rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    column-gap: 12px;
+}
+
+.ad-overview-card-text {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.ad-overview-card-line {
+    width: 2px;
+    height: 100%;
+    background: var(--btn-primary);
+}
+
+.ad-overview-card-count {
+    flex: 1;
+    /* border: 2px solid black; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ad-overview-card-count span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* padding: 4px 10px; */
+    width: 35px;
+    height: 35px;
+    box-shadow: inset 5px 2px 5px 2px rgba(0, 0, 0, 0.4);
+    border-radius: 5px;
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: var(--btn-primary);
+}
+
+.ad-overview-active {
+    display: flex;
+    flex-direction: column;
+    row-gap: 12px;
+    /* box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25); */
+    /* padding: 20px; */
+    border-radius: 20px;
+    margin: 20px 0px;
+}
+.ad-overview-active-header {
+    display: flex;
+    align-items: center;
+    column-gap: 50px;
+}
+
+.ad-overview-active-title {
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+.ad-overview-active-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 20px;
+}
+.ad-prev-next-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px;
+    border-radius: 50%;
+    background: none;
+    font-size: 1.6rem;
+    cursor: pointer;
+    color: var(--text-medium);
+    transition: color .2s linear;
+}
+.ad-prev-next-btn:hover {
+    color: var(--btn-secondary);
+}
+.ad-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 400px;
+}
+
+.ad-overview-active-empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    row-gap: 10px;
+    margin: 50px auto;
+}
+.ad-get-started-btn {
+    width: 200px;
+    height: 50px;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    background: var(--btn-primary);
+    cursor: pointer;
+}
+
+.ad-get-started-btn span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2em;
+    font-weight: bold;
+    border-radius: calc(12px - 4px);
+    width: 100%;
+    height: 100%;
+    color: var(--text-light);
+    background: transparent;
+    transition: background .3s ease-in-out, color .3s ease-in-out;
+}
+
+.ad-get-started-btn:hover span {
+    background: var(--text-light);
+    color: var(--text-md);
+}
+.ad-overview-active-empty1 {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    row-gap: 10px;
+    color: gray;
+}
+.ad-overview-active-empty2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    flex-direction: column;
+    row-gap: 10px;
+    color: gray;
+}
+.ad-details-sd-btn {
+    position: relative;
+    width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    font-weight: 500;
+
+    column-gap: 10px;
+    padding: 10px 0px;
+    background: none;
+    border: 2px solid var(--btn-primary);
+    color: var(--btn-secondary);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background .2s linear;
+}
+
+.ad-details-sd-btn:hover {
+    background: var(--item-bg);
+}
+.ad-sd-btn-info {
+    position: absolute;
+    top: -35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--text-md);
+    border-radius: 8px;
+    color: var(--text-light);
+    padding: 5px 10px;
+    font-size: .9rem;
+    font-weight: 500;
+}
+.ad-details-sd-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+.ad-no-donation-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: gray;
+}
+.ad-no-donation-text {
+    font-size: .95rem;
+    font-weight: 500;
+    color: gray;
+}
+
+.ad-overview-active-content {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}
+
+.ad-fundraiser-detials {
+    display: flex;
+    column-gap: 12px;
+    width: 100%;
+    padding: 8px;
+    border-radius: 12px;
+    /* background: var(--item-bg); */
+    /* border: 2px solid var(--item-bg); */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+.ad-details-left {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    height: 80px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.ad-details-left-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.ad-details-right {
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+    padding: 5px 0px;
+}
+
+.ad-fundraiser-title {
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+.ad-fundraiser-title:hover {
+    text-decoration: underline;
+}
+
+.ad-fundraiser-text {
+    font-size: .9rem;
+    font-weight: 500;
+}
+
+.ad-fundraiser-overview-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.ad-fundraiser-progress {
+    position: relative;
+    width: 150px;
+    height: 150px;
+}
+
+.circle {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: conic-gradient(var(--btn-primary) var(--progress),
+            var(--item-bg) 0deg);
+}
+
+.innerCircle {
+    position: absolute;
+    top: 12%;
+    left: 12%;
+    width: 76%;
+    height: 76%;
+    background: var(--text-light);
+    border-radius: 50%;
+}
+
+.progressText {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.4rem;
+    font-weight: bold;
+    text-align: center;
+}
+.progressText span{
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    font-weight: 500;
+
+}
+.ad-fundraiser-goal-details {
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+}
+.ad-fundraiser-goal-amount {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+.ad-fundraiser-goal-text {
+    display: flex;
+    align-items: center;
+    column-gap: 5px;
+    font-weight: 500;
+}
+.ad-fundraiser-donation-ac-card {
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+    flex-direction: column;
+    row-gap: 12px;
+    width: 250px;
+    padding: 20px 12px;
+    /* box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25); */
+    border-radius: 12px;
+    background: var(--item-bg);
+}
+.ad-fundraiser-donation-ac-icon1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* padding: 4px 6px; */
+    height: 30px;
+    width: 50px;
+    background: var(--btn-primary);
+    border-radius: 8px;
+    color: var(--text-light);
+    /* width: fit-content; */
+    font-size: 1rem;
+    font-weight: bold;
+}
+.ad-fundraiser-donation-ac-icon2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* padding: 4px 6px; */
+    width: 30px;
+    height: 30px;
+    background: var(--btn-primary);
+    border-radius: 8px;
+    color: var(--text-light);
+    /* width: fit-content; */
+    font-size: 1.4rem;
+}
+.ad-fundraiser-donation-ac-text {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+.ad-fundraiser-donation-ac-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.ad-fundraiser-donor-details {
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    column-gap: 20px;
+}
+.ad-donor-overview {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    /* background: var(--item-bg); */
+    /* border: 2px solid var(--item-bg); */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+    padding: 20px;
+    border-radius: 12px;
+    flex: 1;
+}
+.ad-donor-overview-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+.ad-donor-overview-list {
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+    margin-left: 10px;
+}
+.ad-box-types-item {
+    display: flex;
+    column-gap: 12px;
+}
+.ad-comments-item-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    height: fit-content;
+    padding: 6px;
+    border-radius: 50%;
+    background: var(--item-bg);
+    color: var(--btn-secondary);
+    font-size: 1.4rem;
+}
+.ad-types-item-details {
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+}
+.ad-types-item-name {
+    font-size: 1rem;
+    letter-spacing: .5px;
+    font-weight: 500;
+}
+.ad-types-item-amount-type {
+    display: flex;
+    align-items: center;
+    column-gap: 5px;
+}
+.ad-types-item-amount {
+    font-size: .9rem;
+    font-weight: 600;
+}
+.ad-type-item-type {
+    font-size: .9rem;
+    font-weight: 500;
+}
+
+.ad-all-donor-list-cont {
+    flex: 2;
+}
+.ad-all-donor-list {
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.ad-all-donor-listitems {
+    width: 45%;
+}
+

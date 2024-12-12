@@ -1,0 +1,188 @@
+.adf-fundraiser-title-column {
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+}
+
+.adf-fundraiser-cover-cont {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    overflow: hidden;
+}
+.adf-fundraiser-cover-image {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.adf-fundraiser-title {
+    font-size: 1rem;
+    font-weight: 500;
+}
+.adf-fundraiser-title:hover {
+    text-decoration: underline;
+}
+
+.adf-users-name-container {
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+}
+.adf-users-avatar-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+    min-width: 35px;
+    min-height: 35px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.adf-fundraiser-cover-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 50px;
+    min-width: 80px;
+    min-height: 50px;
+    border-radius: 4px;
+    overflow: hidden;
+}
+.adf-users-avatar {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+.adf-action-popup {
+    width: 200px;
+}
+.adf-published {
+    color: blue;
+}
+.adf-draft {
+    color: rgb(97, 3, 3);
+}
+
+.adf-fundraiser-details-container {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0px;
+    left: 0px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(4px);
+    z-index: 2000;
+}
+.adf-fundraiser-details {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    width: 100%;
+    max-width: 500px;
+    height: fit-content;
+    max-height: calc(100vh - 50px);
+    padding: 20px;
+    background: var(--text-light);
+    border-radius: 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+    position: relative;
+    padding: 30px;
+}
+.adf-fundraiser-details-content {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+
+}
+.adf-fundraiser-details-content::-webkit-scrollbar {
+    display: none;
+}
+.adf-hide-popup-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    background: none;
+    padding: 2px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.adf-popup-title {
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+.adf-popup-title2 {
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin-top: 20px;
+}
+.adf-preview-item picture {
+    width: 100%;
+    height: 200px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 2px solid rgb(174, 172, 172);
+}
+
+.adf-preview-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.adf-preview-item {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    justify-content: center;
+    padding: 5px 10px;
+    width: 100%;
+    /* border-bottom: 2px solid black; */
+}
+.adf-preview-line {
+    width: 100%;
+    height: 1px;
+    background: var(--item-bg);
+    border: 1px solid gray;
+}
+
+.adf-title-field {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.adf-item-title {
+    font-size: 1rem;
+    font-weight: 600;
+}
+.adf-show-less-more {
+    margin-top: -5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: .8rem;
+    font-weight: bold;
+    border-radius: 12px;
+    background: none;
+    border-bottom: 2px solid var(--btn-primary);
+    width: 90px;
+    padding: 5px 0px;
+    cursor: pointer;
+    transition: background .2s linear;
+}
+.adf-show-less-more:hover {
+    background: var(--item-bg);
+}

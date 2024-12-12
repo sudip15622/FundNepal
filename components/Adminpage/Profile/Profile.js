@@ -42,6 +42,7 @@ const Profile = ({ userId }) => {
         const details = await getUserProfile(userId);
         if (details?.success) {
             setUser(details?.user);
+            // console.log(details.user)
         }
         setLoading(false);
     }
@@ -261,7 +262,7 @@ const Profile = ({ userId }) => {
                         <div className="up-profile-content">
                             <div className="up-profile-content-top">
                                 <picture className='up-profile-avatar'>
-                                    <Image className='up-profile-avatar-image' src={user.avatar ? user.avatar : "/user.png"} width={200} height={190} priority alt="user-avatar" />
+                                    <Image className='up-profile-avatar-image' src={user.avatar !== "" ? user.avatar : "/user.png"} width={200} height={190} priority alt="user-avatar" />
                                     <button className="up-profile-edit-btn up-edit-avatar" onClick={(e) => { hanldeEditBtnClick({ key: 'avatar', value: user.avatar, type: 'text', span: 'Avatar Url' }); }}><FaRegEdit /></button>
                                 </picture>
                                 <div className="up-profile-name-role">

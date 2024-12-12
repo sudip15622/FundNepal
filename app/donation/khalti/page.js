@@ -50,7 +50,7 @@ const page = async ({ searchParams }) => {
     }
 
     const donation = await handleDonation(details, savedData);
-    console.log(donation);
+    // console.log(donation);
 
     if (!donation) {
         redirect('/404');

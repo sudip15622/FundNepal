@@ -39,7 +39,6 @@ const Fundraiser = ({ details, user, donations }) => {
         } else {
             setValidPage(false);
         }
-        console.log(details);
     }, []);
 
     const timesAgo = (date) => {
@@ -177,7 +176,9 @@ const Fundraiser = ({ details, user, donations }) => {
                         </h2>
                         <div className="ff-organizer-beneficiary-cont">
                             <div className="ff-organizer-cont">
-                                <div className="ff-organizer-icon"><FaUserCircle /></div>
+                                {details.user.avatar ? <picture className="ff-user-avatar-image-cont">
+                                    <Image className='ff-user-avatar-image' src={details.user.avatar} width={50} height={45} alt="user-avatar" />
+                                </picture> : <div className="ff-organizer-icon"><FaUserCircle /></div>}
                                 <div className="ff-organizer-text">
                                     <div className="ff-organizer-name">{details.user.name}</div>
                                     <div className="ff-organizer-address">Organizer</div>

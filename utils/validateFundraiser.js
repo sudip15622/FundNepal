@@ -48,10 +48,10 @@ export const isValidGoal = (goal) => {
     if (!regex.test(goal)) {
         return { success: false, error: 'Goal can only contain digits!' };
     }
-    if((parseInt(goal, 10) < 1000)) {
+    if ((parseInt(goal, 10) < 1000)) {
         return { success: false, error: 'Goal must be greater than 1000!' };
     }
-    if((parseInt(goal, 10) > 1000000)) {
+    if ((parseInt(goal, 10) > 1000000)) {
         return { success: false, error: 'Goal must be less than 1000000!' };
     }
     return { success: true };
@@ -216,6 +216,35 @@ export const isValidName = (name) => {
         return { success: false, error: 'Name can only contain alphabets!' };
     }
 }
+
+export const isValidEmail = (email) => {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (regex.test(email)) {
+        return { success: true };
+    }
+    return { success: false, error: "Invalid Email!" };
+};
+
+export const isValidUserName = (username) => {
+    if (!username) {
+        return { success: false, error: "Username cannot be empty" };
+    }
+    const validCharactersRegex = /^[a-z0-9_]+$/;
+    if (!validCharactersRegex.test(username)) {
+        return {
+            success: false,
+            error: "Username can only contain lowercase alphabets, digits, and underscores."
+        };
+    }
+    const startsWithLetterRegex = /^[a-z]/;
+    if (!startsWithLetterRegex.test(username)) {
+        return {
+            success: false,
+            error: "Username must start with a lowercase alphabet."
+        };
+    }
+    return { success: true };
+};
 
 const infoFunctions = {
     name: isValidName,

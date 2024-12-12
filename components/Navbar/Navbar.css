@@ -158,17 +158,39 @@
     z-index: 1002;
 }
 .navbar-container .username-cont-left {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    column-gap: 8px;
+    transition: .2s linear;
+    padding: 0px 15px;
+}
+.navbar-container .username-cont-left-details {
     display: flex;
     align-items: center;
     justify-content: center;
     column-gap: 8px;
-    transition: .2s linear;
 }
 .navbar-container .user-avatar {
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 1.6rem;
+}
+.navbar-container .user-avatar-image-cont {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.navbar-container .user-avatar-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 .navbar-container .username-cont-left:hover{
     transform: scale(1.04);

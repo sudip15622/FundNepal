@@ -139,3 +139,92 @@ export async function getAllDonationsByFundraiserId(fundraiserId) {
         return [];
     }
 }
+
+export const getDonationForAdmin = async (pageIndex = 0, pageSize = 10, sortDonation = 'desc', searchQuery = '', paymentMethod = '') => {
+    try {
+        const skip = pageIndex * pageSize;
+
+        const where = {
+            AND: [
+                searchQuery
+                    ? {
+                        OR: [
+                            { fundraiser: {
+                                title: { contains: searchQuery, mode: 'insensitive' }
+                            } },
+                            { user: {
+                                name: { contains: searchQuery, mode: 'insensitive' }
+                            } },
+                        ],
+                    }
+                    : {},
+            ],
+        };
+
+        if(paymentMethod){
+            where.AND.push({ paymentMethod: paymentMethod });
+        }
+
+        const donations = await prisma.donation.findMany({
+            where: where,
+            skip: skip,
+            take: pageSize,
+            include: {
+                fundraiser: {
+                    select: {
+                        id: true,
+                        title: true,
+                        slug: true,
+                        photo: true,
+                    }
+                },
+                user: {
+                    select: {
+                        id: true,
+                        name: true,
+                        avatar: true,
+                    }
+                },
+            },
+            orderBy: {
+                dateDonated: sortDonation,
+            },
+        });
+
+        const totalDonations = await prisma.donation.count();
+
+        return {
+            success: true,
+            donations: donations,
+            totalDonations: totalDonations,
+        };
+    } catch (error) {
+        console.log(error.message);
+        return ({
+            success: false,
+            nextError: error.message
+        });
+    }
+}
+
+export async function deleteDonation(id) {
+    try {
+        const donation = await prisma.donation.findUnique({
+            where: { id: id },
+        });
+
+        if (!donation) {
+            return { success: false, nextError: 'Donation not found' };
+        }
+
+        await prisma.donation.delete({
+            where: { id: id },
+        });
+
+        return { success: true };
+
+    } catch (error) {
+        console.log(error.message);
+        return { success: false, nextError: error.message };
+    }
+}

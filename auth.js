@@ -61,6 +61,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                         email: user.email,
                         id: user.id,
                         userName: user.userName,
+                        avatar: user.avatar,
                     };
 
                 } catch (error) {
@@ -107,6 +108,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                 session.user.name = token.user.name;
                 session.user.email = token.user.email;
                 session.user.userName = token.user.userName;
+                session.user.avatar = token.user.avatar;
             }
             // console.log(session);
             return session;

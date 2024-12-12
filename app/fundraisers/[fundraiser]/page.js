@@ -21,6 +21,7 @@ const page = async ({ params }) => {
           id: true,
           name: true,
           email: true,
+          avatar: true,
         }
       },
       beneficiary: {

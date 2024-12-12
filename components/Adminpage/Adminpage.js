@@ -1,19 +1,20 @@
 "use client"
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import "./Dashboard.css";
+import "./AdminPage.css";
 import Overview from './Overview/Overview';
+import Profile from './Profile/Profile';
+import Users from './Users/Users';
 import Fundraisers from './Fundraisers/Fundraisers';
 import Donations from './Donations/Donations';
-import Profile from './Profile/Profile';
 
-import { MdDashboard, MdCampaign, MdOutlineManageSearch } from "react-icons/md";
+import { MdDashboard, MdCampaign, MdOutlineManageSearch, MdReport } from "react-icons/md";
 import { SiGooglecampaignmanager360 } from "react-icons/si";
 import { BiSolidDonateHeart } from "react-icons/bi";
-import { FaUserCircle } from "react-icons/fa";
+import { FaUserCircle, FaUsers } from "react-icons/fa";
 import { FaAngleRight } from "react-icons/fa6";
 
-const Dashboard = ({ user, overview, allFundraisers, allDonations }) => {
+const Adminpage = ({ user, overview }) => {
 
     const searchParams = useSearchParams();
     const router = useRouter();
@@ -22,7 +23,7 @@ const Dashboard = ({ user, overview, allFundraisers, allDonations }) => {
     const [selected, setSelected] = useState(page);
     const [validPage, setValidPage] = useState(true);
 
-    const validPages = ['dashboard', 'fundraisers', 'donations', 'profile'];
+    const validPages = ['dashboard', 'users', 'fundraisers', 'donations', 'reports', 'profile'];
 
 
     useEffect(() => {
@@ -60,6 +61,20 @@ const Dashboard = ({ user, overview, allFundraisers, allDonations }) => {
                             <div className={`sidebar-element-right ${selected === 'dashboard' && "sidebar-pointer-show"}`}><FaAngleRight /></div>
                         </li>
                         <li
+                            className={`sidebar-element ${selected === 'users' && 'sidebar-active'}`}
+                            onClick={() => handleSidebarClick('users')}
+                        >
+                            <div className="sidebar-element-left">
+                                <div className="sidebar-element-icon">
+                                    <FaUsers />
+                                </div>
+                                <div className="sidebar-element-text">
+                                    Users
+                                </div>
+                            </div>
+                            <div className={`sidebar-element-right ${selected === 'users' && "sidebar-pointer-show"}`}><FaAngleRight /></div>
+                        </li>
+                        <li
                             className={`sidebar-element ${selected === 'fundraisers' && 'sidebar-active'}`}
                             onClick={() => handleSidebarClick('fundraisers')}
                         >
@@ -88,6 +103,20 @@ const Dashboard = ({ user, overview, allFundraisers, allDonations }) => {
                             <div className={`sidebar-element-right ${selected === 'donations' && "sidebar-pointer-show"}`}><FaAngleRight /></div>
                         </li>
                         <li
+                            className={`sidebar-element ${selected === 'reports' && 'sidebar-active'}`}
+                            onClick={() => handleSidebarClick('reports')}
+                        >
+                            <div className="sidebar-element-left">
+                                <div className="sidebar-element-icon">
+                                    <MdReport />
+                                </div>
+                                <div className="sidebar-element-text">
+                                    Reports
+                                </div>
+                            </div>
+                            <div className={`sidebar-element-right ${selected === 'reports' && "sidebar-pointer-show"}`}><FaAngleRight /></div>
+                        </li>
+                        <li
                             className={`sidebar-element ${selected === 'profile' && 'sidebar-active'}`}
                             onClick={() => handleSidebarClick('profile')}
                         >
@@ -113,19 +142,30 @@ const Dashboard = ({ user, overview, allFundraisers, allDonations }) => {
                         <>
                             {selected === 'dashboard' && (
                                 <>
-                                    <Overview user={user} overview={overview} allFundraisers={allFundraisers} />
+                                    <Overview user={user} overview={overview}/>
+                                </>
+                            )}
+                            {selected === 'users' && (
+                                <>
+                                    <Users/>
                                 </>
                             )}
                             {selected === 'fundraisers' && (
                                 <>
-                                    <Fundraisers user={user} allFundraisers={allFundraisers} />
+                                    <Fundraisers/>
                                 </>
                             )}
                             {selected === 'donations' && (
                                 <>
-                                    <Donations user={user} allDonations={allDonations}/>
+                                    <Donations/>
                                 </>
                             )}
+
+                            {/* {selected === 'donations' && (
+                                <>
+                                    <Donations user={user} allDonations={allDonations}/>
+                                </>
+                            )} */}
                             {selected === 'profile' && (
                                 <>
                                     <Profile userId={user.id} />
@@ -139,4 +179,4 @@ const Dashboard = ({ user, overview, allFundraisers, allDonations }) => {
     )
 }
 
-export default Dashboard
+export default Adminpage
