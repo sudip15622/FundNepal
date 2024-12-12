@@ -1,7 +1,7 @@
 "use client"
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import "./AdminPage.css";
+import "./Adminpage.css";
 import Overview from './Overview/Overview';
 import Profile from './Profile/Profile';
 import Users from './Users/Users';
