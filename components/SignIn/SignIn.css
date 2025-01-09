@@ -3,7 +3,7 @@
     align-items: center;
     justify-content: center;
     position: relative;
-    margin-top: 50px;
+    margin: 70px auto 50px auto;
 }
 
 .login-container .red-box {

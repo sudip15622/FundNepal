@@ -14,7 +14,7 @@ const DonationStatus = ({ status, fundraiser }) => {
     return (
         status ? <>
             <div className="ds-donation-status-container">
-                {status === "Completed" ? <>
+                {status === "Completed" || status === "COMPLETE" ? <>
                     <main className="ds-donation-status">
                         <picture className='ds-status-icon-cont'>
                             <Image className='ds-status-icon' src="/success.png" alt="success-icon" priority width={200} height={200} />

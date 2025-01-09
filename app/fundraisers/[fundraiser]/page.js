@@ -13,7 +13,7 @@ const page = async ({ params }) => {
   const fundraiser = await prisma.fundraiser.findUnique({
     where: {
       slug: fundraiserslug,
-      status: 'Draft',
+      status: 'Published',
     },
     include: {
       user: {

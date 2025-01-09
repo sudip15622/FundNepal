@@ -1,0 +1,315 @@
+.fns-search-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 1300px;
+    margin: 60px auto 50px auto;
+    width: 100%;
+    padding: 0px 30px;
+    color: var(--text-md);
+}
+.fns-search-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 20px;
+    width: 100%;
+    padding: 0px 20px;
+}
+.fns-search-header-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+.fns-search-header-text {
+    font-size: .95rem;
+    font-weight: 500;
+}
+.fns-search-inputBox {
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
+    padding: 0px 15px;
+    border-radius: 20px;
+    position: relative;
+}
+.fns-search-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+
+}
+.fns-search-inputBox input {
+    width: 100%;
+    padding: 15px 0px;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-md);
+}
+.fns-clear-icon {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    cursor: pointer;
+    padding: 2px;
+    background: none;
+    color: var(--text-medium);
+}
+
+.fns-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 200px;
+}
+
+.fns-fundraiser-container {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    justify-content: space-between;
+    column-gap: 50px;
+    row-gap: 30px;
+}
+
+.fns-fundraiser-item {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    width: 30%;
+    max-width: 350px;
+    min-width: 300px;
+    cursor: pointer;
+    transition: background .3s ease-in-out;
+}
+
+.fns-fundraiser-item a {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+    padding: 8px;
+}
+
+.fns-fundraiser-item:hover {
+    background: rgb(233, 244, 244);
+}
+
+.fns-fundraiser-item:hover .fns-fundraiser-cover-image {
+    transform: scale(1.05);
+}
+
+.fns-fundraiser-image-cont {
+    width: 100%;
+    height: 200px;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+}
+
+.fns-fundraiser-cover-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1);
+    transition: transform .3s linear;
+}
+
+.fns-fundraiser-address {
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+    background: var(--text-md);
+    color: var(--text-light);
+    padding: 5px 10px;
+    border-radius: 12px;
+    font-size: .8rem;
+    font-weight: 500;
+}
+
+.fns-fundraiser-details {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    padding: 0px 10px;
+    flex-grow: 1;
+    justify-content: space-between;
+}
+
+.fns-fundraiser-title {
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.fns-details-progress {
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+    width: 100%;
+}
+
+.fns-details-progress-top {
+    width: 100%;
+    height: 6px;
+    border-radius: 10px;
+    background: rgb(219, 218, 218);
+    overflow: hidden;
+}
+
+.fns-progress-bar {
+    width: 60%;
+    height: 100%;
+    border-radius: 10px;
+    background: var(--btn-primary);
+}
+
+.fns-progress-amount {
+    font-weight: bold;
+    font-size: .9rem;
+}
+
+.fns-fundraiser-seemore {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.fns-fundraiser-seemore-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    column-gap: 5px;
+    padding: 10px 20px;
+    font-weight: bold;
+    font-size: .9rem;
+    border-radius: 12px;
+    color: var(--text-md);
+    transition: background .2s linear, color .2s linear;
+    background: rgb(233, 244, 244);
+    cursor: pointer;
+}
+
+.fns-fundraiser-seemore-btn:hover {
+    background: var(--btn-primary);
+    color: var(--text-light);
+}
+
+.fns-search-filters {
+    display: flex;
+    /* align-items: center; */
+    column-gap: 50px;
+    margin: 50px 0px 30px 0px;
+}
+
+.fns-filter-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    position: relative;
+}
+
+.fns-main-filter {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 10px;
+    border-bottom: 3px solid var(--text-md);
+    border-radius: 12px;
+    width: 200px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: background .2s linear;
+}
+
+.fns-main-filter:hover {
+    background: rgb(183, 221, 221);
+}
+.fns-main-filter-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+}
+.fns-filter-option-container {
+    position: absolute;
+    top: 30px;
+    /* border: 2px solid black; */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    background: var(--text-light);
+    width: 200px;
+    border-radius: 12px;
+    padding: 6px 4px;
+    display: flex;
+    flex-direction: column;
+
+    transform: translateY(0%);
+    opacity: 0;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    pointer-events: none;
+}
+.fns-show-filters {
+    transform: translateY(10%);
+    opacity: 1;
+    pointer-events: auto;
+}
+.fns-filter-option {
+    padding: 8px 6px;
+    display: flex;
+    align-items: center;
+    column-gap: 12px;
+    font-size: 1.05rem;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background .2s linear;
+}
+.fns-filter-option:hover {
+    background: rgb(183, 221, 221);
+}
+.fns-filter-option-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+
+.fns-no-fundraiser {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    row-gap: 10px;
+    width: 100%;
+    height: 200px;
+    color: gray;
+}
+.fns-no-fundraiser-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+.fns-no-fundraiser-text {
+    font-size: .95rem;
+    font-weight: 500;
+}
+
+.fns-remove-filter {
+    color: rgb(183, 5, 5);
+}

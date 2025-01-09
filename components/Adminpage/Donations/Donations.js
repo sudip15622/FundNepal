@@ -47,6 +47,7 @@ const Donations = () => {
             if (response.success) {
                 setData(response.donations);
                 setTotalDonations(response.totalDonations);
+                console.log(response.donations);
             } else {
                 console.error(response);
             }
@@ -159,7 +160,7 @@ const Donations = () => {
             },
         },
         {
-            header: 'Donated To',
+            header: 'Fundraiser',
             cell: ({ row }) => {
                 const { fundraiser } = row.original;
                 return (
@@ -187,7 +188,7 @@ const Donations = () => {
             },
         },
         {
-            header: 'Date Donated',
+            header: 'Date',
             accessorKey: 'dateDonated',
             cell: ({ getValue }) => getDate(getValue()),
         },
@@ -395,36 +396,65 @@ const Donations = () => {
 
                                         <h2 className="add-popup-title2">Transaction Details:</h2>
 
-                                        <ul className="add-transaction-details-list">
-                                            <li className="add-donation-details-listitem">
-                                                <span className="add-donation-details-key">Payment Method:</span>
-                                                <span className="add-donation-details-value">{currentDetails.paymentMethod}</span>
-                                            </li>
-                                            <li className="add-donation-details-listitem">
-                                                <span className="add-donation-details-key">pidx:</span>
-                                                <span className="add-donation-details-value">{currentDetails.pidx}</span>
-                                            </li>
-                                            <li className="add-donation-details-listitem">
-                                                <span className="add-donation-details-key">Status:</span>
-                                                <span className="add-donation-details-value">{currentDetails.status}</span>
-                                            </li>
-                                            <li className="add-donation-details-listitem">
-                                                <span className="add-donation-details-key">Purchase Order Id:</span>
-                                                <span className="add-donation-details-value">{currentDetails.purchase_order_id}</span>
-                                            </li>
-                                            <li className="add-donation-details-listitem">
-                                                <span className="add-donation-details-key">Purchase Order Name:</span>
-                                                <span className="add-donation-details-value">{currentDetails.purchase_order_name}</span>
-                                            </li>
-                                            <li className="add-donation-details-listitem">
-                                                <span className="add-donation-details-key">Transaction Id:</span>
-                                                <span className="add-donation-details-value">{currentDetails.transaction_id}</span>
-                                            </li>
-                                            <li className="add-donation-details-listitem">
-                                                <span className="add-donation-details-key">Total Amount:</span>
-                                                <span className="add-donation-details-value">Rs.{currentDetails.totalAmount}</span>
-                                            </li>
-                                        </ul>
+                                        {currentDetails.paymentMethod === 'Khalti' ? (
+                                            <ul className="add-transaction-details-list">
+                                                <li className="add-donation-details-listitem">
+                                                    <span className="add-donation-details-key">Payment Method:</span>
+                                                    <span className="add-donation-details-value">{currentDetails.paymentMethod}</span>
+                                                </li>
+                                                <li className="add-donation-details-listitem">
+                                                    <span className="add-donation-details-key">pidx:</span>
+                                                    <span className="add-donation-details-value">{currentDetails.transactionDetails.pidx}</span>
+                                                </li>
+                                                <li className="add-donation-details-listitem">
+                                                    <span className="add-donation-details-key">Status:</span>
+                                                    <span className="add-donation-details-value">{currentDetails.transactionDetails.status}</span>
+                                                </li>
+                                                <li className="add-donation-details-listitem">
+                                                    <span className="add-donation-details-key">Purchase Order Id:</span>
+                                                    <span className="add-donation-details-value">{currentDetails.transactionDetails.purchase_order_id}</span>
+                                                </li>
+                                                <li className="add-donation-details-listitem">
+                                                    <span className="add-donation-details-key">Purchase Order Name:</span>
+                                                    <span className="add-donation-details-value">{currentDetails.transactionDetails.purchase_order_name}</span>
+                                                </li>
+                                                <li className="add-donation-details-listitem">
+                                                    <span className="add-donation-details-key">Transaction Id:</span>
+                                                    <span className="add-donation-details-value">{currentDetails.transactionDetails.transaction_id}</span>
+                                                </li>
+                                                <li className="add-donation-details-listitem">
+                                                    <span className="add-donation-details-key">Total Amount:</span>
+                                                    <span className="add-donation-details-value">Rs.{currentDetails.totalAmount}</span>
+                                                </li>
+                                            </ul>
+                                        ) : (
+                                            <ul className="add-transaction-details-list">
+                                                <li className="add-donation-details-listitem">
+                                                    <span className="add-donation-details-key">Payment Method:</span>
+                                                    <span className="add-donation-details-value">{currentDetails.paymentMethod}</span>
+                                                </li>
+                                                <li className="add-donation-details-listitem">
+                                                    <span className="add-donation-details-key">Signature:</span>
+                                                    <span className="add-donation-details-value">{currentDetails.transactionDetails.signature}</span>
+                                                </li>
+                                                <li className="add-donation-details-listitem">
+                                                    <span className="add-donation-details-key">Status:</span>
+                                                    <span className="add-donation-details-value">{currentDetails.transactionDetails.status}</span>
+                                                </li>
+                                                <li className="add-donation-details-listitem">
+                                                    <span className="add-donation-details-key">Transaction UUId:</span>
+                                                    <span className="add-donation-details-value">{currentDetails.transactionDetails.transaction_uuid}</span>
+                                                </li>
+                                                <li className="add-donation-details-listitem">
+                                                    <span className="add-donation-details-key">Product Code:</span>
+                                                    <span className="add-donation-details-value">{currentDetails.transactionDetails.product_code}</span>
+                                                </li>
+                                                <li className="add-donation-details-listitem">
+                                                    <span className="add-donation-details-key">Total Amount:</span>
+                                                    <span className="add-donation-details-value">Rs.{currentDetails.transactionDetails.totalAmount}</span>
+                                                </li>
+                                            </ul>
+                                        )}
                                     </div>
                                 </div>
                             )}

@@ -1,0 +1,71 @@
+.fn-inputBox {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    margin: 20px 0px 30px 0px;
+    display: flex;
+    align-items: center;
+    /* border: 2px solid black; */
+}
+.fn-inputBox input[type="number"]::-webkit-outer-spin-button,
+.fn-inputBox input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+.fn-inputBox input {
+    /* box-shadow: 0px 8px 10px rgba(0, 0, 0, 0.4); */
+    border: 2px solid gray;
+    padding: 15px 20px;
+    width: 100%;
+    outline: none;
+    background: transparent;
+    border-radius: 20px;
+    color: var(--text-dark);
+    font-size: 1rem;
+    font-weight: 500;
+    transition: .2s linear;
+}
+
+.fn-inputBox span {
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+    color: var(--text-medium);
+    font-size: 1rem;
+    font-weight: 500;
+    pointer-events: none;
+    transition: .2s linear;
+}
+
+.fn-inputBox input:focus~span,
+.fn-inputBox input.valid~span {
+    font-size: 0.8em;
+    transform: translateX(-5px) translateY(-35px);
+    padding: 1px 10px;
+    border-radius: 10px;
+    background: var(--text-light);
+    /* box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3); */
+    border: 2px solid gray;
+}
+
+.fn-inputBox input:focus {
+    border: 2px solid var(--btn-primary);
+}
+.fn-inputBox input.error {
+    border: 2px solid rgb(182, 2, 2);
+}
+.fn-inputBox input:focus~span {
+    border: 2px solid var(--btn-primary);
+}
+.fn-inputBox input:focus.error~span {
+    border: 2px solid rgb(182, 2, 2);
+}
+
+.fn-input-error {
+    position: absolute;
+    top: 60px;
+    left: 20px;
+    font-size: .95rem;
+    font-weight: 500;
+    color: rgb(182, 2, 2);
+}

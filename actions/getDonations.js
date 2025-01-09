@@ -124,6 +124,7 @@ export async function getAllDonationsByFundraiserId(fundraiserId) {
                 fundraiserId: true,
                 userId: true,
                 dateDonated: true,
+                transactionDetails: true,
                 user: {
                     select: {
                         name: true,

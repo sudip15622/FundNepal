@@ -1,0 +1,242 @@
+.report-page-container {
+    width: 100%;
+    min-height: calc(100vh - 70px);
+    display: flex;
+    justify-content: center;
+    background: rgb(233, 244, 244);
+    position: relative;
+    color: var(--text-md);
+}
+.rp-gobackto-fundraiser {
+    position: absolute;
+    top: 50px;
+    left: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    padding: 2px 8px;
+    border-radius: 8px;
+    font-size: .9rem;
+    font-weight: 500;
+    column-gap: 2px;
+    background: none;
+    transition: background .2s linear;
+}
+.rp-gobackto-fundraiser:hover {
+    background: var(--text-light);
+}
+.rp-goback-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+}
+.rp-report-page {
+    width: 100%;
+    max-width: 620px;
+    border-radius: 20px;
+    margin: 30px 20px;
+    background: var(--text-light);
+    padding: 20px 40px;
+
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}
+
+.rp-donation-page-title {
+    display: flex;
+    flex-direction: column;
+    row-gap: 4px;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    margin: 0px auto;
+}
+
+.rp-title-title {
+    font-size: 1.4rem;
+    font-weight: bold;
+    text-align: center;
+}
+.rp-title-underline {
+    margin: 0px auto;
+    width: 100%;
+    height: 3px;
+    background: var(--btn-primary);
+    border-radius: 10px;
+}
+
+.rp-fundraiser-detials {
+    display: flex;
+    column-gap: 12px;
+    width: 100%;
+    padding: 8px;
+    border-radius: 12px;
+    background: rgb(233, 244, 244);
+}
+
+.rp-details-left {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    height: 80px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.rp-details-left-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.rp-details-right {
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+    padding: 5px 0px;
+}
+
+.rp-fundraiser-title {
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+.rp-fundraiser-text {
+    font-size: .9rem;
+    font-weight: 500;
+}
+.rp-select-cause-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.rp-select-cause-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+.rp-select-cause-selectall {
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+    width: fit-content;
+    cursor: pointer;
+}
+
+.rp-report-note {
+    font-size: .9rem;
+    font-weight: 500;
+    color: var(--btn-secondary);
+}
+.rp-select-cause-lists {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}
+.rp-cause-listitem {
+    display: flex;
+    column-gap: 16px;
+    align-items: center;
+    padding: 10px;
+    border-radius: 12px;
+    background: none;
+    transition: background .2s linear;
+    cursor: pointer;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+}
+
+.rp-selected {
+    background: var(--item-bg);
+}
+.rp-cause-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+.rp-cause-details {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    row-gap: 5px;
+}
+.rp-cause-details-title {
+    font-size: 1rem;
+    font-weight: bold;
+}
+.rp-cause-details-text {
+    font-size: .9rem;
+    font-weight: 500;
+}
+.rp-report-btn {
+    margin: 0px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    height: 40px;
+    border-radius: 12px;
+    background: rgb(133, 2, 2);
+    color: var(--text-light);
+    font-size: .95rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background .2s linear;
+}
+.rp-report-btn:disabled {
+    cursor: not-allowed;
+}
+.rp-action-loading-container {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0px;
+    left: 0px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(4px);
+    z-index: 200;
+}
+
+.rp-action-loading-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    row-gap: 15px;
+    padding: 20px;
+    width: 250px;
+    background: var(--text-light);
+    border-radius: 12px;
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.2);
+    color: green;
+    text-align: center;
+}
+
+.rp-action-loading-error {
+    color: rgb(173, 4, 4);
+}
+
+.rp-action-content-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+}
+
+.rp-action-content-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 16px;
+    border-radius: 12px;
+    background: var(--btn-primary);
+    color: var(--text-light);
+    font-size: .9rem;
+    font-weight: bold;
+    cursor: pointer;
+}

@@ -1,27 +1,26 @@
 "use client"
-import React, { useState, useEffect, useRef} from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { useReactTable, getCoreRowModel, flexRender, getPaginationRowModel, getSortedRowModel } from '@tanstack/react-table';
-import { getUsers, changeUserRole, deleteUserByAdmin } from '@/actions/handleLogin';
+import { getBanksForAdmin, deleteBankByAdmin, changeBankStatus } from '@/actions/handleBank';
 import { useDebounce } from '@/hooks/useDebounce';
 import { MoonLoader } from 'react-spinners';
 import Image from 'next/image';
-import "./Users.css";
 
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import { MdDelete, MdError } from "react-icons/md";
 import { RiAdminFill } from "react-icons/ri";
 import { FaCheckCircle } from 'react-icons/fa';
 
-const Users = () => {
+const Banks = () => {
 
     // const table = useReactTable();
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false);
     const [pageIndex, setPageIndex] = useState(0);
-    const [totalUsers, setTotalUsers] = useState(0);
+    const [totalBanks, setTotalBanks] = useState(0);
     const [pageSize, setPageSize] = useState(10);
-    const [sortUser, setSortUser] = useState('desc');
-    const [roleFilter, setRoleFilter] = useState('');
+    const [sortBank, setSortBank] = useState('desc');
+    const [statusFilter, setStatusFilter] = useState('');
     const [searchQuery, setSearchQuery] = useState('');
     const [actionPopup, setActionPopup] = useState(false);
     const [selectedAction, setSelectedAction] = useState(null);
@@ -32,14 +31,13 @@ const Users = () => {
 
     const debouncedSearchQuery = useDebounce(searchQuery, 500);
 
-    const getAllUsers = async () => {
+    const getAllBanks = async () => {
         try {
             setLoading(true);
-            const response = await getUsers(pageIndex, pageSize, sortUser, debouncedSearchQuery, roleFilter);
+            const response = await getBanksForAdmin(pageIndex, pageSize, sortBank, debouncedSearchQuery, statusFilter);
             if (response.success) {
-                setData(response.users);
-                setTotalUsers(response.totalUsers);
-                // console.log(response.users);
+                setData(response.banks);
+                setTotalBanks(response.totalBanks);
             } else {
                 console.error(response);
             }
@@ -51,8 +49,8 @@ const Users = () => {
     }
 
     useEffect(() => {
-        getAllUsers();
-    }, [pageIndex, pageSize, sortUser, debouncedSearchQuery, roleFilter]);
+        getAllBanks();
+    }, [pageIndex, pageSize, sortBank, debouncedSearchQuery, statusFilter]);
 
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -73,21 +71,21 @@ const Users = () => {
         return formattedDate;
     }
 
-    const handleMakeAdmin = async (id, role) => {
+    const handleChangeStatus = async (id, status) => {
         setActionLoading(true);
-        const response = await changeUserRole(id, role);
+        const response = await changeBankStatus(id, status);
         if (response.success) {
-            setActionInfo("Successfully changed user's role!");
+            setActionInfo("Successfully changed bank's status!");
         } else {
             setActionError(response.error);
         }
     }
 
-    const handleDeleteUser = async (id) => {
+    const handleDeleteBank = async (id) => {
         setActionLoading(true);
-        const response = await deleteUserByAdmin(id);
+        const response = await deleteBankByAdmin(id);
         if (response.success) {
-            setActionInfo("Successfully deleted user!");
+            setActionInfo("Successfully deleted bank!");
         } else {
             setActionError(response.error);
         }
@@ -97,60 +95,78 @@ const Users = () => {
         setActionLoading(false);
         setActionInfo('');
         setActionError('');
-        getAllUsers();
+        getAllBanks();
     }
 
     const columns = [
         {
-            header: 'Name',
+            header: 'Bank Name',
             cell: ({ row }) => {
-                const { name, avatar } = row.original;
+                const { bankName } = row.original;
+                return (
+                    <span className="adu-users-table-spans">{bankName}</span>
+                );
+            },
+        },
+        {
+            header: `Holder's Name`,
+            cell: ({ row }) => {
+                const { holderName } = row.original;
+                return (
+                    <span className="adu-users-table-spans">{holderName}</span>
+                );
+            },
+        },
+        {
+            header: 'Account No.',
+            cell: ({ row }) => {
+                const { accountNumber } = row.original;
+                return (
+                    <span className="adu-users-table-spans">{accountNumber}</span>
+                );
+            },
+        },
+        {
+            header: 'Mobile No.',
+            cell: ({ row }) => {
+                const { mobileNumber } = row.original;
+                return (
+                    <span className="adu-users-table-spans">{mobileNumber}</span>
+                );
+            },
+        },
+        {
+            header: 'User',
+            cell: ({ row }) => {
+                const { user } = row.original;
                 return (
                     <div className="adu-users-name-container">
                         <picture className='adu-users-avatar-container'>
-                            <Image className='adu-users-avatar' src={avatar!=='' ? avatar : "/user.png"} width={50} height={45} alt="user-avatar" />
+                            <Image className='adu-users-avatar' src={user.avatar !== '' ? user.avatar : "/user.png"} width={50} height={45} alt="user-avatar" />
                         </picture>
-                        <span className="adu-users-table-spans">{name}</span>
+                        <span className="adu-users-table-spans">{user.name}</span>
                     </div>
                 );
             },
         },
         {
-            header: 'Username',
+            header: 'Status',
             cell: ({ row }) => {
-                const { userName } = row.original;
+                const { status } = row.original;
                 return (
-                    <span className="adu-users-table-spans">{userName}</span>
-                );
-            },
-        },
-        {
-            header: 'Email',
-            cell: ({ row }) => {
-                const { email } = row.original;
-                return (
-                    <span className="adu-users-table-spans">{email}</span>
-                );
-            },
-        },
-        {
-            header: 'Role',
-            cell: ({ row }) => {
-                const { role } = row.original;
-                return (
-                    <span className="adu-users-table-spans">{role}</span>
+                    <span className={`adu-users-table-spans ${status === 'Active' ? "adf-published" : "adf-draft"}`}>{status}</span>
                 );
             },
         },
         {
             header: 'Date',
-            accessorKey: 'dateJoined',
+            accessorKey: 'dateAdded',
             cell: ({ getValue }) => getDate(getValue()),
         },
         {
             header: 'Action',
             cell: ({ row }) => {
-                const { id, role } = row.original;
+                const { id, status } = row.original;
                 return (
                     <>
                         <button type='button' className="adu-users-table-spans adu-action-btn" onClick={(e) => { setActionPopup(!actionPopup); setSelectedAction(row.original); }}><HiOutlineDotsHorizontal /></button>
@@ -158,13 +174,13 @@ const Users = () => {
                             <>
                                 {selectedAction.id === row.original.id ?
                                     <div className="adu-order-action-popup" ref={actionRef}>
-                                        <div className="adu-popup-inside-divs" onClick={(e) => { handleMakeAdmin(id, role); }}>
+                                        <div className={`adu-popup-inside-divs ${status === 'Pending' ? "adf-published" : "adf-draft"}`} onClick={(e) => { handleChangeStatus(id, status) }}>
                                             <div className="adu-inside-div-icon"><RiAdminFill /></div>
-                                            {role === 'Admin' ? <div className="adu-inside-div-text">Remove Admin</div> : <div className="adu-inside-div-text">Make Admin</div>}
+                                            {status === 'Active' ? <div className="adu-inside-div-text">Mark as Pending</div> : <div className="adu-inside-div-text">Mark as Active</div>}
                                         </div>
-                                        <div className="adu-popup-inside-divs adu-delete-user-div" onClick={(e) => { handleDeleteUser(id); }}>
+                                        <div className="adu-popup-inside-divs adu-delete-user-div" onClick={(e) => { handleDeleteBank(id); }}>
                                             <div className="adu-inside-div-icon"><MdDelete /></div>
-                                            <div className="adu-inside-div-text">Delete User</div>
+                                            <div className="adu-inside-div-text">Delete Bank</div>
                                         </div>
                                     </div> : <></>}
                             </> : <></>}
@@ -180,7 +196,7 @@ const Users = () => {
         getCoreRowModel: getCoreRowModel(),
         // getSortedRowModel: getSortedRowModel(),
         getPaginationRowModel: getPaginationRowModel(),
-        pageCount: Math.ceil(totalUsers / pageSize),
+        pageCount: Math.ceil(totalBanks / pageSize),
     })
 
     const canPreviousPage = pageIndex > 0;
@@ -190,22 +206,22 @@ const Users = () => {
     return (
         <div className='adu-users-container'>
             <div className="adu-users-header">
-                <h1 className="adu-users-title">All Users</h1>
-                <p className="adu-users-text">Below is the list of all users now in FundNepal.</p>
+                <h1 className="adu-users-title">All Banks</h1>
+                <p className="adu-users-text">Below is the list of all banks added in FundNepal.</p>
             </div>
 
             <div className="adu-users-filters-container">
                 <input
                     type="text"
-                    placeholder="Search user"
+                    placeholder="Search bank"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     className="adu-search-input"
                 />
 
                 <select
-                    value={sortUser}
-                    onChange={(e) => setSortUser(e.target.value)}
+                    value={sortBank}
+                    onChange={(e) => setSortBank(e.target.value)}
                     className="adu-sort-select"
                 >
                     <option value="desc">Newest First</option>
@@ -213,13 +229,13 @@ const Users = () => {
                 </select>
 
                 <select
-                    value={roleFilter}
-                    onChange={(e) => setRoleFilter(e.target.value)}
+                    value={statusFilter}
+                    onChange={(e) => setStatusFilter(e.target.value)}
                     className="adu-sort-select"
                 >
-                    <option value="">All Role</option>
-                    <option value="Admin">Admin</option>
-                    <option value="User">User</option>
+                    <option value="">All Status</option>
+                    <option value="Active">Active</option>
+                    <option value="Pending">Pending</option>
                 </select>
 
             </div>
@@ -259,14 +275,14 @@ const Users = () => {
                         </div>
                     ) : (
                         <div className="adu-no-users-container">
-                            No User Found!
+                            No Bank Found!
                         </div>
                     )}
 
                     {data.length > 0 && (
                         <div className="adu-pagination-container">
                             <div className="adu-user-count">
-                                {`Showing ${data.length} ${data.length > 1 ? "users" : "user"} out of ${totalUsers}`}
+                                {`Showing ${data.length} ${data.length > 1 ? "banks" : "bank"} out of ${totalBanks}`}
                             </div>
                             <div className="adu-pagination-control">
                                 <button
@@ -299,14 +315,14 @@ const Users = () => {
                                 <div className="adu-action-loading-content">
                                     <div className="adu-action-content-icon"><FaCheckCircle /></div>
                                     <div className="adu-action-content-text">{actionInfo}</div>
-                                    <button className="adu-action-content-btn" onClick={(e) => {handleOkClick();}}>OK</button>
+                                    <button className="adu-action-content-btn" onClick={(e) => { handleOkClick(); }}>OK</button>
                                 </div>
                             ) : (
                                 actionError ? (
                                     <div className="adu-action-loading-content adu-action-loading-error">
                                         <div className="adu-action-content-icon"><MdError /></div>
                                         <div className="adu-action-content-text">{actionError}</div>
-                                        <button className="adu-action-content-btn" onClick={(e) => {handleOkClick();}}>OK</button>
+                                        <button className="adu-action-content-btn" onClick={(e) => { handleOkClick(); }}>OK</button>
                                     </div>
                                 ) : (
                                     <MoonLoader size={100} color='var(--btn-secondary)' />
@@ -321,4 +337,4 @@ const Users = () => {
     )
 }
 
-export default Users
+export default Banks

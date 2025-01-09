@@ -4,6 +4,7 @@ import "./Fundraiser.css";
 import Image from 'next/image';
 import Link from 'next/link';
 import DonationPage from './DonationPage/DonationPage';
+import ReportPage from './DonationPage/ReportPage';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { PulseLoader } from 'react-spinners';
 
@@ -34,7 +35,7 @@ const Fundraiser = ({ details, user, donations }) => {
     const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
-        if (page == 'donation') {
+        if (page == 'donation' || page == 'report') {
             setValidPage(true);
         } else {
             setValidPage(false);
@@ -116,93 +117,101 @@ const Fundraiser = ({ details, user, donations }) => {
             return;
         }
 
-        setTimeout(() => {
-            router.push(`/fundraisers/${details.slug}?page=donation`);
-            setIsLoading(false);
-        }, 200);
+        router.push(`/fundraisers/${details.slug}?page=donation`);
+        setIsLoading(false);
+    }
+
+    const handleReportFundraiser = () => {
+        if (!user) {
+            router.push(`/signin?redirectTo=/fundraisers/${details.slug}?page=report`);
+            return;
+        }
+        router.push(`/fundraisers/${details.slug}?page=report`);
     }
 
     return (
-        page === 'donation' ? <DonationPage details={details} user={user} /> : <div className='ff-fundraiser-container'>
-            <main className='ff-fundraiser-details-cont'>
-                <h1 className="ff-fundraiser-details-title">
-                    {details.title}
-                </h1>
-                <picture className='ff-fundraiser-cover-cont'>
-                    <Image className='ff-fundraiser-cover-image' src={getImageUrl(details.photo)} width={600} height={500} alt={`image-${details.id}`} />
-                </picture>
+        page === 'donation' ? <DonationPage details={details} user={user} /> : (
+            page === 'report' ? <ReportPage user={user} details={details}/> : (
+                <div className='ff-fundraiser-container'>
+                    <main className='ff-fundraiser-details-cont'>
+                        <h1 className="ff-fundraiser-details-title">
+                            {details.title}
+                        </h1>
+                        <picture className='ff-fundraiser-cover-cont'>
+                            <Image className='ff-fundraiser-cover-image' src={getImageUrl(details.photo)} width={600} height={500} alt={`image-${details.id}`} />
+                        </picture>
 
-                <div className="ff-below-contents">
-                    <p className="ff-who-organizing-text">
-                        <span className='ff-address-icon'><FaLocationDot /></span> {getAddress(details.beneficiary)}
-                    </p>
+                        <div className="ff-below-contents">
+                            <p className="ff-who-organizing-text">
+                                <span className='ff-address-icon'><FaLocationDot /></span> {getAddress(details.beneficiary)}
+                            </p>
 
-                    <div className="ff-details-separator-line"></div>
+                            <div className="ff-details-separator-line"></div>
 
-                    <div className="ff-donation-protected">
-                        <div className="ff-protected-icon"><IoShieldCheckmark />
-                        </div>
-                        <div className="ff-protected-text">Donation Protected</div>
-                    </div>
+                            <div className="ff-donation-protected">
+                                <div className="ff-protected-icon"><IoShieldCheckmark />
+                                </div>
+                                <div className="ff-protected-text">Donation Protected</div>
+                            </div>
 
-                    <div className="ff-details-separator-line"></div>
+                            <div className="ff-details-separator-line"></div>
 
-                    <div className="ff-details-description-cont">
-                        <p className="ff-details-desc">
-                            {!showMore && <span className="ff-desc-bottom-shadow"></span>}
-                            {showMore ? details.description : details.description.slice(0, 200)}
-                        </p>
-                        {details.description.length > 200 && <button className="ff-desc-read-more" onClick={(e) => { setShowMore(!showMore) }}>
-                            <div className="ff-readmore-text">{showMore ? "Read less" : "Read more"}</div>
-                            <div className="ff-readmore-icon">{showMore ? <FaAngleUp /> : <FaAngleDown />}</div>
-                        </button>}
-                    </div>
+                            <div className="ff-details-description-cont">
+                                <p className="ff-details-desc">
+                                    {!showMore && <span className="ff-desc-bottom-shadow"></span>}
+                                    {showMore ? details.description : details.description.slice(0, 200)}
+                                </p>
+                                {details.description.length > 200 && <button className="ff-desc-read-more" onClick={(e) => { setShowMore(!showMore) }}>
+                                    <div className="ff-readmore-text">{showMore ? "Read less" : "Read more"}</div>
+                                    <div className="ff-readmore-icon">{showMore ? <FaAngleUp /> : <FaAngleDown />}</div>
+                                </button>}
+                            </div>
 
-                    <div className="ff-details-share-donate">
-                        <button className="ff-details-sd-btn" onClick={(e) => { handleDonateClick(); }}>
-                            <div className="ff-details-sd-icon"><LiaDonateSolid /></div> Donate
-                        </button>
-                        <button className="ff-details-sd-btn" onClick={(e) => { handleShare(''); }}>
-                            {shareInfo != '' && <span className="ff-sd-btn-info">{shareInfo}</span>}
-                            <div className="ff-details-sd-icon"><GoCopy /></div> Copy link
-                        </button>
-                    </div>
+                            <div className="ff-details-share-donate">
+                                <button className="ff-details-sd-btn" onClick={(e) => { handleDonateClick(); }}>
+                                    <div className="ff-details-sd-icon"><LiaDonateSolid /></div> Donate
+                                </button>
+                                <button className="ff-details-sd-btn" onClick={(e) => { handleShare(''); }}>
+                                    {shareInfo != '' && <span className="ff-sd-btn-info">{shareInfo}</span>}
+                                    <div className="ff-details-sd-icon"><GoCopy /></div> Copy link
+                                </button>
+                            </div>
 
-                    <div className="ff-details-separator-line"></div>
+                            <div className="ff-details-separator-line"></div>
 
-                    <div className="ff-organizer-and-beneficiary">
-                        <h2 className="ff-organizer-beneficiary-title">
-                            Organizer {details.user.name !== details.beneficiary[0].name && "and Beneficiary"}
-                        </h2>
-                        <div className="ff-organizer-beneficiary-cont">
-                            <div className="ff-organizer-cont">
-                                {details.user.avatar ? <picture className="ff-user-avatar-image-cont">
-                                    <Image className='ff-user-avatar-image' src={details.user.avatar} width={50} height={45} alt="user-avatar" />
-                                </picture> : <div className="ff-organizer-icon"><FaUserCircle /></div>}
-                                <div className="ff-organizer-text">
-                                    <div className="ff-organizer-name">{details.user.name}</div>
-                                    <div className="ff-organizer-address">Organizer</div>
-                                    <button className="ff-organizer-contact-btn">
-                                        <div className="ff-organizer-contact-icon"><MdOutlineEmail /></div> Contact
-                                    </button>
+                            <div className="ff-organizer-and-beneficiary">
+                                <h2 className="ff-organizer-beneficiary-title">
+                                    Organizer {details.user.name !== details.beneficiary[0].name && "and Beneficiary"}
+                                </h2>
+                                <div className="ff-organizer-beneficiary-cont">
+                                    <div className="ff-organizer-cont">
+                                        {details.user.avatar ? <picture className="ff-user-avatar-image-cont">
+                                            <Image className='ff-user-avatar-image' src={details.user.avatar} width={50} height={45} alt="user-avatar" />
+                                        </picture> : <div className="ff-organizer-icon"><FaUserCircle /></div>}
+                                        <div className="ff-organizer-text">
+                                            <div className="ff-organizer-name">{details.user.name}</div>
+                                            <div className="ff-organizer-address">Organizer</div>
+                                            {/* <button className="ff-organizer-contact-btn">
+                                                <div className="ff-organizer-contact-icon"><MdOutlineEmail /></div> Contact
+                                            </button> */}
+                                        </div>
+                                    </div>
+
+                                    {details.user.name !== details.beneficiary[0].name && <>
+                                        <div className="ff-ob-mid-arrow"><FaArrowRightLong /></div>
+
+                                        <div className="ff-organizer-cont">
+                                            <div className="ff-organizer-icon"><FaUserCircle /></div>
+                                            <div className="ff-organizer-text">
+                                                <div className="ff-organizer-name">{details.beneficiary[0].name}</div>
+                                                <div className="ff-organizer-address">Beneficiary</div>
+                                            </div>
+                                        </div>
+                                    </>}
                                 </div>
                             </div>
 
-                            {details.user.name !== details.beneficiary[0].name && <>
-                                <div className="ff-ob-mid-arrow"><FaArrowRightLong /></div>
-
-                                <div className="ff-organizer-cont">
-                                    <div className="ff-organizer-icon"><FaUserCircle /></div>
-                                    <div className="ff-organizer-text">
-                                        <div className="ff-organizer-name">{details.beneficiary[0].name}</div>
-                                        <div className="ff-organizer-address">Beneficiary</div>
-                                    </div>
-                                </div>
-                            </>}
-                        </div>
-                    </div>
-
-                    {/* <div className="ff-details-separator-line"></div>
+                            {/* <div className="ff-details-separator-line"></div>
 
                     <div className="ff-details-comments">
                         <h2 className="ff-organizer-beneficiary-title">
@@ -230,93 +239,95 @@ const Fundraiser = ({ details, user, donations }) => {
                         </ul>
                     </div> */}
 
-                    <div className="ff-details-separator-line"></div>
+                            <div className="ff-details-separator-line"></div>
 
-                    <div className="ff-details-category-info">
-                        <div className="ff-details-published-date">Published {timesAgo(details.datePublished)} ---</div>
-                        <Link href={`/categories/${details.category.replace(/\s+/g, '').toLowerCase()}`}>{details.category}</Link>
-                    </div>
-
-                    <div className="ff-details-separator-line"></div>
-
-                    <button className="ff-details-report-section">
-                        <div className="ff-report-icon"><FiFlag /></div>
-                        <div className="ff-report-text">Report fundraiser</div>
-                    </button>
-
-                </div>
-            </main>
-            <aside className="ff-fundraiser-donate-box">
-                <div className="ff-donate-box-first">
-                    <div className="ff-box-goal-and-amount">
-                        <span className='ff-box-raised-amount'>Rs.{details.totalDonationAmount}</span>
-                        {details.progress < 100 ? <span className='ff-box-goal-amount'>raised of Rs.{details.goal} goal</span> : <span className='ff-box-goal-amount'>raised ( Goal Completed )</span>}
-                    </div>
-                    <div className="ff-box-progress">
-                        <div className="ff-box-progress-bar" style={{ width: `${details.progress}%` }}></div>
-                    </div>
-                    <span className="ff-box-total-donation">
-                        {donations.totalDonationCount} {donations.totalDonationCount > 1 ? 'donations' : 'donation'}
-                    </span>
-                </div>
-
-                <div className="ff-donate-box-buttons">
-                    {shareBoxInfo != '' && <span className="ff-sd-btn-info">{shareBoxInfo}</span>}
-                    <button className="ff-box-button ff-box-share-btn" onClick={(e) => { handleShare('box'); }}>
-                        <span>Copy link</span>
-                    </button>
-                    <button className="ff-box-button ff-box-donate-btn" onClick={(e) => { handleDonateClick(); }}>
-                        <span>{isLoading ? <PulseLoader size={10} margin={4} /> : `Donate Now`}</span>
-                    </button>
-                </div>
-
-                <div className="ff-donate-box-latest-donation">
-                    <div className="ff-box-latest-icon">{donations.totalRecentDonationCount < 1 ? <HiMiniBarsArrowDown /> : <HiMiniBarsArrowUp />}</div>
-                    {donations.totalRecentDonationCount < 1 ? <div className="ff-box-latest-text">No recent donation</div> : <div className="ff-box-latest-text">{donations.totalRecentDonationCount} {donations.totalRecentDonationCount > 1 ? 'people' : 'person'} just donated</div>}
-                </div>
-
-                {donations.firstDonation ? <ul className="ff-donate-box-donator-types">
-                    <li className="ff-box-types-item">
-                        <div className="ff-comments-item-icon"><BiDonateHeart /></div>
-                        <div className="ff-types-item-details">
-                            <div className="ff-types-item-name">{donations.recentDonation.user.name}</div>
-                            <div className="ff-types-item-amount-type">
-                                <span className="ff-types-item-amount">Rs.{donations.recentDonation.donationAmount}</span>
-                                <span className="ff-type-item-type">--- Recent donation</span>
+                            <div className="ff-details-category-info">
+                                <div className="ff-details-published-date">Published {timesAgo(details.datePublished)} ---</div>
+                                <Link href={`/categories/${details.category.replace(/\s+/g, '').toLowerCase()}`}>{details.category}</Link>
                             </div>
-                        </div>
-                    </li>
-                    <li className="ff-box-types-item">
-                        <div className="ff-comments-item-icon"><BiDonateHeart /></div>
-                        <div className="ff-types-item-details">
-                            <div className="ff-types-item-name">{donations.topDonation.user.name}</div>
-                            <div className="ff-types-item-amount-type">
-                                <span className="ff-types-item-amount">Rs.{donations.topDonation.donationAmount}</span>
-                                <span className="ff-type-item-type">--- Top donation</span>
-                            </div>
-                        </div>
-                    </li>
-                    <li className="ff-box-types-item">
-                        <div className="ff-comments-item-icon"><BiDonateHeart /></div>
-                        <div className="ff-types-item-details">
-                            <div className="ff-types-item-name">{donations.firstDonation.user.name}</div>
-                            <div className="ff-types-item-amount-type">
-                                <span className="ff-types-item-amount">Rs.{donations.firstDonation.donationAmount}</span>
-                                <span className="ff-type-item-type">--- First donation</span>
-                            </div>
-                        </div>
-                    </li>
-                </ul> : <div className="ff-become-first-donator">
-                    <div className="ff-first-donator-icon"><BiDonateHeart /></div>
-                    <div className="ff-first-donator-text">Be the first to donate</div>
-                </div>}
 
-                {/* <div className="ff-donate-box-last-buttons">
+                            <div className="ff-details-separator-line"></div>
+
+                            <button className="ff-details-report-section" onClick={(e) => { handleReportFundraiser() }}>
+                                <div className="ff-report-icon"><FiFlag /></div>
+                                <div className="ff-report-text">Report fundraiser</div>
+                            </button>
+
+                        </div>
+                    </main>
+                    <aside className="ff-fundraiser-donate-box">
+                        <div className="ff-donate-box-first">
+                            <div className="ff-box-goal-and-amount">
+                                <span className='ff-box-raised-amount'>Rs.{details.totalDonationAmount}</span>
+                                {details.progress < 100 ? <span className='ff-box-goal-amount'>raised of Rs.{details.goal} goal</span> : <span className='ff-box-goal-amount'>raised ( Goal Completed )</span>}
+                            </div>
+                            <div className="ff-box-progress">
+                                <div className="ff-box-progress-bar" style={{ width: `${details.progress}%` }}></div>
+                            </div>
+                            <span className="ff-box-total-donation">
+                                {donations.totalDonationCount} {donations.totalDonationCount > 1 ? 'donations' : 'donation'}
+                            </span>
+                        </div>
+
+                        <div className="ff-donate-box-buttons">
+                            {shareBoxInfo != '' && <span className="ff-sd-btn-info">{shareBoxInfo}</span>}
+                            <button className="ff-box-button ff-box-share-btn" onClick={(e) => { handleShare('box'); }}>
+                                <span>Copy link</span>
+                            </button>
+                            <button className="ff-box-button ff-box-donate-btn" onClick={(e) => { handleDonateClick(); }}>
+                                <span>{isLoading ? <PulseLoader size={10} margin={4} /> : `Donate Now`}</span>
+                            </button>
+                        </div>
+
+                        <div className="ff-donate-box-latest-donation">
+                            <div className="ff-box-latest-icon">{donations.totalRecentDonationCount < 1 ? <HiMiniBarsArrowDown /> : <HiMiniBarsArrowUp />}</div>
+                            {donations.totalRecentDonationCount < 1 ? <div className="ff-box-latest-text">No recent donation</div> : <div className="ff-box-latest-text">{donations.totalRecentDonationCount} {donations.totalRecentDonationCount > 1 ? 'people' : 'person'} just donated</div>}
+                        </div>
+
+                        {donations.firstDonation ? <ul className="ff-donate-box-donator-types">
+                            <li className="ff-box-types-item">
+                                <div className="ff-comments-item-icon"><BiDonateHeart /></div>
+                                <div className="ff-types-item-details">
+                                    <div className="ff-types-item-name">{donations.recentDonation.user.name}</div>
+                                    <div className="ff-types-item-amount-type">
+                                        <span className="ff-types-item-amount">Rs.{donations.recentDonation.donationAmount}</span>
+                                        <span className="ff-type-item-type">--- Recent donation</span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li className="ff-box-types-item">
+                                <div className="ff-comments-item-icon"><BiDonateHeart /></div>
+                                <div className="ff-types-item-details">
+                                    <div className="ff-types-item-name">{donations.topDonation.user.name}</div>
+                                    <div className="ff-types-item-amount-type">
+                                        <span className="ff-types-item-amount">Rs.{donations.topDonation.donationAmount}</span>
+                                        <span className="ff-type-item-type">--- Top donation</span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li className="ff-box-types-item">
+                                <div className="ff-comments-item-icon"><BiDonateHeart /></div>
+                                <div className="ff-types-item-details">
+                                    <div className="ff-types-item-name">{donations.firstDonation.user.name}</div>
+                                    <div className="ff-types-item-amount-type">
+                                        <span className="ff-types-item-amount">Rs.{donations.firstDonation.donationAmount}</span>
+                                        <span className="ff-type-item-type">--- First donation</span>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul> : <div className="ff-become-first-donator">
+                            <div className="ff-first-donator-icon"><BiDonateHeart /></div>
+                            <div className="ff-first-donator-text">Be the first to donate</div>
+                        </div>}
+
+                        {/* <div className="ff-donate-box-last-buttons">
                     <button className="ff-box-last-btns">See all</button>
                     <button className="ff-box-last-btns"><span><IoIosStarOutline /></span>See top</button>
                 </div> */}
-            </aside>
-        </div>
+                    </aside>
+                </div>
+            )
+        )
     )
 }
 

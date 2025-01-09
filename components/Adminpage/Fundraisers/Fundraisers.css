@@ -51,6 +51,7 @@
     min-height: 50px;
     border-radius: 4px;
     overflow: hidden;
+    border: 2px solid var(--btn-primary);
 }
 .adf-users-avatar {
     object-fit: cover;

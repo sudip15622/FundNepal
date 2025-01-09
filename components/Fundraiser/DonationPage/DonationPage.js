@@ -4,7 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link';
 import "./DonationPage.css";
 import { useRouter } from 'next/navigation';
-import { handleKhalti } from '@/actions/handleKhalti';
+import { handleKhalti, generateSignature, handleEsewa } from '@/actions/handleKhalti';
 import { v4 as uuidv4 } from 'uuid';
 
 import { PulseLoader } from "react-spinners";
@@ -25,16 +25,14 @@ const DonationPage = ({ details, user }) => {
     const [info, setInfo] = useState('');
     const [focusedField, setFocusedField] = useState(false);
 
-    const [paymentMethod, setPaymentMethod] = useState('Khalti');
+    const [paymentMethod, setPaymentMethod] = useState('eSewa');
 
     const inputRef = useRef(null);
 
     useEffect(() => {
         if (!user) {
-            if (!user) {
-                router.push(`/signin?redirectTo=/fundraisers/${details.slug}?page=donation`);
-                return;
-            }
+            router.push(`/signin?redirectTo=/fundraisers/${details.slug}?page=donation`);
+            return;
         }
     }, [user])
 
@@ -144,17 +142,8 @@ const DonationPage = ({ details, user }) => {
             resetError();
         }
 
-        if (wallet === 'eSewa') {
-            console.log("eSewa payment");
-            setTimeout(() => {
-                setIsLoading(false);
-                setError('');
-                setInfo('');
-            }, 200);
-            return;
-        }
-
-        const serviceCharge = `${Math.round(parseFloat(amount * 0.05))}`
+        const serviceCharge = `${Math.round(parseFloat(amount * 0.0))}`
+        // const serviceCharge = 0;
         const totalAmount = `${Math.round(parseFloat(amount) + parseFloat(serviceCharge))}`;
 
         const payloadDetails = {
@@ -168,6 +157,83 @@ const DonationPage = ({ details, user }) => {
             donorEmail: user.email,
             donorId: user.id,
             fundraiserSlug: details.slug,
+        }
+
+        if (wallet === 'eSewa') {
+            const esewaConfig = {
+                amount: payloadDetails.donationAmount,
+                tax_amount: "0",
+                total_amount: payloadDetails.totalAmount,
+                transaction_uuid: payloadDetails.id,
+                product_code: process.env.NEXT_PUBLIC_ESEWA_MERCHANT_CODE,
+                product_service_charge: payloadDetails.serviceCharge,
+                product_delivery_charge: "0",
+                success_url: `${process.env.NEXT_PUBLIC_BASE_URL}/donation/esewa/success`,
+                failure_url: `${process.env.NEXT_PUBLIC_BASE_URL}`,
+                signed_field_names: "total_amount,transaction_uuid,product_code",
+            };
+
+            const signatureString = `total_amount=${esewaConfig.total_amount},transaction_uuid=${esewaConfig.transaction_uuid},product_code=${esewaConfig.product_code}`;
+
+            const signature = await generateSignature(signatureString, process.env.NEXT_PUBLIC_ESEWA_SECRET_KEY);
+
+            const payload = {
+                ...esewaConfig,
+                signature: signature,
+            };
+
+            console.log(payload);
+
+            try {
+
+                let form = document.createElement('form');
+                form.method = 'POST';
+                form.action = "https://rc-epay.esewa.com.np/api/epay/main/v2/form";
+
+                Object.entries(payload).forEach(([key, value]) => {
+                    let input = document.createElement("input");
+                    input.type = "hidden";
+                    input.name = key;
+                    input.value = String(value);
+                    form.appendChild(input);
+                });
+
+                document.body.appendChild(form);
+                form.submit();
+                document.body.removeChild(form);
+
+            } catch (error) {
+                console.error('Failed to initiate eSewa payment:', error);
+                setError('Failed to initiate eSewa payment!');
+                setIsLoading(false);
+                resetError();
+                return;
+
+            }
+
+            const esewaDetails = await handleEsewa(payloadDetails, payload.transaction_uuid);
+
+            if (esewaDetails?.error) {
+                setError(esewaDetails.error);
+                setIsLoading(false);
+                resetError();
+                return;
+            }
+
+            if(esewaDetails?.nextError) {
+                setError(esewaDetails.nextError);
+                setIsLoading(false);
+                resetError();
+                return;
+            }
+            // console.log(esewaDetails);
+
+            setTimeout(() => {
+                setIsLoading(false);
+                setError('');
+                setInfo('');
+            }, 200);
+            return;
         }
 
         const paymentDetails = await handleKhalti(payloadDetails);
@@ -245,9 +311,9 @@ const DonationPage = ({ details, user }) => {
                         )}
 
                     </div>
-                    <div className="dp-tip-info" >
+                    {/* <div className="dp-tip-info" >
                         <i><b>Note:</b> 5% of your donation will be added as a tip to support our platform.</i>
-                    </div>
+                    </div> */}
 
                     <h2 className="dp-form-title">Payment Method:</h2>
                     <div className="dp-payment-methods-container">
@@ -283,13 +349,13 @@ const DonationPage = ({ details, user }) => {
                             <span>Rs. {amount ? parseFloat(amount) : "0.00"}</span>
                         </div>
                         <div className="dp-final-donation-text">
-                            <span>FundNepal Tip (5%):</span>
-                            <span>Rs. {amount ? Math.round(parseFloat(amount * 0.05)) : "0.00"}</span>
+                            <span>FundNepal Tip (0%):</span>
+                            <span>Rs. {amount ? Math.round(parseFloat(amount * 0.0)) : "0.00"}</span>
                         </div>
                         <span className="dp-final-donation-line"></span>
                         <div className="dp-final-donation-text">
                             <span style={{ fontWeight: "bold" }}>Total Amount:</span>
-                            <span style={{ fontWeight: "bold" }}>Rs. {amount ? Math.round(parseFloat(amount) + parseFloat(amount * 0.05)) : "0.00"}</span>
+                            <span style={{ fontWeight: "bold" }}>Rs. {amount ? Math.round(parseFloat(amount) + parseFloat(amount * 0.0)) : "0.00"}</span>
                         </div>
                     </div>
 

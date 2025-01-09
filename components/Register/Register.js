@@ -53,11 +53,50 @@ const Login = () => {
   };
 
   const isValidEmail = (email) => {
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (regex.test(email)) {
-      return { success: true };
+    const emailRegex = /^[A-Za-z][A-Za-z0-9._%+-]*@[A-Za-z0-9-]+\.[A-Za-z]{2,}$/;
+    if (!emailRegex.test(email)) {
+      return { success: false, error: "invalid email!" };
     }
-    return { success: false, error: "Invalid Email!" };
+    const atCount = email.split('@').length - 1;
+    if (atCount !== 1) {
+      return { success: false, error: "invalid email!" };
+    }
+    const domainPart = email.split('@')[1];
+    if (!domainPart || domainPart.indexOf('.') === -1) {
+      return { success: false, error: "invalid email!" };
+    }
+    if (domainPart.startsWith('-') || domainPart.endsWith('-')) {
+      return { success: false, error: "invalid email!" };
+    }
+    if (domainPart.includes('..')) {
+      return { success: false, error: "invalid email!" };
+    }
+    const domainSegments = domainPart.split('.');
+    for (const segment of domainSegments) {
+      if (segment.length < 1 || segment.length > 63 || segment.startsWith('-') || segment.endsWith('-')) {
+        return { success: false, error: "invalid email!" };
+      }
+    }
+    if (email.includes('..')) {
+      return { success: false, error: "invalid email!" };
+    }
+    const localPart = email.split('@')[0];
+    if (/[._%+-]$/.test(localPart)) {
+      return { success: false, error: "invalid email!" };
+    }
+    if (/^[._%+-]|[._%+-]$/.test(localPart)) {
+      return { success: false, error: "invalid email!" };
+    }
+    if (/([._%+-])\1/.test(localPart)) {
+      return { success: false, error: "invalid email!" };
+    }
+    if (localPart.length > 64) {
+      return { success: false, error: "invalid email!" };
+    }
+    if (/[^A-Za-z0-9._%+-]/.test(localPart)) {
+      return { success: false, error: "invalid email!" };
+    }
+    return { success: true };
   };
 
   const isValidPassword = (pw) => {

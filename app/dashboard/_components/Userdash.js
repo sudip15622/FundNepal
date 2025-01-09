@@ -35,6 +35,7 @@ const Userdash = async ({user}) => {
     const allFundraisers = await prisma.fundraiser.findMany({
         where: {
             userId: user.id,
+            status: 'Published',
         },
         orderBy: {
             datePublished: 'desc',

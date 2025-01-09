@@ -1,5 +1,6 @@
 "use server"
 import prisma from "@/config/prisma";
+import CryptoJS from "crypto-js";
 
 const handleKhaltiPayment = async (details) => {
 
@@ -114,3 +115,71 @@ export const handleKhalti = async (details) => {
     const khaltiPayment = await handleKhaltiPayment(details);
     return khaltiPayment;
 };
+
+export const generateSignature = async (message, secretKey) => {
+    const hash = CryptoJS.HmacSHA256(message, secretKey);
+    return CryptoJS.enc.Base64.stringify(hash);
+}
+
+export const handleEsewa = async (details, signature) => {
+    try {
+
+        if (!details) {
+            return {
+                success: false,
+                error: "No details provided",
+            }
+        }
+
+        const user = await prisma.user.findUnique({
+            where: {
+                id: details.donorId
+            }
+        })
+        if (!user) {
+            return {
+                success: false,
+                error: "User not found",
+            }
+        }
+
+        const fundraiser = await prisma.fundraiser.findUnique({
+            where: {
+                id: details.fundraiserId
+            }
+        })
+        if (!fundraiser) {
+            return {
+                success: false,
+                error: "Fundraiser not found",
+            }
+        }
+
+        const payData = {
+            signature: signature,
+            donorId: details.donorId,
+            fundraiserId: details.fundraiserId,
+            fundraiserSlug: details.fundraiserSlug,
+            donationAmount: parseInt(details.donationAmount, 10),
+            serviceCharge: parseInt(details.serviceCharge, 10),
+            totalAmount: parseInt(details.totalAmount, 10),
+        }
+
+        await prisma.esewapayment.create({
+            data: payData
+        });
+
+        return {
+            success: true,
+        };
+        
+
+    } catch (error) {
+        console.log(error.message);
+        return ({
+            success: false,
+            nextError: 'Something went wrong!'
+
+        });
+    }
+}

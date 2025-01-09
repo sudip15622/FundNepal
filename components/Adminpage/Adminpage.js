@@ -7,9 +7,11 @@ import Profile from './Profile/Profile';
 import Users from './Users/Users';
 import Fundraisers from './Fundraisers/Fundraisers';
 import Donations from './Donations/Donations';
+import Reports from './Reports/Reports';
+import Banks from './Banks/Banks';
 
 import { MdDashboard, MdCampaign, MdOutlineManageSearch, MdReport } from "react-icons/md";
-import { BiSolidDonateHeart } from "react-icons/bi";
+import { BiSolidDonateHeart, BiSolidBank } from "react-icons/bi";
 import { FaUserCircle, FaUsers } from "react-icons/fa";
 import { FaAngleRight } from "react-icons/fa6";
 
@@ -22,7 +24,7 @@ const Adminpage = ({ user, overview }) => {
     const [selected, setSelected] = useState(page);
     const [validPage, setValidPage] = useState(true);
 
-    const validPages = ['dashboard', 'users', 'fundraisers', 'donations', 'reports', 'profile'];
+    const validPages = ['dashboard', 'users', 'fundraisers', 'donations', 'banks', 'reports', 'profile'];
 
 
     useEffect(() => {
@@ -102,6 +104,20 @@ const Adminpage = ({ user, overview }) => {
                             <div className={`sidebar-element-right ${selected === 'donations' && "sidebar-pointer-show"}`}><FaAngleRight /></div>
                         </li>
                         <li
+                            className={`sidebar-element ${selected === 'banks' && 'sidebar-active'}`}
+                            onClick={() => handleSidebarClick('banks')}
+                        >
+                            <div className="sidebar-element-left">
+                                <div className="sidebar-element-icon">
+                                    <BiSolidBank />
+                                </div>
+                                <div className="sidebar-element-text">
+                                    Banks
+                                </div>
+                            </div>
+                            <div className={`sidebar-element-right ${selected === 'banks' && "sidebar-pointer-show"}`}><FaAngleRight /></div>
+                        </li>
+                        <li
                             className={`sidebar-element ${selected === 'reports' && 'sidebar-active'}`}
                             onClick={() => handleSidebarClick('reports')}
                         >
@@ -141,30 +157,34 @@ const Adminpage = ({ user, overview }) => {
                         <>
                             {selected === 'dashboard' && (
                                 <>
-                                    <Overview user={user} overview={overview}/>
+                                    <Overview user={user} overview={overview} />
                                 </>
                             )}
                             {selected === 'users' && (
                                 <>
-                                    <Users/>
+                                    <Users />
                                 </>
                             )}
                             {selected === 'fundraisers' && (
                                 <>
-                                    <Fundraisers/>
+                                    <Fundraisers />
                                 </>
                             )}
                             {selected === 'donations' && (
                                 <>
-                                    <Donations/>
+                                    <Donations />
                                 </>
                             )}
-
-                            {/* {selected === 'donations' && (
+                            {selected === 'banks' && (
                                 <>
-                                    <Donations user={user} allDonations={allDonations}/>
+                                    <Banks />
                                 </>
-                            )} */}
+                            )}
+                            {selected === 'reports' && (
+                                <>
+                                    <Reports />
+                                </>
+                            )}
                             {selected === 'profile' && (
                                 <>
                                     <Profile userId={user.id} />

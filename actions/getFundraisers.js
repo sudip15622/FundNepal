@@ -40,7 +40,7 @@ export async function getCategoryWiseFundraiser(category = 'Medical', count = 6)
 
     const where = {
         category: category,
-        status: 'Draft',
+        status: 'Published',
     };
     const select = {
         id: true,
@@ -87,7 +87,7 @@ export async function getAllFundraisers(page = 1, pageSize = 5, filter = 'Now Tr
     const skip = (page - 1) * pageSize;
 
     const where = {
-        status: 'Draft',
+        status: 'Published',
     };
     const select = {
         id: true,
@@ -151,7 +151,7 @@ export const changeFundraiserStatus = async (id, status) => {
         if (!fundraiser) {
             return ({
                 success: false,
-                error: 'Fundraiser not found!'
+                error: 'Fundraiser not found!',
             });
         }
         await prisma.fundraiser.update({
@@ -184,19 +184,21 @@ export const getFundraisersForAdmin = async (pageIndex = 0, pageSize = 10, sortF
                         OR: [
                             { title: { contains: searchQuery, mode: 'insensitive' } },
                             // { category: { contains: searchQuery, mode: 'insensitive' } },
-                            { user: {
-                                name: { contains: searchQuery, mode: 'insensitive' }
-                            } },
+                            {
+                                user: {
+                                    name: { contains: searchQuery, mode: 'insensitive' }
+                                }
+                            },
                         ],
                     }
                     : {},
             ],
         };
 
-        if(status){
+        if (status) {
             where.AND.push({ status: status });
         }
-        if(category){
+        if (category) {
             where.AND.push({ category: category });
         }
 
@@ -211,6 +213,62 @@ export const getFundraisersForAdmin = async (pageIndex = 0, pageSize = 10, sortF
             orderBy: {
                 dateRequested: sortFundraiser,
             },
+        });
+
+        const totalFundraisers = await prisma.fundraiser.count();
+
+        return {
+            success: true,
+            fundraisers: fundraisers,
+            totalFundraisers: totalFundraisers,
+        };
+    } catch (error) {
+        console.log(error.message);
+        return ({
+            success: false,
+            nextError: error.message
+        });
+    }
+}
+export const getFundraiserWhileSearch = async (count = 10, searchQuery = '', category = '', filter = '') => {
+    try {
+        let orderBy = { datePublished: 'desc' };
+        if (filter === 'Now Trending') {
+            orderBy = { totalDonationAmount: 'desc' };
+        } else if (filter === 'Just Launched') {
+            orderBy = { datePublished: 'desc' };
+        } else if (filter === 'Close to Goal') {
+            orderBy = { progress: 'desc' };
+        }
+
+        const where = {
+            AND: [
+                searchQuery
+                    ? {
+                        OR: [
+                            { title: { contains: searchQuery, mode: 'insensitive' } },
+                            {
+                                user: {
+                                    name: { contains: searchQuery, mode: 'insensitive' }
+                                }
+                            },
+                        ],
+                    }
+                    : {},
+            ],
+        };
+        if (category) {
+            where.AND.push({ category: category });
+        }
+
+        const fundraisers = await prisma.fundraiser.findMany({
+            where: where,
+            take: count,
+            include: {
+                beneficiary: true,
+                user: true,
+            },
+            orderBy: orderBy,
         });
 
         const totalFundraisers = await prisma.fundraiser.count();

@@ -18,11 +18,13 @@ const Admindash = async ({user}) => {
 
     const totalFundraisers = await prisma.fundraiser.count()
     const totalUsers = await prisma.user.count()
+    const totalReports = await prisma.report.count()
 
     const overview = {
         totalDonations: totalDonations,
         totalFundraisers: totalFundraisers,
         totalUsers: totalUsers,
+        totalReports: totalReports,
     }
 
     const allFundraisers = await prisma.fundraiser.findMany({

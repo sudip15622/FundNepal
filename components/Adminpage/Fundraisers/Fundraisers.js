@@ -196,7 +196,7 @@ const Fundraisers = () => {
             },
         },
         {
-            header: 'Date Created',
+            header: 'Date',
             accessorKey: 'dateRequested',
             cell: ({ getValue }) => getDate(getValue()),
         },

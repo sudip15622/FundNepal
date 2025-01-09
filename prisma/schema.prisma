@@ -21,6 +21,8 @@ model User {
   createdAt   DateTime     @default(now())
   updatedAt   DateTime     @updatedAt
   donations   Donation[]
+  reports     Report[]
+  Bank        Bank[]
 }
 
 model Fundraiser {
@@ -37,6 +39,7 @@ model Fundraiser {
   status              String        @default("Draft")
   beneficiary         Beneficiary[]
   donations           Donation[]
+  reports             Report[]
   user                User          @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId              String        @db.ObjectId
   dateRequested       DateTime      @default(now())
@@ -57,23 +60,19 @@ model Beneficiary {
 }
 
 model Donation {
-  id                  String     @id @default(auto()) @map("_id") @db.ObjectId
-  pidx                String     @unique
-  status              String
-  purchase_order_id   String     @unique
-  purchase_order_name String
-  transaction_id      String     @unique
-  donationAmount      Int
-  serviceCharge       Int
-  totalAmount         Int
-  paymentMethod       String
-  fundraiser          Fundraiser @relation(fields: [fundraiserId], references: [id], onDelete: Cascade)
-  fundraiserId        String     @db.ObjectId
-  user                User       @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId              String     @db.ObjectId
-  dateDonated         DateTime   @default(now())
-  createdAt           DateTime   @default(now())
-  updatedAt           DateTime   @updatedAt
+  id                 String     @id @default(auto()) @map("_id") @db.ObjectId
+  transactionDetails Json
+  donationAmount     Int
+  serviceCharge      Int
+  totalAmount        Int
+  paymentMethod      String
+  fundraiser         Fundraiser @relation(fields: [fundraiserId], references: [id], onDelete: Cascade)
+  fundraiserId       String     @db.ObjectId
+  user               User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId             String     @db.ObjectId
+  dateDonated        DateTime   @default(now())
+  createdAt          DateTime   @default(now())
+  updatedAt          DateTime   @updatedAt
 }
 
 model Khaltipayment {
@@ -87,4 +86,53 @@ model Khaltipayment {
   totalAmount    Int
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
+}
+
+model Esewapayment {
+  id             String   @id @default(auto()) @map("_id") @db.ObjectId
+  signature      String   @unique
+  donorId        String
+  fundraiserId   String
+  fundraiserSlug String
+  donationAmount Int
+  serviceCharge  Int
+  totalAmount    Int
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model Report {
+  id           String     @id @default(auto()) @map("_id") @db.ObjectId
+  causes       String[]
+  fundraiser   Fundraiser @relation(fields: [fundraiserId], references: [id], onDelete: Cascade)
+  fundraiserId String     @db.ObjectId
+  user         User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId       String     @db.ObjectId
+  dateReported DateTime   @default(now())
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+}
+
+model Bank {
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  holderName    String
+  accountNumber String
+  mobileNumber  String
+  bankName      String
+  status        String   @default("Pending")
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId        String   @db.ObjectId
+  dateAdded     DateTime @default(now())
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model Otp {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  otp       String
+  email     String   @unique
+  used      Boolean  @default(false)
+  expiredAt DateTime
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

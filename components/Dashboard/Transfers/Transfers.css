@@ -1,0 +1,342 @@
+.bt-transfers-container {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    row-gap: 30px;
+    color: var(--text-md);
+}
+.bt-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 300px;
+}
+.bt-transfers-header {
+    display: flex;
+    flex-direction: column;
+    row-gap: 8px;
+}
+
+.bt-transfers-title {
+    font-size: 1.6rem;
+    font-weight: bold;
+}
+
+.bt-transfers-text {
+    font-size: .95rem;
+    font-weight: 500;
+}
+
+.bt-add-bank-container {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}
+.bt-add-bank-btn {
+    width: 200px;
+    height: 40px;
+    padding: 0px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 12px;
+    background: var(--btn-primary);
+    color: var(--text-light);
+    cursor: pointer;
+}
+.bt-add-btn-text {
+    font-size: .95rem;
+    font-weight: bold;
+}
+.bt-add-btn-icon {
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.bt-note-section {
+    font-size: .9rem;
+    font-weight: 500;
+    color: var(--btn-secondary);
+}
+.bt-add-bank-form-container {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    padding: 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+}
+.bt-add-bank-header {
+    display: flex;
+    flex-direction: column;
+    row-gap: 8px;
+}
+.bt-add-bank-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+.bt-add-bank-text {
+    font-size: .95rem;
+    font-weight: 500;
+}
+.bt-add-bank-form {
+    display: flex;
+    /* column-gap: 30px; */
+    justify-content: space-around;
+    width: 100%;
+    flex-wrap: wrap;
+}
+.bt-add-bank-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 30px;
+    margin: 20px auto;
+}
+.bt-save-details-btn {
+    width: 120px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: .95rem;
+    font-weight: bold;
+    border-radius: 12px;
+    background: var(--btn-primary);
+    color: var(--text-light);
+    cursor: pointer;
+    transition: background .2s linear;
+}
+.bt-cancel-btn {
+    background: rgb(173, 4, 4);
+}
+.bt-save-btn:hover {
+    background: var(--btn-secondary);
+}
+.bt-save-btn:disabled {
+    cursor: not-allowed;
+}
+.bt-select-bank {
+    width: 100%;
+    max-width: 400px;
+    margin: 20px 0px 30px 0px;
+    position: relative;
+}
+.bt-select-bank-selected {
+    width: 100%;
+    padding: 15px 20px;
+    border: 2px solid gray;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+}
+.bt-selected {
+    border: 2px solid var(--btn-primary);
+}
+.bt-selected-name {
+    font-size: 1rem;
+    font-weight: 500;
+}
+.bt-select-bank-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+
+.bt-select-bank-options-list {
+    display: flex;
+    flex-direction: column;
+    background: var(--text-light);
+    border: 2px solid var(--btn-primary);
+    border-radius: 12px;
+    position: absolute;
+    top: 50px;
+    width: 100%;
+    z-index: 200;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+    height: 200px;
+    overflow: auto;
+}
+.bt-select-bank-options-list::-webkit-scrollbar {
+    display: none;
+}
+
+.bt-select-bank-option {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    column-gap: 12px;
+    padding: 10px 20px;
+    font-size: .9rem;
+    font-weight: 500;
+    cursor: pointer;
+    background: none;
+    transition: background .2s linear;
+    /* border: 1px solid var(--btn-primary); */
+}
+.bt-select-bank-option:hover {
+    background: var(--item-bg);
+}
+.bt-selected-option {
+    background: var(--item-bg);
+}
+.bt-select-option-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+
+.bt-action-loading-container {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0px;
+    left: 0px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(4px);
+    z-index: 200;
+}
+
+.bt-action-loading-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    row-gap: 15px;
+    padding: 20px;
+    width: 250px;
+    background: var(--text-light);
+    border-radius: 12px;
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.2);
+    color: green;
+    text-align: center;
+}
+
+.bt-action-loading-error {
+    color: rgb(173, 4, 4);
+}
+
+.bt-action-content-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+}
+
+.bt-action-content-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 16px;
+    border-radius: 12px;
+    background: var(--btn-primary);
+    color: var(--text-light);
+    font-size: .9rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+.bt-details-and-amount {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    /* column-gap: 20px; */
+}
+.bt-bank-details-container {
+    width: 100%;
+    /* max-width: 700px; */
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+    column-gap: 50px;
+    position: relative;
+}
+.bt-bank-details-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 10px;
+}
+.bt-details-left-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 7rem;
+    color: rgb(63, 62, 62);
+}
+.bt-details-left-status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    padding: 5px 20px;
+    border-radius: 12px;
+    background: var(--btn-primary);
+    color: var(--text-light);
+    font-size: .9rem;
+    font-weight: bold;
+}
+.bt-bank-details-right {
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+    justify-content: center;
+}
+.bt-bank-details-bankname {
+    font-size: 1.1rem;
+    font-weight: bold;
+    letter-spacing: .5px;
+}
+.bt-bank-details-item {
+    display: flex;
+    align-items: center;
+    column-gap: 20px;
+}
+.bt-bank-details-item b {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--btn-secondary);
+    letter-spacing: .5px;
+    
+}
+.bt-bank-details-item span {
+    font-size: 1rem;
+    font-weight: 500;
+}
+.bt-bank-added-date {
+    position: absolute;
+    bottom: 10px;
+    right: 20px;
+    font-size: .9rem;
+    font-weight: 500;
+}
+
+.bt-amount-to-recieve {
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+    padding: 20px;
+    border-radius: 12px;
+    background: var(--btn-primary);
+    color: var(--text-light);
+}
+.bt-recieving-amount-text {
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+.bt-recieving-amount {
+    font-size: 1.5rem;
+    font-weight: bold;
+}

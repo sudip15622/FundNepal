@@ -5,11 +5,11 @@ import "./Dashboard.css";
 import Overview from './Overview/Overview';
 import Fundraisers from './Fundraisers/Fundraisers';
 import Donations from './Donations/Donations';
+import Transfers from './Transfers/Transfers';
 import Profile from './Profile/Profile';
 
 import { MdDashboard, MdCampaign, MdOutlineManageSearch } from "react-icons/md";
-import { SiGooglecampaignmanager360 } from "react-icons/si";
-import { BiSolidDonateHeart } from "react-icons/bi";
+import { BiSolidDonateHeart, BiSolidBank } from "react-icons/bi";
 import { FaUserCircle } from "react-icons/fa";
 import { FaAngleRight } from "react-icons/fa6";
 
@@ -22,7 +22,7 @@ const Dashboard = ({ user, overview, allFundraisers, allDonations }) => {
     const [selected, setSelected] = useState(page);
     const [validPage, setValidPage] = useState(true);
 
-    const validPages = ['dashboard', 'fundraisers', 'donations', 'profile'];
+    const validPages = ['dashboard', 'fundraisers', 'donations', 'transfers', 'profile'];
 
 
     useEffect(() => {
@@ -88,6 +88,20 @@ const Dashboard = ({ user, overview, allFundraisers, allDonations }) => {
                             <div className={`sidebar-element-right ${selected === 'donations' && "sidebar-pointer-show"}`}><FaAngleRight /></div>
                         </li>
                         <li
+                            className={`sidebar-element ${selected === 'transfers' && 'sidebar-active'}`}
+                            onClick={() => handleSidebarClick('transfers')}
+                        >
+                            <div className="sidebar-element-left">
+                                <div className="sidebar-element-icon">
+                                    <BiSolidBank />
+                                </div>
+                                <div className="sidebar-element-text">
+                                    Bank Account
+                                </div>
+                            </div>
+                            <div className={`sidebar-element-right ${selected === 'transfers' && "sidebar-pointer-show"}`}><FaAngleRight /></div>
+                        </li>
+                        <li
                             className={`sidebar-element ${selected === 'profile' && 'sidebar-active'}`}
                             onClick={() => handleSidebarClick('profile')}
                         >
@@ -123,7 +137,12 @@ const Dashboard = ({ user, overview, allFundraisers, allDonations }) => {
                             )}
                             {selected === 'donations' && (
                                 <>
-                                    <Donations user={user} allDonations={allDonations}/>
+                                    <Donations user={user} allDonations={allDonations} />
+                                </>
+                            )}
+                            {selected === 'transfers' && (
+                                <>
+                                    <Transfers user={user} />
                                 </>
                             )}
                             {selected === 'profile' && (

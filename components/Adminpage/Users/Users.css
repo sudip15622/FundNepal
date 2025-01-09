@@ -190,7 +190,6 @@
     max-width: 150px;
     border: 2px solid var(--btn-primary);
     cursor: pointer;
-    /* background: var(--item-bg); */
     border-radius: 12px;
     font-size: 1rem;
     font-weight: 500;
