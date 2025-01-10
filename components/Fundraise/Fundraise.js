@@ -164,7 +164,7 @@ const Fundraise = ({ examples }) => {
                     <li className="f-start-card">
                         <div className="f-step-number">Step 3</div>
                         <picture>
-                            <Image className='f-step-image' src="https://www.gofundme.com/c/wp-content/uploads/2024/05/step-03.png" width={300} height={250} priority alt="step3-image" />
+                            <Image className='f-step-image' src="/bank_info.png" width={300} height={250} priority alt="step3-image" />
                         </picture>
                         <div className="f-start-card-details">
                             <h3 className="f-start-card-title">Securely receive the funds you raise</h3>
